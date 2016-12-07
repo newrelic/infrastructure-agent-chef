@@ -1,0 +1,47 @@
+---
+driver:
+  name: vagrant
+  provider: vmware_fusion
+  customize:
+    memory: 2048
+    cpus: 2
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  # Ubuntu 12.04 LTS Precise Pangolin
+  - name: ubuntu-12.04
+    driver:
+      box: bento/ubuntu-12.04
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_ubuntu-12.04_chef-provisionerless.box
+
+  # Ubuntu 14.04 LTS Trusty Tahr
+  - name: ubuntu-14.04
+    driver:
+      box: bento/ubuntu-14.04
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_ubuntu-14.04_chef-provisionerless.box
+
+  # CentOS 6.8
+  - name: centos-6.8
+    driver:
+      box: bento/centos-6.8
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_centos-6.8_chef-provisionerless.box
+
+  # CentOS 7.2
+  - name: centos-7.2
+    driver:
+      box: bento/centos-7.2
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_centos-7.2_chef-provisionerless.box
+
+suites:
+  - name: default
+    run_list:
+     - recipe[newrelic-infra::default]
+      
+    attributes:
+      {
+        "newrelic-infra": {
+          "license_key": "" # Set your key
+        }
+      }

@@ -10,7 +10,6 @@ deb_version_to_codename = {
   12 => 'precise'
 }
 
-# Add Packagecloud repository
 case node['platform_family']
 when 'debian'
   # Add public GPG key
@@ -43,7 +42,7 @@ when 'rhel'
     gpgcheck true
     repo_gpgcheck true
   end
-  
+
   # Update Yum repo
   execute 'Update Infra Yum repo' do
     command "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"

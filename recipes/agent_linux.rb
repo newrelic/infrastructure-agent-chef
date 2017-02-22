@@ -34,7 +34,16 @@ when 'debian'
 	end
 when 'rhel'
   # Add Yum repo
-  rhel_version = node['platform_version'].to_i
+  case node['platform']
+  when 'centos'
+    rhel_version = node['platform_version'].to_i
+  when 'amazon'
+    case node['platform_version'].to_i
+    when 2013, 2014, 2015, 2016
+      rhel_version = 6
+    end
+  end
+
   yum_repository 'newrelic-infra' do
     description "New Relic Infrastructure"
     baseurl "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{rhel_version}/x86_64"

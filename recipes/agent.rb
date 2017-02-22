@@ -13,11 +13,18 @@ when 'debian'
   # TODO: Add better debian platform/version detection
   include_recipe 'newrelic-infra::agent_linux'
 when 'rhel'
-  case node['platform_version']
-  when /^6/, /^7/
+  case node['platform']
+  when 'centos'
+    case node['platform_version']
+    when /^6/, /^7/
+      include_recipe 'newrelic-infra::agent_linux'
+    else
+      raise 'The New Relic Infrastructure agent is not currently supported on this platform version'
+    end
+  when 'amazon'
     include_recipe 'newrelic-infra::agent_linux'
   else
-    raise 'The New Relic Infrastructure agent is not currently supported on this platform version'
+    raise 'The New Relic Infrastructure agent is not currently supported on this platform'
   end
 when 'windows'
   include_recipe 'newrelic-infra::agent_windows'

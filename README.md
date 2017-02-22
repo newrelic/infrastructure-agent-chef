@@ -9,6 +9,7 @@ This cookbook installs and configures the New Relic Infrastructure agent.
 - RHEL
   - CentOS 7
   - CentOS 6
+  - Amazon Linux 2016.03
 - Ubuntu
   - 16 Xenial
   - 14 Trusty

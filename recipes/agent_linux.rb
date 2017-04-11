@@ -39,7 +39,7 @@ when 'rhel'
     rhel_version = node['platform_version'].to_i
   when 'amazon'
     case node['platform_version'].to_i
-    when 2013, 2014, 2015, 2016
+    when 2013, 2014, 2015, 2016, 2017
       rhel_version = 6
     end
   end

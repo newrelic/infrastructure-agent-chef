@@ -28,10 +28,12 @@ when 'debian'
     arch 'amd64'
   end
 
-  # Update APT repo
-#	execute 'apt-get update' do
-#		command 'apt-get update'
-#	end
+  # Update APT repo -- if you don't need this in your regular runs,
+  # please customize a private fork
+	execute 'apt-get update' do
+		command 'apt-get update'
+	end
+
 when 'rhel'
   # Add Yum repo
   case node['platform']

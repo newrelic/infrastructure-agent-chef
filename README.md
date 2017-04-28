@@ -64,4 +64,4 @@ See `attributes/defaults.rb` for default values.
 1. Set `node['newrelic-infra']['license_key']` attribute with your New Relic license key
 1. Include `default` recipe or add it to your run list
 
-Copyright (c) 2016 New Relic, Inc. All rights reserved.
+Copyright (c) 2017 New Relic, Inc. All rights reserved.

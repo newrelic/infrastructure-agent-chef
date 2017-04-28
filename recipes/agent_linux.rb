@@ -29,9 +29,9 @@ when 'debian'
   end
 
   # Update APT repo
-	execute 'apt-get update' do
-		command 'apt-get update'
-	end
+#	execute 'apt-get update' do
+#		command 'apt-get update'
+#	end
 when 'rhel'
   # Add Yum repo
   case node['platform']
@@ -80,7 +80,6 @@ service "newrelic-infra" do
   action [:enable, :start]
 end
 
-
 # Lay down newrelic-infra agent config
 template '/etc/newrelic-infra.yml' do
   source 'newrelic-infra.yml.erb'
@@ -88,7 +87,11 @@ template '/etc/newrelic-infra.yml' do
   group 'root'
   mode '00644'
   variables(
-    'license_key' => node['newrelic-infra']['license_key']
+    'license_key' => node['newrelic-infra']['license_key'],
+    'display_name' => node['newrelic-infra']['display_name'],
+    'log_file' => node['newrelic-infra']['log_file'],
+    'verbose' => node['newrelic-infra']['verbose'],
+    'proxy' => node['newrelic-infra']['proxy']
   )
   notifies :restart, 'service[newrelic-infra]', :delayed
 end

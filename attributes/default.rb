@@ -5,3 +5,7 @@ default['newrelic-infra']['agent_action'] = 'install'
 default['newrelic-infra']['agent_version'] = nil
 
 default['newrelic-infra']['license_key'] = nil
+default['newrelic-infra']['display_name'] = nil
+default['newrelic-infra']['proxy'] = nil
+default['newrelic-infra']['verbose'] = nil
+default['newrelic-infra']['log_file'] = nil

@@ -18,3 +18,4 @@ Copyright (c) 2017 New Relic, Inc. All rights reserved.
 ## Contributors
 
 * David Lanner (@dlanner)
+* Robert Hak <robert.hak @ iacapps.com>

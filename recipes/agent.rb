@@ -14,7 +14,7 @@ when 'debian'
   include_recipe 'newrelic-infra::agent_linux'
 when 'rhel'
   case node['platform']
-  when 'centos'
+  when 'centos', 'redhat'
     case node['platform_version']
     when /^6/, /^7/
       include_recipe 'newrelic-infra::agent_linux'

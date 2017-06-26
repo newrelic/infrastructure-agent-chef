@@ -19,4 +19,5 @@ Copyright (c) 2017 New Relic, Inc. All rights reserved.
 
 * David Lanner (@dlanner)
 * Robert Hak <robert.hak @ iacapps.com>
+* Jordan Faust (jfaust47@gmail.com)
 * Don O'Neill <don.oneill @ apexlearning.com>

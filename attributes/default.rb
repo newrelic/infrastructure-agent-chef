@@ -9,3 +9,4 @@ default['newrelic-infra']['display_name'] = nil
 default['newrelic-infra']['proxy'] = nil
 default['newrelic-infra']['verbose'] = nil
 default['newrelic-infra']['log_file'] = nil
+default['newrelic-infra']['custom_attributes'] = {}

@@ -1,0 +1,19 @@
+license_key: <%= @license_key %>
+<% unless @display_name.nil? || @display_name.empty? -%>
+display_name: <%= @display_name %>
+<% end -%>
+<% unless @log_file.nil? || @log_file.empty? -%>
+log_file: <%= @log_file %>
+<% end -%>
+<% unless @verbose.nil? || @verbose.empty? -%>
+verbose: <%= @verbose %>
+<% end -%>
+<% unless @proxy.nil? || @proxy.empty? -%>
+proxy: <%= @proxy %>
+<% end -%>
+<% unless @custom_attributes.nil? || @custom_attributes.empty? -%>
+custom_attributes:
+<% @custom_attributes.each do |key, value| -%>
+  <%= "#{key}: #{value}"%>
+<% end -%>
+<% end -%>

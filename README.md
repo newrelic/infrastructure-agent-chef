@@ -62,6 +62,7 @@ See `attributes/defaults.rb` for default values.
   - `'upgrade'`: Installs package and/or ensures it's the latest version.
   - `'remove'`:  Removes the package.
 - `node['newrelic-infra']['agent_version']` - Specify `newrelic-infra` package version to pin.
+- `node['newrelic-infra']['custom_attributes']` - Specify custom attributes as key/value pairs.
 
 ## Usage
 

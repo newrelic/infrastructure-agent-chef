@@ -93,7 +93,8 @@ template '/etc/newrelic-infra.yml' do
     'display_name' => node['newrelic-infra']['display_name'],
     'log_file' => node['newrelic-infra']['log_file'],
     'verbose' => node['newrelic-infra']['verbose'],
-    'proxy' => node['newrelic-infra']['proxy']
+    'proxy' => node['newrelic-infra']['proxy'],
+    'custom_attributes' => node['newrelic-infra']['custom_attributes']
   )
   notifies :restart, 'service[newrelic-infra]', :delayed
 end

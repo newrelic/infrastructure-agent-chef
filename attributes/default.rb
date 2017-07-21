@@ -4,6 +4,11 @@
 default['newrelic-infra']['agent_action'] = 'install'
 default['newrelic-infra']['agent_version'] = nil
 
+default['newrelic-infra']['yum'] = {}
+default['newrelic-infra']['yum']['baseurl'] = nil
+default['newrelic-infra']['yum']['gpgkey'] = nil
+default['newrelic-infra']['yum']['repo_gpgcheck'] = true
+
 default['newrelic-infra']['license_key'] = nil
 default['newrelic-infra']['display_name'] = nil
 default['newrelic-infra']['proxy'] = nil

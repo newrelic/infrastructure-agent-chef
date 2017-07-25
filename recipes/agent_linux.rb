@@ -30,9 +30,9 @@ when 'debian'
 
   # Update APT repo -- if you don't need this in your regular runs,
   # please customize a private fork
-	execute 'apt-get update' do
-		command 'apt-get update'
-	end
+  execute 'apt-get update' do
+    command 'apt-get update'
+  end
 
 when 'rhel'
   # Add Yum repo
@@ -83,18 +83,10 @@ service "newrelic-infra" do
 end
 
 # Lay down newrelic-infra agent config
-template '/etc/newrelic-infra.yml' do
-  source 'newrelic-infra.yml.erb'
+file '/etc/newrelic-infra.yml' do
   owner 'root'
   group 'root'
   mode '00644'
-  variables(
-    'license_key' => node['newrelic-infra']['license_key'],
-    'display_name' => node['newrelic-infra']['display_name'],
-    'log_file' => node['newrelic-infra']['log_file'],
-    'verbose' => node['newrelic-infra']['verbose'],
-    'proxy' => node['newrelic-infra']['proxy'],
-    'custom_attributes' => node['newrelic-infra']['custom_attributes']
-  )
+  content(node['newrelic-infra'].reject { |key| key.start_with? "agent_" }.to_yaml)
   notifies :restart, 'service[newrelic-infra]', :delayed
 end

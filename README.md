@@ -7,8 +7,10 @@ This cookbook installs and configures the New Relic Infrastructure agent.
 ### Platforms
 
 - RHEL
-  - Red Hat 6
   - Red Hat 7
+  - Red Hat 6
+  - Oracle 7
+  - Oracle 6
   - CentOS 7
   - CentOS 6
   - Amazon Linux (all versions)

@@ -23,3 +23,4 @@ Copyright (c) 2017 New Relic, Inc. All rights reserved.
 * Robert Hak <robert.hak @ iacapps.com>
 * Jordan Faust (jfaust47@gmail.com)
 * Brandon Sharitt (brandon@sharitt.com)
+* Mark Whelan (mbwhelan@gmail.com)

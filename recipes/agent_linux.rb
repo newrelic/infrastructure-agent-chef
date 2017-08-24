@@ -37,7 +37,7 @@ when 'debian'
 when 'rhel'
   # Add Yum repo
   case node['platform']
-  when 'centos', 'redhat'
+  when 'centos', 'oracle', 'redhat'
     rhel_version = node['platform_version'].to_i
   when 'amazon'
     case node['platform_version'].to_i

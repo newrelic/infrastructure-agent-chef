@@ -46,12 +46,20 @@ when 'rhel'
     end
   end
 
+  if node['newrelic-infra']['yum']['baseurl'].nil?
+    base_url = "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{rhel_version}/x86_64"
+  end
+
+  if node['newrelic-infra']['yum']['gpgkey'].nil?
+    gpg_key = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
+  end
+
   yum_repository 'newrelic-infra' do
     description "New Relic Infrastructure"
-    baseurl "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{rhel_version}/x86_64"
-    gpgkey 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
+    baseurl node['newrelic-infra']['yum']['baseurl'] || base_url
+    gpgkey node['newrelic-infra']['yum']['gpgkey'] || gpg_key
     gpgcheck true
-    repo_gpgcheck true
+    repo_gpgcheck node['newrelic-infra']['yum']['repo_gpgcheck']
   end
 
   # Update Yum repo

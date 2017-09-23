@@ -1,0 +1,11 @@
+AllCops:
+  DisplayCopNames: true
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

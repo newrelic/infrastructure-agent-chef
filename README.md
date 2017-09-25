@@ -114,7 +114,7 @@ See [attributes/defaults.rb][3] for more details and default values.
 | `default['newrelic_infra']['config']['verbose']` | `nil` | When set to 1, enables verbose logging for the agent |
 | `default['newrelic_infra']['config']['debug']` | `nil` | Enable Golang debugging |
 | `default['newrelic_infra']['config']['log_file']` | `nil` | To log to another location; when not set, the agent logs to the system log files |
-| `default['newrelic_infra']['config']['custom_attributes']` | `nil` | A hash of custom attributes to annotate the data from this agent instance |
+| `default['newrelic_infra']['config']['custom_attributes']` | `{}` | A hash of custom attributes to annotate the data from this agent instance |
 | `default['newrelic_infra']['agent']['config']['file']` | `agent.yaml` | File name for the agent configuration |
 | `default['newrelic_infra']['agent']['config']['mode']` | `0640` | File permissions for the agent configuration |
 | `default['newrelic_infra']['agent']['directory']['path']` | `/etc/newrelic-infra` | Directory path for the agent configuration |
@@ -207,8 +207,8 @@ Supported properties:
 | `user` | `false` | String | `'newrelic_infra'` |
 | `group` | `false` | String | `'newrelic_infra'` |
 | `base_dir` | `false` | String | `'/var/db/newrelic-infra/custom-integrations'` |
-| `bin_dir` | `false` | String | `/opt/newrelic-infra/#{resource_name}` |
-| `bin` | `false` | String | The `bin_dir` and name of the tarball or binary without any extension |
+| `bin_dir` | `false` | String | `/opt/newrelic-infra` |
+| `bin` | `false` | String | The folder is `#{bin_dir}/#{name}` and the file name is the tarball or binary without any extension |
 | `definition_file` | `false` | String | `#{base_dir}/#{resource_name).yaml` |
 | `config_dir` | `false` | String | '/etc/newrelic-infra/integrations.d/' |
 | `config_file` | `false` | String | `#{config_dir}/#{resource_name).yaml` |

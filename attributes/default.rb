@@ -31,7 +31,7 @@ default['newrelic_infra']['config'].tap do |conf|
   # To log to another location; when not set, the agent logs to the system log files
   conf['log_file'] = nil
   # A hash of custom attributes to annotate the data from this agent instance
-  conf['custom_attributes'] = nil
+  conf['custom_attributes'] = {}
 end
 
 # New Relic infrastructure agent configuration file and directory properties

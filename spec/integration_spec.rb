@@ -17,12 +17,17 @@ describe 'newrelic-infra::host_integrations' do
       )
     end
 
-    it 'creates the integration binary directory' do
-      expect(chef_cached).to create_directory('/opt/newrelic-infra/test_integration').with(
-        owner: service_account,
-        group: service_account,
-        mode: '0750'
-      )
+    %w[
+      /opt/newrelic-infra
+      /opt/newrelic-infra/test_integration
+    ].each do |dir|
+      it 'creates the integration binary directory' do
+        expect(chef_cached).to create_directory(dir).with(
+          owner: service_account,
+          group: service_account,
+          mode: '0750'
+        )
+      end
     end
 
     it 'does not download the remote file' do
@@ -32,8 +37,6 @@ describe 'newrelic-infra::host_integrations' do
 
     it 'unpacks the remote tarball' do
       expect(chef_cached).to unpack_poise_archive('https://url-to-a-tarball-for-install.com/test.tar.gz').with(
-        user: service_account,
-        group: service_account,
         destination: '/opt/newrelic-infra/test_integration',
         keep_existing: true
       )
@@ -50,6 +53,14 @@ describe 'newrelic-infra::host_integrations' do
           mode: '0640'
         )
       end
+    end
+
+    it 'updates the binary file with the correct permissions' do
+      expect(chef_cached).to create_file('/opt/newrelic-infra/test_integration/test').with(
+        owner: service_account,
+        group: service_account,
+        mode: '0750'
+      )
     end
 
     it 'renders the integration definition file with the correct configuration' do

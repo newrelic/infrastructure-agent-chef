@@ -70,7 +70,7 @@ end
 file node['newrelic_infra']['agent']['flags']['config'] do
   content(lazy do
     YAML.dump(
-      node['newrelic_infra']['config'].to_hash.compact.deep_stringify
+      node['newrelic_infra']['config'].to_h.deep_stringify.delete_blank
     )
   end)
   owner node['newrelic_infra']['user']['name']

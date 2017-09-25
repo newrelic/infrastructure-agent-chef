@@ -40,5 +40,11 @@ class Hash
       options
     end
   end
+
+  def delete_blank
+    delete_if do |_, value|
+      (value.respond_to?(:empty?) ? value.empty? : !value) || value.instance_of?(Hash) && value.delete_blank.empty?
+    end
+  end
 end
 # rubocop:enable Metrics/MethodLength

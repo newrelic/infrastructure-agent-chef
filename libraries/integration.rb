@@ -31,8 +31,8 @@ module NewRelicInfraCookbook
     property :user, String, default: 'newrelic_infra', desired_state: false
     property :group, String, default: 'newrelic_infra', desired_state: false
     property :base_dir, String, default: '/var/db/newrelic-infra/custom-integrations', desired_state: false
-    property :bin_dir, String, default: lazy { |r| ::File.join('/opt/newrelic-infra', r.name) }, desired_state: false
-    property :bin, String, default: lazy { |r| ::File.join(r.bin_dir, ::File.basename(r.remote_url).gsub(BASENAME_IGNORE, '')) }, desired_state: false
+    property :bin_dir, String, default: '/opt/newrelic-infra', desired_state: false
+    property :bin, String, default: lazy { |r| ::File.join(r.bin_dir, r.name, ::File.basename(r.remote_url).gsub(BASENAME_IGNORE, '')) }, desired_state: false
     property :definition_file, String, default: lazy { |r| ::File.join(r.base_dir, ::File.basename(r.name) << '.yaml') }
     property :config_dir, String, default: '/etc/newrelic-infra/integrations.d/', desired_state: false
     property :config_file, String, default: lazy { |r| ::File.join(r.config_dir, ::File.basename(r.name) << '.yaml') }
@@ -52,7 +52,7 @@ module NewRelicInfraCookbook
       @build_definition_commands ||= commands.each_with_object({}) do |(command, args), object|
         object.store(
           command,
-          command: args.to_array.unshift(bin),
+          command: args.to_a.unshift(bin),
           interval: interval,
           prefix: prefix
         )
@@ -62,17 +62,23 @@ module NewRelicInfraCookbook
     def config_file_content
       @config_file_content ||= {
         integration_name: integration_name,
-        instances: instances.to_array
+        instances: instances.to_a
       }
     end
 
     # Actions
     action :create do
       # Creates and manages the directory for the custom integration executable
-      directory new_resource.bin_dir do
-        owner new_resource.user
-        group new_resource.group
-        mode '0750'
+      %W[
+        #{new_resource.bin_dir}
+        #{::File.join(new_resource.bin_dir, new_resource.name)}
+    ].each do |dir|
+        directory dir do
+          owner new_resource.user
+          group new_resource.group
+          mode '0750'
+          recursive true
+        end
       end
 
       # Fetch the remote executable binary if the install method is set to `binary`
@@ -85,11 +91,15 @@ module NewRelicInfraCookbook
 
       # Fetch the remote executable tarball if the install method is set to `tarball`
       poise_archive new_resource.remote_url do
-        user new_resource.user
-        group new_resource.group
-        destination new_resource.bin_dir
+        destination ::File.join(new_resource.bin_dir, new_resource.name)
         keep_existing true
         only_if { new_resource.install_method == 'tarball' }
+      end
+
+      file new_resource.bin do
+        owner new_resource.user
+        group new_resource.group
+        mode '0750'
       end
 
       # Generate both the definiton and configuration files for the custom
@@ -104,7 +114,7 @@ module NewRelicInfraCookbook
           path new_resource.send(:"#{file_to_create}")
           content(lazy do
             YAML.dump(
-              new_resource.send(:"#{file_to_create}_content").compact.deep_stringify
+              new_resource.send(:"#{file_to_create}_content").deep_stringify.delete_blank
             )
           end)
           mode '0640'

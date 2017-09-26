@@ -72,7 +72,7 @@ module NewRelicInfraCookbook
       %W[
         #{new_resource.bin_dir}
         #{::File.join(new_resource.bin_dir, new_resource.name)}
-    ].each do |dir|
+      ].each do |dir|
         directory dir do
           owner new_resource.user
           group new_resource.group

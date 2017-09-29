@@ -17,10 +17,10 @@ describe 'newrelic-infra::host_integrations' do
       )
     end
 
-    %w[
+    %w(
       /opt/newrelic-infra
       /opt/newrelic-infra/test_integration
-    ].each do |dir|
+    ).each do |dir|
       it 'creates the integration binary directory' do
         expect(chef_cached).to create_directory(dir).with(
           owner: service_account,
@@ -42,10 +42,10 @@ describe 'newrelic-infra::host_integrations' do
       )
     end
 
-    %w[
+    %w(
       definition_file
       config_file
-    ].each do |file_to_create|
+    ).each do |file_to_create|
       it "creates the integration #{file_to_create}" do
         expect(chef_cached).to create_file(file_to_create).with(
           owner: service_account,
@@ -92,11 +92,11 @@ describe 'newrelic-infra::host_integrations' do
   end
 
   shared_examples_for :default_remove do
-    %w[
+    %w(
       /opt/newrelic-infra/test_integration/test
       /var/db/newrelic-infra/custom-integrations/test_integration.yaml
       /etc/newrelic-infra/integrations.d/test_integration.yaml
-    ].each do |file_to_delete|
+    ).each do |file_to_delete|
       it "deletes the file #{file_to_delete}" do
         expect(chef_cached).to delete_file(file_to_delete)
       end
@@ -109,7 +109,7 @@ describe 'newrelic-infra::host_integrations' do
         let(:chef_run) do
           ChefSpec::SoloRunner.new(platform: platform.to_s, version: version, step_into: ['newrelic_infra_integration']) do |node|
             node.normal['newrelic_infra']['custom_integrations']['test_integration'] = {
-              action: %i[create remove],
+              action: %i(create remove),
               integration_name: 'com.test.integration',
               description: 'A test custom integration',
               remote_url: 'https://url-to-a-tarball-for-install.com/test.tar.gz',
@@ -118,16 +118,16 @@ describe 'newrelic-infra::host_integrations' do
                   name: 'test_integration_metrics',
                   command: 'metrics',
                   arguments: {
-                    test: true
+                    test: true,
                   },
                   labels: {
-                    environment: 'test'
-                  }
-                }
+                    environment: 'test',
+                  },
+                },
               ],
               commands: {
-                metrics: %w[--metrics]
-              }
+                metrics: %w(--metrics),
+              },
             }
           end.converge(described_recipe)
         end

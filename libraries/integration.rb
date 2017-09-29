@@ -25,8 +25,8 @@ module NewRelicInfraCookbook
     # Properties with defaults
     property :interval, Integer, default: 10, desired_state: false
     property :prefix, String, default: lazy { |r| ::File.join('integration', r.integration_name) }, desired_state: false
-    property :install_method, %w[tarball binary], default: 'tarball', desired_state: false
-    property :os, %w[linux], default: 'linux', desired_state: false
+    property :install_method, %w(tarball binary), default: 'tarball', desired_state: false
+    property :os, %w(linux), default: 'linux', desired_state: false
     property :protocol_version, Integer, default: 1, desired_state: false
     property :user, String, default: 'newrelic_infra', desired_state: false
     property :group, String, default: 'newrelic_infra', desired_state: false
@@ -44,7 +44,7 @@ module NewRelicInfraCookbook
         protocol_version: protocol_version,
         os: os,
         description: description,
-        commands: build_definition_commands
+        commands: build_definition_commands,
       }
     end
 
@@ -62,17 +62,17 @@ module NewRelicInfraCookbook
     def config_file_content
       @config_file_content ||= {
         integration_name: integration_name,
-        instances: instances.to_a
+        instances: instances.to_a,
       }
     end
 
     # Actions
     action :create do
       # Creates and manages the directory for the custom integration executable
-      %W[
+      %W(
         #{new_resource.bin_dir}
         #{::File.join(new_resource.bin_dir, new_resource.name)}
-      ].each do |dir|
+      ).each do |dir|
         directory dir do
           owner new_resource.user
           group new_resource.group
@@ -104,10 +104,10 @@ module NewRelicInfraCookbook
 
       # Generate both the definiton and configuration files for the custom
       # New Relic Infrastructure on-host integration
-      %w[
+      %w(
         definition_file
         config_file
-      ].each do |file_to_create|
+      ).each do |file_to_create|
         file file_to_create do
           owner new_resource.user
           group new_resource.group
@@ -125,11 +125,11 @@ module NewRelicInfraCookbook
     action :remove do
       # Remove all of the resources for the New Relic Infrastructure
       # custom on-host integration
-      %W[
+      %W(
         #{new_resource.bin}
         #{new_resource.definition_file}
         #{new_resource.config_file}
-      ].each do |file_to_remove|
+      ).each do |file_to_remove|
         file file_to_remove do
           action :delete
         end

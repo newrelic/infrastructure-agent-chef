@@ -43,12 +43,12 @@ default['newrelic_infra']['agent'].tap do |conf|
 end
 
 # New Relic Infrastructure agent package configuration
-default['newrelic_infra']['packages']['agent']['action'] = %i[install]
+default['newrelic_infra']['packages']['agent']['action'] = %i(install)
 default['newrelic_infra']['packages']['agent']['version'] = nil
 
 # New Relic Infrastructure on-host integration package configuration
 # NOTE: The package actions only be performed if the associated feature flag is enabled.
-default['newrelic_infra']['packages']['host_integrations']['action'] = %i[install]
+default['newrelic_infra']['packages']['host_integrations']['action'] = %i(install)
 default['newrelic_infra']['packages']['host_integrations']['version'] = nil
 
 # New Relic Infrastructure on-host integration configuration
@@ -64,9 +64,9 @@ default['newrelic_infra']['apt'].tap do |conf|
   conf['uri'] = 'https://download.newrelic.com/infrastructure_agent/linux/apt'
   conf['key'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
   conf['distribution'] = node['lsb']['codename']
-  conf['components'] = %w[main]
+  conf['components'] = %w(main)
   conf['arch'] = 'amd64'
-  conf['action'] = %i[add]
+  conf['action'] = %i(add)
 end
 
 # YUM repository configuration for RHEL based hosts
@@ -75,14 +75,14 @@ default['newrelic_infra']['yum'].tap do |conf|
   conf['description'] = 'New Relic Infrastructure'
   conf['baseurl'] = value_for_platform(
     amazon: {
-      '>= 2013' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/6/x86_64'
+      '>= 2013' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/6/x86_64',
     },
-    %w[redhat oracle centos] => {
-      default: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{node['platform_version'].to_i}/x86_64"
+    %w(redhat oracle centos) => {
+      default: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{node['platform_version'].to_i}/x86_64",
     }
   )
   conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
   conf['gpgcheck'] = true
   conf['repo_gpgcheck'] = true
-  conf['action'] = %i[add makecache]
+  conf['action'] = %i(add makecache)
 end

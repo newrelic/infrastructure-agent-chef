@@ -90,5 +90,5 @@ poise_service 'newrelic-infra' do
           NewRelicInfra.generate_flags(node['newrelic_infra']['agent']['flags'])
   options(:systemd,
           template: 'newrelic-infra:default/systemd.service.erb',
-          after: %w[syslog.target network.target])
+          after: %w(syslog.target network.target))
 end

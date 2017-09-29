@@ -25,56 +25,47 @@ By contributing to this project you agree that you are granting New Relic a non-
 
 ### Installing dependencies
 
-The gem `bundler` must be installed for dependency management.
+A working [ChefDK][19] installation set as your system's default ruby or configured as appropriate for use with a Ruby environment manager like rvm or rbenv.
 
-```sh
-gem install bundler
-```
+Hashicorp's [Vagrant][12] and [Oracle's Virtualbox][13] for integration testing.
 
 Install dependencies:
 
 ```sh
-bundle install
+chef exec bundle install
 ```
 
 Update any installed dependencies to the latest versions:
 
 ```sh
-bundle update
+chef exec bundle update
 ```
 
 ### Running tests
 
-A Rakefile is included for qucikly and easily running all of the available tests locally.
+To remain consistent with Chef managed community cookbooks, we use the Delivery CLI tool that utilizes their [Delivery project.toml file][20].
 Testing will stop if any given test stage fails.
 Explaination of each stage and instructions on how to individually run each stage can be found below.
 
 Run all tests:
 
 ```sh
-bundle exec rake
+delivery local all
 ```
 
-#### Style tests
+#### Lint stage
 
-Run all style tests:
-
-```sh
-bundle exec rake style
-```
-
-##### Lint stage
-
-The lint stage runs Ruby specific code linting using [Rubocop][3].
-Specific [Rubocop][3] configuration can be seen in [.rubocop.yaml][5].
+The lint stage runs Ruby specific code linting using [cookstyle][5].
+[Cookstyle][5] offers a tailored [RuboCop][3] configuration enabling / disabling rules to better meet the needs of cookbook authors.
+Cookstyle ensures that projects with multiple authors have consistent code styling.
 
 Run lint stage:
 
 ```sh
-bundle exec rake style:ruby
+delivery local lint
 ```
 
-##### Syntax stage
+#### Syntax stage
 
 The syntax stage runs Chef cookbook specific linting and syntax checks with [Foodcritic][4].
 Specific [Foodcritic][4] configuration can be seen in [.foodcritic][6].
@@ -82,7 +73,7 @@ Specific [Foodcritic][4] configuration can be seen in [.foodcritic][6].
 Run syntax stage:
 
 ```sh
-bundle exec rake style:chef
+delivery local syntax
 ```
 
 #### Unit tests
@@ -112,7 +103,7 @@ Platforms tested:
 Run unit tests:
 
 ```sh
-bundle exec rake spec
+delivery local unit
 ```
 
 #### Integration tests
@@ -133,7 +124,19 @@ Platforms tested:
 Run integration tests:
 
 ```sh
-bundle exec rake integration:vagrant
+chef exec kitchen test
+```
+
+To see a list of available test instances run:
+
+```sh
+chef exec kitchen list
+```
+
+To test specific instance run:
+
+```sh
+chef exec kitchen test INSTANCE_NAME
 ```
 
 ## Contributors
@@ -151,7 +154,7 @@ Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 [2]:  mailto:trevor.g.wood@gmail.com
 [3]:  https://github.com/bbatsov/rubocop
 [4]:  https://github.com/foodcritic/foodcritic
-[5]:  .rubocop.yml
+[5]:  https://github.com/chef/cookstyle
 [6]:  .foodcritic
 [7]:  https://github.com/chefspec/chefspec
 [8]:  https://github.com/chef-cookbooks/community_cookbook_documentation
@@ -165,3 +168,5 @@ Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 [16]:  https://app.vagrantup.com/bento/boxes/ubuntu-14.04
 [17]:  https://app.vagrantup.com/bento/boxes/centos-6.8
 [18]:  https://app.vagrantup.com/bento/boxes/centos-7.2
+[19]:  https://downloads.chef.io/chef-dk/
+[20]:  https://github.com/chef-cookbooks/community_cookbook_tools/blob/master/delivery/project.toml

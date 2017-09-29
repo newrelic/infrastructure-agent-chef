@@ -21,7 +21,6 @@ class Chef
 end
 
 # Adds a method to Hash class types to recursively string-ify all keys
-# rubocop:disable Metrics/MethodLength
 class Hash
   def deep_stringify
     each_with_object({}) do |(key, value), options|

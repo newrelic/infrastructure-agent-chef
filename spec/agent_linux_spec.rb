@@ -49,7 +49,7 @@ describe 'newrelic-infra::agent_linux' do
     end
 
     it 'should create the repo cache for YUM repos' do
-      next unless %w[rhel amazon].include? chef_cached.node['platform_family']
+      next unless %w(rhel amazon).include? chef_cached.node['platform_family']
       expect(chef_cached).to makecache_yum_repository('newrelic-infra')
     end
 

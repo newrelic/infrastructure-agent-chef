@@ -10,6 +10,8 @@ Pull requests should:
 - Include tests! (Make sure the recipe works and converges)
 - Not break the public API
 - Add yourself to the CONTRIBUTING file at the bottom
+- Increment the recipe version info in metadata.rb
+- Test some more!
 
 By contributing to this project you agree that you are granting New Relic a non-exclusive, non-revokable, no-cost license to use the code, algorithms, patents, and ideas in that code in our products if we so choose. You also agree the code is provided as-is and you provide no warranties as to its fitness or correctness for any purpose
 
@@ -21,3 +23,5 @@ Copyright (c) 2017 New Relic, Inc. All rights reserved.
 * Robert Hak <robert.hak @ iacapps.com>
 * Jordan Faust (jfaust47@gmail.com)
 * Don O'Neill <don.oneill @ apexlearning.com>
+* Brandon Sharitt (brandon@sharitt.com)
+* Mark Whelan (mbwhelan@gmail.com)

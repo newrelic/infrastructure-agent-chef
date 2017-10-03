@@ -19,7 +19,9 @@ This cookbook installs and configures the New Relic Infrastructure agent.
   - 9 Stretch
   - 8 Jessie
   - 7 Wheezy
-
+- Windows
+  - Windows 2012 R2
+  
 ### Chef
 
 - Chef 12+

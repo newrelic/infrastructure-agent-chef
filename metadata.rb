@@ -17,6 +17,7 @@ supports 'ubuntu', '>= 12.04'
 supports 'redhat', '>= 6.0'
 supports 'oracle', '>= 6.0'
 supports 'centos', '>= 6.0'
+supports 'windows'
 
 # Cookbook dependencies
 depends 'poise-service', '~> 1.5'

@@ -58,8 +58,10 @@ The default recipe will automatically determine which platform specific recipe t
 Installs and configures the Infrastructure agent on a Windows host.
 This recipe should _NOT_ be directly included in a node's run list.
 The default recipe will automatically determine which platform specific recipe to apply.
-Currently, Windows host configuration is _NOT_ supported by this cookbook.
-An error will be raised and fail the `chef-client` run for any detected Windows nodes.
+
+- `node['newrelic-infra']['windows_source']` - allows you to pull your Windows agent from arbitrary URLs. You can 'pin' a version via attributes if you need (defaults to latest)
+- `node['newrelic-infra']['windows_checksum']` - will check the checksum of your Windows agent (defaults to nil). Recommended to insert via attributes similar to `windows_source`
+
 
 ### `newrelic-infra::host_integrations`
 

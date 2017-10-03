@@ -58,6 +58,9 @@ default['newrelic_infra']['host_integrations']['config'] = {}
 # New Relic Infrastructure on-host custom integration configuration
 default['newrelic_infra']['custom_integrations'] = {}
 
+# Package version to install for Windows based hosts
+default['newrelic-infra']['windows_source'] = 'https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi'
+
 # apt repository configuration for Debian based hosts
 # See https://docs.chef.io/resource_apt_repository.html for more information
 default['newrelic_infra']['apt'].tap do |conf|

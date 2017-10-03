@@ -30,6 +30,11 @@ platforms:
     driver:
       box: bento/centos-7.2
 
+  # Windows 2012
+  - name: windows2012r2
+    driver:
+      box: mwrock/Windows2012R2
+
 suites:
   - name: default
     run_list:
@@ -38,6 +43,6 @@ suites:
     attributes:
       {
         "newrelic-infra": {
-          "license_key": "" # Set your key for testing
+          "license_key": "12345" # Set your key for testing
         }
       }

@@ -45,7 +45,8 @@ The `agent_linux` recipe:
 1. Sets the `newrelic-infra.yml` config file
 
 ### agent_windows
-(Available in the future)
+- `node['newrelic-infra']['windows_source']` - allows you to pull your Windows agent from arbitrary URLs. You can 'pin' a version via attributes if you need (defaults to latest)
+- `node['newrelic-infra']['windows_checksum']` - will check the checksum of your Windows agent (defaults to nil). Recommended to insert via attributes similar to `windows_source`
 
 ## Attributes
 

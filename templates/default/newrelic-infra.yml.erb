@@ -11,3 +11,9 @@ verbose: <%= @verbose %>
 <% unless @proxy.nil? || @proxy.empty? -%>
 proxy: <%= @proxy %>
 <% end -%>
+<% unless @custom_attributes.nil? || @custom_attributes.empty? -%>
+custom_attributes:
+<% @custom_attributes.each do |key, value| -%>
+  <%= "#{key}: #{value}"%>
+<% end -%>
+<% end -%>

@@ -7,6 +7,10 @@ This cookbook installs and configures the New Relic Infrastructure agent.
 ### Platforms
 
 - RHEL
+  - Red Hat 7
+  - Red Hat 6
+  - Oracle 7
+  - Oracle 6
   - CentOS 7
   - CentOS 6
   - Amazon Linux (all versions)
@@ -63,6 +67,7 @@ See `attributes/defaults.rb` for default values.
   - `'upgrade'`: Installs package and/or ensures it's the latest version.
   - `'remove'`:  Removes the package.
 - `node['newrelic-infra']['agent_version']` - Specify `newrelic-infra` package version to pin.
+- `node['newrelic-infra']['custom_attributes']` - Specify custom attributes as key/value pairs.
 
 ## Usage
 

@@ -37,7 +37,7 @@ when 'debian'
 when 'rhel'
   # Add Yum repo
   case node['platform']
-  when 'centos'
+  when 'centos', 'oracle', 'redhat'
     rhel_version = node['platform_version'].to_i
   when 'amazon'
     case node['platform_version'].to_i
@@ -63,6 +63,8 @@ end
 
 # Detect service provider
 if node['platform_family'] == 'rhel' && node['platform_version'] =~ /^7/
+  service_provider = Chef::Provider::Service::Systemd
+elsif node['platform'] == 'ubuntu' && node['platform_version'] == "16.04"
   service_provider = Chef::Provider::Service::Systemd
 else
   service_provider = Chef::Provider::Service::Upstart
@@ -93,7 +95,8 @@ template '/etc/newrelic-infra.yml' do
     'display_name' => node['newrelic-infra']['display_name'],
     'log_file' => node['newrelic-infra']['log_file'],
     'verbose' => node['newrelic-infra']['verbose'],
-    'proxy' => node['newrelic-infra']['proxy']
+    'proxy' => node['newrelic-infra']['proxy'],
+    'custom_attributes' => node['newrelic-infra']['custom_attributes']
   )
   notifies :restart, 'service[newrelic-infra]', :delayed
 end

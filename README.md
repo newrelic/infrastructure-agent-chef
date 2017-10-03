@@ -24,7 +24,9 @@ See the [CHANGELOG][11] for information on the latest changes.
   - 9 Stretch
   - 8 Jessie
   - 7 Wheezy
-
+- Windows
+  - Windows 2012 R2
+  
 ### Chef
 
 - Chef 12.14+

@@ -16,3 +16,6 @@ vendor/*
 
 .kitchen/
 .kitchen.local.yml
+
+**/stderr.txt
+**/stdout.txt

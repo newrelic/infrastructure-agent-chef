@@ -2,42 +2,43 @@
 driver:
   name: vagrant
   provider: virtualbox
-  customize:
-    memory: 2048
-    cpus: 2
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
+
+verifier:
+  name: inspec
 
 platforms:
-  # Ubuntu 12.04 LTS Precise Pangolin
-  - name: ubuntu-12.04
-    driver:
-      box: bento/ubuntu-12.04
-
-  # Ubuntu 14.04 LTS Trusty Tahr
-  - name: ubuntu-14.04
-    driver:
-      box: bento/ubuntu-14.04
-
-  # CentOS 6.8
-  - name: centos-6.8
-    driver:
-      box: bento/centos-6.8
-
-  # CentOS 7.2
-  - name: centos-7.2
-    driver:
-      box: bento/centos-7.2
+# Ubuntu 12.04 LTS Precise Pangolin
+- name: ubuntu-12.04
+  driver:
+    box: bento/ubuntu-12.04
+# Ubuntu 14.04 LTS Trusty Tahr
+- name: ubuntu-14.04
+  driver:
+    box: bento/ubuntu-14.04
+# CentOS 6.8
+- name: centos-6.8
+  driver:
+    box: bento/centos-6.8
+# CentOS 7.2
+- name: centos-7.2
+  driver:
+    box: bento/centos-7.2
 
 suites:
-  - name: default
-    run_list:
-     - recipe[newrelic-infra::default]
-
-    attributes:
-      {
-        "newrelic-infra": {
-          "license_key": "" # Set your key for testing
-        }
-      }
+- name: default
+  run_list:
+  - recipe[newrelic-infra::default]
+  attributes:
+    newrelic_infra:
+      features:
+        host_integrations: true
+      config:
+        license_key: abcd
+      host_integrations:
+        config:
+          cassandra:
+            username: test
+            password: kitchen

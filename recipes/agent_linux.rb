@@ -6,7 +6,7 @@
 
 #
 # Recipe to install and configure the New Relic Infrastructure agent on Linux
-# TODO: Convert to LWRP
+# TODO: Convert to custom resource
 #
 node.default['newrelic_infra']['agent']['flags']['config'] = ::File.join(
   node['newrelic_infra']['agent']['directory']['path'],

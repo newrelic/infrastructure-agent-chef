@@ -1,32 +1,30 @@
----
 driver:
   name: vagrant
   provider: virtualbox
 
 provisioner:
   name: chef_zero
-  chef_version: <%= ENV['CHEF_VERSION'] || 12 %>
+  require_chef_omnibus: <%= ENV['CHEF_VERSION'] || 12 %>
 
 verifier:
   name: inspec
 
 platforms:
-# Ubuntu 12.04 LTS Precise Pangolin
+- name: centos-6
+  driver:
+    box: bento/centos-6
+- name: centos-7
+  driver:
+    box: bento/centos-7
 - name: ubuntu-12.04
   driver:
     box: bento/ubuntu-12.04
-# Ubuntu 14.04 LTS Trusty Tahr
 - name: ubuntu-14.04
   driver:
     box: bento/ubuntu-14.04
-# CentOS 6.8
-- name: centos-6.8
+- name: ubuntu-16.04
   driver:
-    box: bento/centos-6.8
-# CentOS 7.2
-- name: centos-7.2
-  driver:
-    box: bento/centos-7.2
+    box: bento/ubuntu-16.04
 
 suites:
 - name: default

@@ -1,102 +1,95 @@
-# Installs and configures the New Relic Infrastructure agent on Linux
+#
+# Copyright (c) 2016-2017 New Relic, Inc.
+#
+# All rights reserved.
+#
 
-deb_version_to_codename = {
-  10 => 'buster',
-  9 => 'stretch',
-  8 => 'jessie',
-  7 => 'wheezy',
-  16 => 'xenial',
-  14 => 'trusty',
-  12 => 'precise'
-}
+#
+# Recipe to install and configure the New Relic Infrastructure agent on Linux
+# TODO: Convert to LWRP
+#
+node.default['newrelic_infra']['agent']['flags']['config'] = ::File.join(
+  node['newrelic_infra']['agent']['directory']['path'],
+  node['newrelic_infra']['agent']['config']['file']
+)
 
-case node['platform_family']
-when 'debian'
-  # Add public GPG key
-  remote_file '/tmp/newrelic-infra.gpg' do
-    source 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
-  end
-  execute 'add apt key' do
-    command 'apt-key add /tmp/newrelic-infra.gpg'
-  end
-
-  # Create APT repo file
-  apt_repository 'newrelic-infra' do
-    uri 'https://download.newrelic.com/infrastructure_agent/linux/apt'
-    distribution deb_version_to_codename[node['platform_version'].to_i]
-    components ['main']
-    arch 'amd64'
-  end
-
-  # Update APT repo -- if you don't need this in your regular runs,
-  # please customize a private fork
-	execute 'apt-get update' do
-		command 'apt-get update'
-	end
-
-when 'rhel'
-  # Add Yum repo
-  case node['platform']
-  when 'centos', 'oracle', 'redhat'
-    rhel_version = node['platform_version'].to_i
-  when 'amazon'
-    case node['platform_version'].to_i
-    when 2013, 2014, 2015, 2016, 2017
-      rhel_version = 6
-    end
-  end
-
-  yum_repository 'newrelic-infra' do
-    description "New Relic Infrastructure"
-    baseurl "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{rhel_version}/x86_64"
-    gpgkey 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
-    gpgcheck true
-    repo_gpgcheck true
-  end
-
-  # Update Yum repo
-  execute 'Update Infra Yum repo' do
-    command "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"
-  end
+# Setup a service account
+poise_service_user node['newrelic_infra']['user']['name'] do
+  group node['newrelic_infra']['group']['name']
+  only_if { node['newrelic_infra']['features']['manage_service_account'] }
 end
 
+# Based on the Ohai attribute `platform_family` either an APT or YUM repository
+# will be created. The respective Chef resources are built using metaprogramming,
+# so that the configuration can be extended via attributes without having to
+# release a new version of the cookbook. Attributes that cannot be passed to the resource
+# are logged out as warnings in order to prevent potential failes from typos,
+# older Chef versions, etc.
+case node['platform_family']
+when 'debian'
+  # Create APT repo file
+  apt_repository cookbook_name do |apt_resource|
+    node['newrelic_infra']['apt'].each do |property, value|
+      unless apt_resource.class.properties.include?(property.to_sym) && !value.nil? || property == 'action'
+        Chef::Log.warn("[#{cookbook_name}::#{recipe_name}] #{property} with #{value}" \
+                       'is not valid for the Chef resource `apt_repository`!')
+        next
+      end
 
-# Detect service provider
-if node['platform_family'] == 'rhel' && node['platform_version'] =~ /^7/
-  service_provider = Chef::Provider::Service::Systemd
-elsif node['platform'] == 'ubuntu' && node['platform_version'] == "16.04"
-  service_provider = Chef::Provider::Service::Systemd
-else
-  service_provider = Chef::Provider::Service::Upstart
+      apt_resource.send(property, value)
+    end
+  end
+when 'rhel', 'amazon'
+  yum_repository cookbook_name do |yum_resource|
+    node['newrelic_infra']['yum'].each do |property, value|
+      unless yum_resource.class.properties.include?(property.to_sym) && !value.nil? || property == 'action'
+        Chef::Log.warn("[#{cookbook_name}::#{recipe_name}] #{property} with #{value}" \
+                       'is not valid for the Chef resource `yum_repository`!')
+        next
+      end
+
+      yum_resource.send(property, value)
+    end
+  end
 end
 
 
 # Install the newrelic-infra agent
 package 'newrelic-infra' do
-  action node['newrelic-infra']['agent_action']
-  version node['newrelic-infra']['agent_version'] unless node['newrelic-infra']['agent_version'].nil?
+  action node['newrelic_infra']['packages']['agent']['action']
+  version node['newrelic_infra']['packages']['agent']['version'].to_s
 end
 
-
-# Setup newrelic-infra service
-service "newrelic-infra" do
-  provider service_provider
-  action [:enable, :start]
+# Create and manage the agent directory
+directory node['newrelic_infra']['agent']['directory']['path'] do
+  owner node['newrelic_infra']['user']['name']
+  group node['newrelic_infra']['group']['name']
+  mode node['newrelic_infra']['agent']['directory']['mode']
 end
 
-# Lay down newrelic-infra agent config
-template '/etc/newrelic-infra.yml' do
-  source 'newrelic-infra.yml.erb'
-  owner 'root'
-  group 'root'
-  mode '00644'
-  variables(
-    'license_key' => node['newrelic-infra']['license_key'],
-    'display_name' => node['newrelic-infra']['display_name'],
-    'log_file' => node['newrelic-infra']['log_file'],
-    'verbose' => node['newrelic-infra']['verbose'],
-    'proxy' => node['newrelic-infra']['proxy'],
-    'custom_attributes' => node['newrelic-infra']['custom_attributes']
-  )
-  notifies :restart, 'service[newrelic-infra]', :delayed
+# Build the New Relic infrastructure agent configuration
+file node['newrelic_infra']['agent']['flags']['config'] do
+  content(lazy do
+    YAML.dump(
+      node['newrelic_infra']['config'].to_h.deep_stringify.delete_blank
+    )
+  end)
+  owner node['newrelic_infra']['user']['name']
+  group node['newrelic_infra']['group']['name']
+  mode  '0640'
+  notifies :restart, 'poise_service[newrelic-infra]'
+end
+
+include_recipe 'newrelic-infra::host_integrations'
+
+# Enable and start the agent as a service on the node with any available
+# CLI options
+poise_service 'newrelic-infra' do
+  # TODO: Figure out how to run as a service account.
+  # user node['newrelic_infra']['user']['name']
+  command '/usr/bin/newrelic-infra ' <<
+          NewRelicInfra.generate_flags(node['newrelic_infra']['agent']['flags'])
+  options(:systemd,
+          template: 'newrelic-infra:default/systemd.service.erb',
+          after: %w(syslog.target network.target))
 end

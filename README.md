@@ -24,9 +24,7 @@ See the [CHANGELOG][11] for information on the latest changes.
   - 9 Stretch
   - 8 Jessie
   - 7 Wheezy
-- Windows
-  - Windows 2012 R2
-  
+
 ### Chef
 
 - Chef 12.14+
@@ -60,10 +58,8 @@ The default recipe will automatically determine which platform specific recipe t
 Installs and configures the Infrastructure agent on a Windows host.
 This recipe should _NOT_ be directly included in a node's run list.
 The default recipe will automatically determine which platform specific recipe to apply.
-
-- `node['newrelic-infra']['windows_source']` - allows you to pull your Windows agent from arbitrary URLs. You can 'pin' a version via attributes if you need (defaults to latest)
-- `node['newrelic-infra']['windows_checksum']` - will check the checksum of your Windows agent (defaults to nil). Recommended to insert via attributes similar to `windows_source`
-
+Currently, Windows host configuration is _NOT_ supported by this cookbook.
+An error will be raised and fail the `chef-client` run for any detected Windows nodes.
 
 ### `newrelic-infra::host_integrations`
 

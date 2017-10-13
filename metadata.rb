@@ -7,8 +7,8 @@ description       'Installs/Configures the New Relic Infrastructure agent ' \
 long_description  IO.read(File.join(__dir__, 'README.md'))
 source_url        'https://github.com/newrelic/infrastructure-agent-chef'
 issues_url        'https://github.com/newrelic/infrastructure-agent-chef/issues'
-version           '0.1.0'
-chef_version      '>= 12.14'
+version           '0.1.1'
+chef_version      '>= 12.21'
 
 # Platform support
 supports 'amazon', '>= 2013.0'

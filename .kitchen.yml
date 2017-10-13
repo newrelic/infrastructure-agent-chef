@@ -2,6 +2,7 @@
 driver:
   name: vagrant
   provider: virtualbox
+  chef_version: <%= ENV['CHEF_VERSION'] || '12.21' %>
 
 provisioner:
   name: chef_zero

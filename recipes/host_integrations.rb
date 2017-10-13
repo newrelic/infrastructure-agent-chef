@@ -16,7 +16,7 @@ end
 # Generate configuration for the New Relic provided host integrations
 node['newrelic_infra']['host_integrations']['config'].each do |integration_name, config|
   file ::File.join(node['newrelic_infra']['host_integrations']['config_dir'], "#{integration_name}.yaml") do
-    content(lazy { YAML.dump(config.to_hash.compact.deep_stringify) })
+    content(lazy { YAML.dump(config.to_hash.reject { |_, v| v.nil? }.deep_stringify) })
     owner node['newrelic_infra']['user']['name']
     group node['newrelic_infra']['group']['name']
     mode  '0640'

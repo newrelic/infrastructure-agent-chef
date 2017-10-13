@@ -27,7 +27,7 @@ See the [CHANGELOG][11] for information on the latest changes.
 
 ### Chef
 
-- Chef 12.14+
+- Chef 12.21+
 
 ### Cookbooks
 

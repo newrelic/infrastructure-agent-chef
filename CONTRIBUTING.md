@@ -14,7 +14,7 @@ Parts of this documentation have been adopted from the [Chef community cookbook 
 * Clearly state their intent in the title
 * Have a description that explains the need for the changes
 * Include tests! (Make sure the recipe works and converges)
-* Not break the public API
+* Don't break the public API
 * Add yourself to the CONTRIBUTING file at the bottom
 * Increment the recipe version info in metadata.rb
 * Test some more!
@@ -45,7 +45,7 @@ chef exec bundle update
 
 To remain consistent with Chef managed community cookbooks, we use the Delivery CLI tool that utilizes their [Delivery project.toml file][20].
 Testing will stop if any given test stage fails.
-Explaination of each stage and instructions on how to individually run each stage can be found below.
+Explanations of each stage and instructions on how to individually run each stage can be found below.
 
 Run all tests:
 
@@ -81,7 +81,7 @@ delivery local syntax
 Unit tests are run with [ChefSpec][7]. ChefSpec is an extension of Rspec, specially formulated for testing Chef cookbooks.
 Chefspec compiles your cookbook code and converges the run in memory, without actually executing the changes.
 The user can write various assertions based on what they expect to have happened during the Chef run.
-Chefspec is very fast, and quick useful for testing complex logic as you can easily converge a cookbook many times in different ways.
+Chefspec is very fast and useful for testing complex logic as you can easily converge a cookbook many times in different ways.
 Platforms are pulled from [Fauxhai][14].
 
 Platforms tested:
@@ -109,7 +109,7 @@ delivery local unit
 #### Integration tests
 
 Integration testing is performed by [Test Kitchen][9]. Integration tests can be performed on a local workstation using [Vagrant][12] and [VirtualBox][13].
-After a successful converge, tests are uploaded and ran out of band of Chef.
+After a successful converge, tests are uploaded and run out of band of Chef.
 Tests should be designed to ensure that a recipe has accomplished its respective goal(s).
 All integration tests have been written using [Inspec][10].
 See [.kitchen.yaml][11] for more information on the specific configuration.
@@ -147,6 +147,7 @@ chef exec kitchen test INSTANCE_NAME
 * Brandon Sharitt (brandon@sharitt.com)
 * Mark Whelan (mbwhelan@gmail.com)
 * [Trevor Wood][1] ([trevor.g.wood@gmail.com][2])
+* Codarren Velvindron (codarren@hackers.mu)
 
 Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 

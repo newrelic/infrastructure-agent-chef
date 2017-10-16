@@ -76,6 +76,7 @@ file node['newrelic_infra']['agent']['flags']['config'] do
   owner node['newrelic_infra']['user']['name']
   group node['newrelic_infra']['group']['name']
   mode  '0640'
+  sensitive true
   notifies :restart, 'poise_service[newrelic-infra]'
 end
 

@@ -2,7 +2,13 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
-## v0.1.0 (UNRELEASED)
+## 0.2.0
+
+FEATURES:
+
+* Add `sensitive` to agent configuration file resource
+
+## 0.1.0
 
 NOTE: Versions prior to 0.1.0 were not tagged or released on the [Chef supermarket][1].
 

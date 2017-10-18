@@ -53,6 +53,7 @@ when 'rhel', 'amazon'
   end
 end
 
+
 # Install the newrelic-infra agent
 package 'newrelic-infra' do
   action node['newrelic_infra']['packages']['agent']['action']

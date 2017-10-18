@@ -147,6 +147,7 @@ chef exec kitchen test INSTANCE_NAME
 * Brandon Sharitt (brandon@sharitt.com)
 * Mark Whelan (mbwhelan@gmail.com)
 * [Trevor Wood][1] ([trevor.g.wood@gmail.com][2])
+* Don O'Neill <don.oneill @ apexlearning.com>
 
 Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 

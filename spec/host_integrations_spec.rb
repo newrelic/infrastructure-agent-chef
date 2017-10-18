@@ -8,20 +8,31 @@ require 'spec_helper'
 
 describe 'newrelic-infra::host_integrations' do
   shared_examples_for :default do
+    let(:file_path) { '/etc/newrelic-infra/integrations.d/cassandra.yaml' }
+
     it 'should install the agent package' do
       expect(chef_cached).to install_package('newrelic-infra-integrations')
     end
 
-    it 'should create the on-host integration configuration files' do
-      expect(chef_cached).to create_file('/etc/newrelic-infra/integrations.d/cassandra.yaml').with(
+    it 'should create the on-host integration configuration directory' do
+      expect(chef_cached).to create_directory('/etc/newrelic-infra/integrations.d').with(
         owner: 'newrelic_infra',
         group: 'newrelic_infra',
-        mode: '0640'
+        mode: '0750'
+      )
+    end
+
+    it 'should create the on-host integration configuration files' do
+      expect(chef_cached).to create_file(file_path).with(
+        owner: 'newrelic_infra',
+        group: 'newrelic_infra',
+        mode: '0640',
+        sensitive: true
       )
     end
 
     it 'should render the on-host integration configuration with any specified configuration' do
-      expect(chef_cached).to(render_file('/etc/newrelic-infra/integrations.d/cassandra.yaml').with_content do |content|
+      expect(chef_cached).to(render_file(file_path).with_content do |content|
         expect(content).to match(/username: chef/)
         expect(content).to match(/password: spec/)
       end)

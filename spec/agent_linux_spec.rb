@@ -28,12 +28,13 @@ describe 'newrelic-infra::agent_linux' do
       expect(chef_cached).to create_file('/etc/newrelic-infra/agent.yaml').with(
         owner: service_user,
         group: service_user,
-        mode: '0640'
+        mode: '0640',
+        sensitive: true
       )
     end
 
     it 'configuration file generation notifies agent to restart' do
-      file_resource = chef_run.file('/etc/newrelic-infra/agent.yaml')
+      file_resource = chef_cached.file('/etc/newrelic-infra/agent.yaml')
       expect(file_resource).to notify('poise_service[newrelic-infra]').to(:restart).delayed
     end
 

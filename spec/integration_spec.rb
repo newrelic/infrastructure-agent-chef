@@ -50,7 +50,8 @@ describe 'newrelic-infra::host_integrations' do
         expect(chef_cached).to create_file(file_to_create).with(
           owner: service_account,
           group: service_account,
-          mode: '0640'
+          mode: '0640',
+          sensitive: true
         )
       end
     end
@@ -71,9 +72,10 @@ describe 'newrelic-infra::host_integrations' do
         expect(content).to match(/os: linux/)
         expect(content).to match(/interval: 10/)
         expect(content).to match(/commands:/)
-        expect(content).to match(/metrics:/)
-        expect(content).to match(%r{- "/opt/newrelic-infra/test_integration/test"})
-        expect(content).to match(/- "--metrics"/)
+        expect(content).to match(/\s{2}metrics:/)
+        expect(content).to match(/\s{4}command:/)
+        expect(content).to match(%r{\s{6}- /opt/newrelic-infra/test_integration/test})
+        expect(content).to match(/\s{6}- --metrics/)
       end)
     end
 
@@ -81,12 +83,12 @@ describe 'newrelic-infra::host_integrations' do
       expect(chef_cached).to(render_file('config_file').with_content do |content|
         expect(content).to match(/integration_name: com.test.integration/)
         expect(content).to match(/instances:/)
-        expect(content).to match(/name: test_integration_metrics/)
-        expect(content).to match(/command: metrics/)
-        expect(content).to match(/arguments:/)
-        expect(content).to match(/test: true/)
-        expect(content).to match(/labels:/)
-        expect(content).to match(/environment: test/)
+        expect(content).to match(/\s{2}- name: test_integration_metrics/)
+        expect(content).to match(/\s{4}command: metrics/)
+        expect(content).to match(/\s{4}arguments:/)
+        expect(content).to match(/\s{6}test: true/)
+        expect(content).to match(/\s{4}labels:/)
+        expect(content).to match(/\s{6}environment: test/)
       end)
     end
   end

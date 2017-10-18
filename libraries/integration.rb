@@ -24,7 +24,7 @@ module NewRelicInfraCookbook
 
     # Properties with defaults
     property :interval, Integer, default: 10, desired_state: false
-    property :prefix, String, default: lazy { |r| ::File.join('integration', r.integration_name) }, desired_state: false
+    property :prefix, String, default: lazy { |r| ::File.join('integration', r.instance) }, desired_state: false
     property :install_method, %w(tarball binary), default: 'tarball', desired_state: false
     property :os, %w(linux), default: 'linux', desired_state: false
     property :protocol_version, Integer, default: 1, desired_state: false
@@ -108,15 +108,18 @@ module NewRelicInfraCookbook
         definition_file
         config_file
       ).each do |file_to_create|
+        file_path = new_resource.send(:"#{file_to_create}")
+
         file file_to_create do
           owner new_resource.user
           group new_resource.group
-          path new_resource.send(:"#{file_to_create}")
+          path file_path
           content(lazy do
-            YAML.dump(
-              new_resource.send(:"#{file_to_create}_content").deep_stringify.delete_blank
+            ::Chef::Recipe::NewRelicInfra.yaml_file_workaround(
+              new_resource.send(:"#{file_to_create}_content").delete_blank.deep_stringify.to_yaml
             )
           end)
+          sensitive true
           mode '0640'
         end
       end

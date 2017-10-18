@@ -7,20 +7,37 @@
 #
 # Installs New Relic provided and custom on-host integrations
 #
-package 'newrelic-infra-integrations' do
-  action node['newrelic_infra']['packages']['host_integrations']['action']
-  version node['newrelic_infra']['packages']['host_integrations']['version'].to_s
-  only_if { node['newrelic_infra']['features']['host_integrations'] }
-end
+if node['newrelic_infra']['features']['host_integrations']
+  package 'newrelic-infra-integrations' do
+    action node['newrelic_infra']['packages']['host_integrations']['action']
+    version node['newrelic_infra']['packages']['host_integrations']['version'].to_s
+  end
 
-# Generate configuration for the New Relic provided host integrations
-node['newrelic_infra']['host_integrations']['config'].each do |integration_name, config|
-  file ::File.join(node['newrelic_infra']['host_integrations']['config_dir'], "#{integration_name}.yaml") do
-    content(lazy { YAML.dump(config.to_hash.compact.deep_stringify) })
+  directory node['newrelic_infra']['host_integrations']['config_dir'] do
     owner node['newrelic_infra']['user']['name']
     group node['newrelic_infra']['group']['name']
-    mode  '0640'
-    notifies :restart, 'poise_service[newrelic-infra]'
+    mode '0750'
+  end
+
+  # Generate configuration for the New Relic provided host integrations
+  node['newrelic_infra']['host_integrations']['config'].each do |integration_name, config|
+    file_path = ::File.join(
+      node['newrelic_infra']['host_integrations']['config_dir'],
+      "#{integration_name}.yaml"
+    )
+
+    file file_path do
+      content(lazy do
+        NewRelicInfra.yaml_file_workaround(
+          config.to_h.delete_blank.deep_stringify.to_yaml
+        )
+      end)
+      owner node['newrelic_infra']['user']['name']
+      group node['newrelic_infra']['group']['name']
+      mode '0640'
+      sensitive true
+      notifies :restart, 'poise_service[newrelic-infra]'
+    end
   end
 end
 

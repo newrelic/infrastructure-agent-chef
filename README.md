@@ -27,7 +27,7 @@ See the [CHANGELOG][11] for information on the latest changes.
 
 ### Chef
 
-- Chef 12.14+
+- Chef 12.15+
 
 ### Cookbooks
 
@@ -87,7 +87,7 @@ default['newrelic_infra']['custom_integrations']['test_integration'] = {
     }
   ],
   commands: {
-    metrics: %w[./test --metrics]
+    metrics: %w[--metrics]
   }
 }
 ```

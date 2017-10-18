@@ -5,6 +5,7 @@ driver:
 
 provisioner:
   name: chef_zero
+  chef_version: <%= ENV['CHEF_VERSION'] || 12 %>
 
 verifier:
   name: inspec

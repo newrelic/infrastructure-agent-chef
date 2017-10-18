@@ -15,6 +15,23 @@ class Chef
           end
           flag_arr.join(' ')
         end
+
+        # Method to modify YAML files to generate files that are compatiable with the New Relic
+        # Infrastructure agent. Currently, the agent's Go library for parsing YAML files
+        # does not conform to YAML spec. Thus, nested lists would have 2 spaces before
+        # each element in the list.
+        #
+        # @since 0.3.0
+        # @author Trevor G. Wood
+        # @param current_contents [String] generated YAML file string
+        # @return [String] YAML file with nested lists modifed
+        def yaml_file_workaround(current_contents)
+          nested_map = current_contents[/^\-\s\w+:/] ? true : false
+          regex = nested_map ? /^(\-?\s+)/ : /^(\s+\-\s)/
+          current_contents.delete!('"')
+          current_contents.gsub!(regex, '  \\1')
+          current_contents
+        end
       end
     end
   end
@@ -36,7 +53,6 @@ class Hash
         end
 
       options[key.to_s] = deep_val
-      options
     end
   end
 

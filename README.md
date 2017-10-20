@@ -66,7 +66,7 @@ An error will be raised and fail the `chef-client` run for any detected Windows 
 Installs New Relic provided and custom on-host integrations if the associated feature flag is enabled (i.e., `default['newrelic_infra']['features]['host_integrations']`).
 Generates configuration for any of the available on-host integrations from New Relic.
 Installs any custom integrations defined with attributes.
-For more infromation on the available LWRP for installing and configuring custom on-host integrations see the [LWRPs][9] documentation.
+For more infromation on the available custom resource for installing and configuring custom on-host integrations see the [Custom resources][9] documentation.
 
 Example configuration for a custom on-host integration installed and configured via attributes:
 
@@ -159,7 +159,7 @@ For more information, refer to the Chef documentation on the [yum_repository][5]
 | `default['newrelic_infra']['yum']['repo_gpgcheck']` | `true` | Perform a GPG check on the package repository |
 | `default['newrelic_infra']['yum']['action']` | `[:add, :makecache]` | `yum_repository` resource actions to perform |
 
-## LWRPs
+## Custom Resources
 
 ### `newrelic_infra_integration`
 
@@ -221,10 +221,10 @@ Supported properties:
 - Add the `newrelic-infra::default` recipe your run list
 - For wrapper cookbooks, add the `newrelic-infra` cookbook as a dependency to your `metadata.rb` or `Berksfile`, then include `newrelic-infra::default` recipe.
 
-### LWRP usage
+### Custom resource usage
 
 - Add the `newrelic-infra` cookbook as a dependency to your `metadata.rb` or `Berksfile`
-- Configure the LWRP(s) using the supported properties
+- Configure the custom resource(s) using the supported properties
 
 ## Testing
 
@@ -240,6 +240,6 @@ Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 [6]:  https://docs.newrelic.com/docs/infrastructure/integrations/cassandra-integration-new-relic-infrastructure
 [7]:  https://docs.newrelic.com/docs/infrastructure/integrations/mysql-integration-new-relic-infrastructure
 [8]:  https://docs.newrelic.com/docs/infrastructure/integrations/nginx-integration-new-relic-infrastructure
-[9]:  #lwrps
+[9]:  #custom-resources
 [10]:  CONTRIBUTING.md
 [11]:  CHANGELOG.md

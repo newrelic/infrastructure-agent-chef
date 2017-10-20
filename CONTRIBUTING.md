@@ -114,6 +114,8 @@ Tests should be designed to ensure that a recipe has accomplished its respective
 All integration tests have been written using [Inspec][10].
 See [.kitchen.yaml][11] for more information on the specific configuration.
 
+To run tests using [Docker][21] and [kitchen-docken][22] set the `KITCHEN_LOCAL_YAML` environment variable to `.kitchen.dokken.yml`.
+
 Platforms tested:
 
 * [ubuntu-12.04][15]
@@ -171,3 +173,5 @@ Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 [18]:  https://app.vagrantup.com/bento/boxes/centos-7.2
 [19]:  https://downloads.chef.io/chef-dk/
 [20]:  https://github.com/chef-cookbooks/community_cookbook_tools/blob/master/delivery/project.toml
+[21]:  https://www.docker.com/
+[22]:  https://github.com/someara/kitchen-dokken

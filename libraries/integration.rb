@@ -1,5 +1,5 @@
 module NewRelicInfraCookbook
-  # Chef LWRP to install the New Relic infrastructure agent on a node.
+  # Chef custom resource to install the New Relic infrastructure agent on a node.
   class Integration < ::Chef::Resource
     BASENAME_IGNORE = /(\.(t?(ar|gz|bz2?|xz)|zip))+$/
 

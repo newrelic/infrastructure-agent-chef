@@ -38,3 +38,14 @@ matrix:
     - script:
       - chef exec delivery local all
       env: UNIT_AND_LINT=1
+
+deploy:
+  provider: chef-supermarket
+  client_key: newrelic.pem
+  cookbook_category: Monitoring & Trending
+  on:
+    tags: true
+  user_id: newrelic
+  before_install:
+  - openssl aes-256-cbc -K $encrypted_e7ed02806170_key -iv $encrypted_e7ed02806170_iv
+    -in newrelic.pem.enc -out newrelic.pem -d

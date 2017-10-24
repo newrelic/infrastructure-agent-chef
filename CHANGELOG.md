@@ -2,6 +2,16 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.3.1
+
+IMPROVEMENTS:
+
+* Add .kitchen.dokken.yml to allow Test Kitchen tests in Docker
+* Add .travis.yml to run tests in Travis CI
+* Typo fixes
+* Change "LWRP" to "custom resource" in documentation
+* Automatically deploy with Travis CI to supermarket
+
 ## 0.3.0
 
 BREAKING CHANGES:

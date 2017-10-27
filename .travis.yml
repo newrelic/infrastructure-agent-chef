@@ -1,11 +1,9 @@
-# Don't `bundle install` which takes about 1.5 mins
-install: echo "skip bundle install"
-
 branches:
   only:
     - master
     - /^\d+\.\d+\.\d+$/
-
+# Don't `bundle install` which takes about 1.5 mins
+install: echo "skip bundle install"
 jobs:
   include:
     - stage: test
@@ -19,7 +17,6 @@ jobs:
             - chefdk
       services: docker
       env:
-        matrix:
         - INSTANCE=default-centos-6
         - INSTANCE=default-centos-7
         - INSTANCE=default-ubuntu-1404
@@ -44,9 +41,7 @@ jobs:
         on:
           tags: true
         user_id: newrelic
-        matrix:
-          include:
-            - script: 'true'
+        script: skip
         before_install:
         - openssl aes-256-cbc -K $encrypted_e7ed02806170_key -iv $encrypted_e7ed02806170_iv
           -in newrelic.pem.enc -out $HOME/newrelic.pem -d

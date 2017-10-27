@@ -1,6 +1,6 @@
 # newrelic-infra Cookbook
 
-[![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef)
+[![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
 
 This cookbook installs and configures the New Relic Infrastructure agent as well as new Relic provided and custom on-host integrations for the Infrastructure agent can be installed.
 See the [CHANGELOG][11] for information on the latest changes.

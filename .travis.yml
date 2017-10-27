@@ -15,12 +15,6 @@ branches:
     - master
     - /^\d+\.\d+\.\d+$/
 dist: trusty
-env:
-  - INSTANCE=default-centos-6
-  - INSTANCE=default-centos-7
-  - INSTANCE=default-ubuntu-1404
-  - INSTANCE=default-ubuntu-1604
-  - UNIT_AND_LINT=1
 # Don't `bundle install` which takes about 1.5 mins
 install: skip
 jobs:
@@ -29,6 +23,12 @@ jobs:
       include:
       - script: chef exec delivery local all
         env: UNIT_AND_LINT=1
+      - script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
+        env:
+          - INSTANCE=default-centos-6
+          - INSTANCE=default-centos-7
+          - INSTANCE=default-ubuntu-1404
+          - INSTANCE=default-ubuntu-1604
     - stage: deploy
       deploy:
         before_install:
@@ -43,6 +43,5 @@ jobs:
           tags: true
         script: skip
         user_id: newrelic
-script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
 services: docker
 sudo: required

@@ -2,6 +2,11 @@ branches:
   only:
     - master
     - /^\d+\.\d+\.\d+$/
+env:
+  - INSTANCE=default-centos-6
+  - INSTANCE=default-centos-7
+  - INSTANCE=default-ubuntu-1404
+  - INSTANCE=default-ubuntu-1604
 # Don't `bundle install` which takes about 1.5 mins
 install: echo "skip bundle install"
 jobs:
@@ -16,23 +21,12 @@ jobs:
           packages:
             - chefdk
       services: docker
-      env:
-        - INSTANCE=default-centos-6
-        - INSTANCE=default-centos-7
-        - INSTANCE=default-ubuntu-1404
-        - INSTANCE=default-ubuntu-1604
       before_script:
         - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
         - eval "$(chef shell-init bash)"
         - chef --version
         - cookstyle --version
         - foodcritic --version
-      script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
-      matrix:
-        include:
-          - script:
-            - chef exec delivery local all
-            env: UNIT_AND_LINT=1
     - stage: deploy
       deploy:
         provider: chef-supermarket
@@ -45,3 +39,10 @@ jobs:
         before_install:
         - openssl aes-256-cbc -K $encrypted_e7ed02806170_key -iv $encrypted_e7ed02806170_iv
           -in newrelic.pem.enc -out $HOME/newrelic.pem -d
+matrix:
+  include:
+    - script:
+      - chef exec delivery local all
+      env: UNIT_AND_LINT=1
+script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
+

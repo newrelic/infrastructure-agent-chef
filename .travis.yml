@@ -43,7 +43,7 @@ jobs:
         provider: script
         # We can't use --cookbook-path until https://github.com/chef/chef/issues/6379 
         # is fixed. chefignore wouldn't be honored. Symlink into cookbooks and upload that copy.
-        script: mkdir -p cookbooks && ln -sf $(pwd) cookbooks/newrelic-infra && knife supermarket share --key newrelic.pem --user newrelic newrelic-infra
+        script: rm -rf cookbooks/* && berks vendor cookbooks && knife supermarket share newrelic-infra
         skip_cleanup: true # The cleanup step will remove the newrelic.pem file written out in the before_install step 
       script: skip
       services: []

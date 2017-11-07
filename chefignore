@@ -97,5 +97,8 @@ Vagrantfile
 ###########
 vendor/bundle/**
 
+.chef
+.kitchen*
+
 # Encrypted key for Travis deployment
 newrelic*

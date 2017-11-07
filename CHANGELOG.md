@@ -2,13 +2,19 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
-## 0.3.2
+## 0.3.3 (2017-11-6)
+
+BUG FIXES:
+
+* Travis deploy was not honoring the chefignore file
+
+## 0.3.2 (2017-11-6)
 
 IMPROVEMENTS:
 
 * Cookbook is automatically deployed to [Chef Supermarket](https://supermarket.chef.io/cookbooks/newrelic-infra)
 
-## 0.3.1
+## 0.3.1 (2017-10-23)
 
 IMPROVEMENTS:
 
@@ -18,7 +24,7 @@ IMPROVEMENTS:
 * Change "LWRP" to "custom resource" in documentation
 * Automatically deploy with Travis CI to supermarket
 
-## 0.3.0
+## 0.3.0 (2017-10-18)
 
 BREAKING CHANGES:
 
@@ -34,13 +40,13 @@ BUG FIXES:
 * Remove the use of `Hash#compact`, which only works with Ruby >= 2.4. No versions of Chef 12.x ship with a version of Ruby this new. Replace with monkey patched method `Hash.delete_blank` ([#18](https://github.com/newrelic/infrastructure-agent-chef/issues/18)).
 * Modify the generated YAML configuration files to generate a format that is compatible with the Infrastructure agent's Go YAML parser ([#19](https://github.com/newrelic/infrastructure-agent-chef/issues/19)).
 
-## 0.2.0
+## 0.2.0 (2017-10-16)
 
 FEATURES:
 
 * Add `sensitive` to agent configuration file resource
 
-## 0.1.0
+## 0.1.0 (2017-10-12)
 
 NOTE: Versions prior to 0.1.0 were not tagged or released on the [Chef supermarket][1].
 

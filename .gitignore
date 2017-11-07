@@ -19,3 +19,5 @@ vendor/*
 
 **/stderr.txt
 **/stdout.txt
+
+newrelic.pem

@@ -96,3 +96,6 @@ Vagrantfile
 # Bundler #
 ###########
 vendor/bundle/**
+
+# Encrypted key for Travis deployment
+newrelic.pem.enc

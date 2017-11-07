@@ -1,52 +1,51 @@
-sudo: required
-dist: trusty
 
 addons:
   apt:
-    sources:
-      - chef-current-trusty
     packages:
       - chefdk
-
-# Don't `bundle install` which takes about 1.5 mins
-install: echo "skip bundle install"
-
-branches:
-  only:
-    - master
-    - /^\d+\.\d+\.\d+$/
-
-services: docker
-
-env:
-  matrix:
-  - INSTANCE=default-centos-6
-  - INSTANCE=default-centos-7
-  - INSTANCE=default-ubuntu-1404
-  - INSTANCE=default-ubuntu-1604
-
+    sources:
+      - chef-current-trusty
+before_install: 
+  if [[ -n "$encrypted_e7ed02806170_key" ]]; then
+    openssl aes-256-cbc 
+      -K "$encrypted_e7ed02806170_key"
+      -iv "$encrypted_e7ed02806170_iv"
+      -in newrelic.pem.enc 
+      -out newrelic.pem 
+      -d;
+  fi
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(chef shell-init bash)"
   - chef --version
   - cookstyle --version
   - foodcritic --version
-
-script: KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}
-
-matrix:
-  include:
-    - script:
-      - chef exec delivery local all
-      env: UNIT_AND_LINT=1
-
-deploy:
-  provider: chef-supermarket
-  client_key: newrelic.pem
-  cookbook_category: Monitoring & Trending
-  on:
-    tags: true
-  user_id: newrelic
-  before_install:
-  - openssl aes-256-cbc -K $encrypted_e7ed02806170_key -iv $encrypted_e7ed02806170_iv
-    -in newrelic.pem.enc -out newrelic.pem -d
+branches:
+  only:
+    - master
+    - /^\d+\.\d+\.\d+$/
+dist: trusty
+env:
+  matrix:
+  - INSTANCE=default-centos-6
+  - INSTANCE=default-centos-7
+  - INSTANCE=default-ubuntu-1404
+  - INSTANCE=default-ubuntu-1604
+  - INSTANCE=verify
+install: skip # Don't `bundle install` which takes about 1.5 mins
+jobs:
+  include: 
+    - stage: deploy
+      if: tag =~ ^\d+\.\d+\.\d+$
+      deploy:
+        on:
+          tags: true
+        provider: script
+        script: pwd && knife supermarket share --cookbook-path .. --key newrelic.pem --user newrelic newrelic-infra
+        skip_cleanup: true # The cleanup step will remove the newrelic.pem file written out in the before_install step 
+      script: skip
+      services: []
+      sudo: false
+script: if [[ "$INSTANCE" == verify ]]; then chef exec delivery local all; else KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}; fi
+services: docker
+sudo: required

@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.3.2
+
+IMPROVEMENTS:
+
+* Cookbook is automatically deployed to [Chef Supermarket](https://supermarket.chef.io/cookbooks/newrelic-infra)
+
 ## 0.3.1
 
 IMPROVEMENTS:

@@ -141,12 +141,28 @@ To test specific instance run:
 chef exec kitchen test INSTANCE_NAME
 ```
 
+## Releasing new versions
+
+Tags in GitHub will create a new release on Supermarket automatically via Travis CI.
+
+To create a release:
+
+* Have current master have an updated changelog and a version in metadata.rb
+  newer than the latest version at https://supermarket.chef.io/cookbooks/newrelic-infra
+* Tag a new version: `git tag -a X.Y.Z -m "$CHANGELOG_ENTRY_FOR_NEW_VERSION" && git push --tags`
+* Watch the build with the version number in Travis: 
+  https://travis-ci.org/newrelic/infrastructure-agent-chef/builds
+* If that passes, the new version should be on
+  https://supermarket.chef.io/cookbooks/newrelic-infra and available to
+  use everywhere
+
 ## Contributors
 
 * David Lanner (@dlanner)
 * Robert Hak <robert.hak @ iacapps.com>
 * Jordan Faust (jfaust47@gmail.com)
 * Brandon Sharitt (brandon@sharitt.com)
+* Nathan Smith (nsmith@newrelic.com)
 * Mark Whelan (mbwhelan@gmail.com)
 * [Trevor Wood][1] ([trevor.g.wood@gmail.com][2])
 * Codarren Velvindron (codarren@hackers.mu)

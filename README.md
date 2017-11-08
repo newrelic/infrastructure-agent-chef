@@ -9,23 +9,11 @@ See the [CHANGELOG][11] for information on the latest changes.
 
 ### Platforms
 
-- RHEL
-  - Red Hat 7
-  - Red Hat 6
-  - Oracle 7
-  - Oracle 6
-  - CentOS 7
-  - CentOS 6
-  - Amazon Linux (all versions)
-- Ubuntu
-  - 16 Xenial
-  - 14 Trusty
-  - 12 Precise
-- Debian
-  - 10 Buster
-  - 9 Stretch
-  - 8 Jessie
-  - 7 Wheezy
+* Amazon Linux all versions
+* CentOS version 6 or higher
+* Debian version 7 ("Wheezy") or higher
+* Red Hat Enterprise Linux (RHEL) version 6 or higher
+* Ubuntu versions 12.04.*, 14.04.*, and 16.04.* (LTS versions)
 
 ### Chef
 

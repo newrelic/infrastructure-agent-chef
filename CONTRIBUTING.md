@@ -159,6 +159,7 @@ To create a release:
 ## Contributors
 
 * David Lanner (@dlanner)
+* Don O'Neill <don.oneill @ apexlearning.com>
 * Robert Hak <robert.hak @ iacapps.com>
 * Jordan Faust (jfaust47@gmail.com)
 * Brandon Sharitt (brandon@sharitt.com)

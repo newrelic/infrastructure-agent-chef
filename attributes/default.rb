@@ -63,11 +63,14 @@ default['newrelic_infra']['custom_integrations'] = {}
 default['newrelic_infra']['apt'].tap do |conf|
   conf['uri'] = 'https://download.newrelic.com/infrastructure_agent/linux/apt'
   conf['key'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
-  conf['distribution'] = node['lsb']['codename']
+  conf['distribution'] = (node['lsb'] || {})['codename'] # node['lsb'] is nil on windows, so set a default
   conf['components'] = %w(main)
   conf['arch'] = 'amd64'
   conf['action'] = %i(add)
 end
+
+# Package version to install for Windows based hosts
+default['newrelic-infra']['windows_source'] = 'https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi'
 
 # YUM repository configuration for RHEL based hosts
 # See https://docs.chef.io/resource_yum_repository.html for more information

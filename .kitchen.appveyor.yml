@@ -1,0 +1,23 @@
+driver:
+  name: proxy
+  host: localhost
+  reset_command: "exit 0"
+  port: <%= ENV["machine_port"] %>
+  username: <%= ENV["machine_user"] %>
+  password: <%= ENV["machine_pass"] %>
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: <%= ENV['CHEF_VERSION'] || 12 %>
+
+platforms:
+  - name: windows-2012r2
+
+suites:
+  - name: default
+    run_list:
+      - recipe[newrelic-infra::default]
+    attributes:
+      newrelic_infra:
+        config:
+          license_key: abcd

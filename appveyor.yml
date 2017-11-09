@@ -1,0 +1,23 @@
+version: "{branch}-{build}"
+branches:
+  only:
+    - master
+build_script:
+  - kitchen create default-windows-2012r2
+clone_folder: c:\projects\kitchen-machine
+clone_depth: 1
+environment:
+  machine_user: test_user
+  machine_pass: Pass@word1
+  machine_port: 5985
+  KITCHEN_YAML: .kitchen.appveyor.yml
+install:
+  - ps: net user /add $env:machine_user $env:machine_pass
+  - ps: net localgroup administrators $env:machine_user /add
+  - ps: $env:PATH="C:\opscode\chefdk\bin;$env:PATH"
+  - ps: . { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project chefdk
+os: Windows Server 2012 R2
+platform:
+  - x64
+test_script:
+  - kitchen converge default-windows-2012r2

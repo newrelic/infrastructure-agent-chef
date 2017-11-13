@@ -7,23 +7,11 @@
 require 'spec_helper'
 
 describe 'newrelic-infra::agent_windows' do
-  shared_examples_for :default do
-    it 'should fail when ran on an unsupported platform' do
-      expect { chef_cached }.to raise_error
-    end
+  let(:chef_run) do
+    ChefSpec::SoloRunner.new(platform: 'windows', version: '2016').converge(described_recipe)
   end
 
-  unsupported_platforms.each do |platform, versions|
-    versions.each do |version|
-      context "On #{platform}: #{version} with default attributes" do
-        let(:chef_run) do
-          ChefSpec::SoloRunner.new(platform: platform.to_s,
-                                   version: version).converge(described_recipe)
-        end
-        cached(:chef_cached) { chef_run }
-
-        it_behaves_like :default
-      end
-    end
+  it 'converges' do
+    expect { chef_run }.to_not raise_error
   end
 end

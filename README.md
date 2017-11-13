@@ -1,6 +1,6 @@
 # newrelic-infra Cookbook
 
-[![Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
+[![Travis CI Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/newrelic/infrastructure-agent-chef?svg=true)](https://ci.appveyor.com/project/smith37586/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
 
 This cookbook installs and configures the New Relic Infrastructure agent as well as new Relic provided and custom on-host integrations for the Infrastructure agent can be installed.
 See the [CHANGELOG][11] for information on the latest changes.
@@ -14,6 +14,7 @@ See the [CHANGELOG][11] for information on the latest changes.
 * Debian version 7 ("Wheezy") or higher
 * Red Hat Enterprise Linux (RHEL) version 6 or higher
 * Ubuntu versions 12.04.*, 14.04.*, and 16.04.* (LTS versions)
+* Windows Server 2008, 2012, and 2016 and their service packs.
 
 ### Chef
 
@@ -48,8 +49,6 @@ The default recipe will automatically determine which platform specific recipe t
 Installs and configures the Infrastructure agent on a Windows host.
 This recipe should _NOT_ be directly included in a node's run list.
 The default recipe will automatically determine which platform specific recipe to apply.
-Currently, Windows host configuration is _NOT_ supported by this cookbook.
-An error will be raised and fail the `chef-client` run for any detected Windows nodes.
 
 ### `newrelic-infra::host_integrations`
 
@@ -117,7 +116,7 @@ See [attributes/defaults.rb][3] for more details and default values.
 | `default['newrelic_infra']['host_integrations']['config']` | `{}` | New Relic provided on-host integration configuration |
 | `default['newrelic_infra']['custom_integrations']` | `{}` | New Relic Infrastructure on-host custom integration configuration |
 
-### apt repository attributes
+### APT repository attributes
 
 The `apt_repository` Chef resource is built using metaprogramming, so that the configuration can be extended via attributes.
 Any property available to the resource can be passed in via attributes.
@@ -133,7 +132,16 @@ For more information, refer to the Chef documentation on the [apt_repository][4]
 | `default['newrelic_infra']['apt']['arch']` | `'amd64'` | Package architecture to install |
 | `default['newrelic_infra']['apt']['action']` | `[:add]` | `apt_repository` resource actions to perform |
 
-### YUM repository attributes
+### Windows attributes
+
+When using Windows, you can set a source URL and checksum for the agent download.
+
+| Name | Default value | Description |
+|:-----|:--------------|:------------|
+| `default['newrelic-infra']['windows_source']` | `https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi` | Remote URL for Infrastructure agent windows download |
+| `default['newrelic-infra']['windows_checksum']` | `nil` | SHA-256 Checksum for source file |
+
+### Yum repository attributes
 
 The `yum_repository` Chef resource is built using metaprogramming, so that the configuration can be extended via attributes.
 Any property available to the resource can be passed in via attributes.

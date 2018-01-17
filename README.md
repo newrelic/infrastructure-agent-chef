@@ -109,9 +109,11 @@ See [attributes/defaults.rb][3] for more details and default values.
 | `default['newrelic_infra']['agent']['directory']['path']` | `/etc/newrelic-infra` | Directory path for the agent configuration |
 | `default['newrelic_infra']['agent']['directory']['mode']` | `0750` | Directory permissions for the agent configuration |
 | `default['newrelic_infra']['packages']['agent']['action']` | `[:install]` | Action(s) to perform on the agent package |
-| `default['newrelic_infra']['packages']['agent']['version']` | `nil` | Verion of the agent package to install |
+| `default['newrelic_infra']['packages']['agent']['retries']` | `0` | The number of times to catch exceptions and retry the resource |
+| `default['newrelic_infra']['packages']['agent']['version']` | `nil` | Version of the agent package to install |
 | `default['newrelic_infra']['packages']['host_integrations']['action']` | `[:install]` | Action(s) to perform on the agent on-host integrations package |
-| `default['newrelic_infra']['packages']['host_integrations']['version']` | `nil` | Verion of the on-host integrations package to install |
+| `default['newrelic_infra']['packages']['host_integrations']['retries']` | `0` | The number of times to catch exceptions and retry the resource |
+| `default['newrelic_infra']['packages']['host_integrations']['version']` | `nil` | Version of the on-host integrations package to install |
 | `default['newrelic_infra']['host_integrations']['config_dir']` | `/etc/newrelic-infra/integrations.d` | Directory for the New Relic provided on-host integration configurations |
 | `default['newrelic_infra']['host_integrations']['config']` | `{}` | New Relic provided on-host integration configuration |
 | `default['newrelic_infra']['custom_integrations']` | `{}` | New Relic Infrastructure on-host custom integration configuration |

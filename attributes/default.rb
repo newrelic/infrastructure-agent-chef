@@ -44,11 +44,13 @@ end
 
 # New Relic Infrastructure agent package configuration
 default['newrelic_infra']['packages']['agent']['action'] = %i(install)
+default['newrelic_infra']['packages']['agent']['retries'] = 0
 default['newrelic_infra']['packages']['agent']['version'] = nil
 
 # New Relic Infrastructure on-host integration package configuration
 # NOTE: The package actions only be performed if the associated feature flag is enabled.
 default['newrelic_infra']['packages']['host_integrations']['action'] = %i(install)
+default['newrelic_infra']['packages']['host_integrations']['retries'] = 0
 default['newrelic_infra']['packages']['host_integrations']['version'] = nil
 
 # New Relic Infrastructure on-host integration configuration

@@ -10,6 +10,7 @@
 if node['newrelic_infra']['features']['host_integrations']
   package 'newrelic-infra-integrations' do
     action node['newrelic_infra']['packages']['host_integrations']['action']
+    retries node['newrelic_infra']['packages']['host_integrations']['retries']
     version node['newrelic_infra']['packages']['host_integrations']['version'].to_s
   end
 

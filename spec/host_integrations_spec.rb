@@ -11,7 +11,9 @@ describe 'newrelic-infra::host_integrations' do
     let(:file_path) { '/etc/newrelic-infra/integrations.d/cassandra.yaml' }
 
     it 'should install the agent package' do
-      expect(chef_cached).to install_package('newrelic-infra-integrations')
+      expect(chef_cached).to install_package('newrelic-infra-integrations').with(action: [:install],
+                                                                                 retries: 3,
+                                                                                 version: '')
     end
 
     it 'should create the on-host integration configuration directory' do
@@ -47,6 +49,7 @@ describe 'newrelic-infra::host_integrations' do
             node.normal['newrelic_infra']['features']['host_integrations'] = true
             node.normal['newrelic_infra']['host_integrations']['config']['cassandra']['username'] = 'chef'
             node.normal['newrelic_infra']['host_integrations']['config']['cassandra']['password'] = 'spec'
+            node.normal['newrelic_infra']['packages']['host_integrations']['retries'] = 3
           end
         end
         let(:chef_run) do

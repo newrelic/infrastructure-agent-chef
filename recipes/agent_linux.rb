@@ -56,6 +56,7 @@ end
 # Install the newrelic-infra agent
 package 'newrelic-infra' do
   action node['newrelic_infra']['packages']['agent']['action']
+  retries node['newrelic_infra']['packages']['agent']['retries']
   version node['newrelic_infra']['packages']['agent']['version'].to_s
 end
 

@@ -55,7 +55,9 @@ describe 'newrelic-infra::agent_linux' do
     end
 
     it 'should install the agent package' do
-      expect(chef_cached).to install_package('newrelic-infra')
+      expect(chef_cached).to install_package('newrelic-infra').with(action: [:install],
+                                                                    retries: 3,
+                                                                    version: '')
     end
 
     it 'should enable the agent service' do
@@ -74,7 +76,9 @@ describe 'newrelic-infra::agent_linux' do
       context "On #{platform}: #{version} with default attributes" do
         let(:chef_run) do
           ChefSpec::SoloRunner.new(platform: platform.to_s,
-                                   version: version).converge(described_recipe)
+                                   version: version) do |node|
+                                     node.normal['newrelic_infra']['packages']['agent']['retries'] = 3
+                                   end.converge(described_recipe)
         end
         cached(:chef_cached) { chef_run }
 

@@ -19,6 +19,7 @@ windows_package 'newrelic-infra' do
   action :install
   checksum node['newrelic-infra']['windows_checksum']
   installer_type :msi
+  retries node['newrelic_infra']['packages']['agent']['retries']
   source node['newrelic-infra']['windows_source']
 end
 

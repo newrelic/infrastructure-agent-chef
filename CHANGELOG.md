@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.5.0 (2018-01-17)
+
+FEATURES:
+
+* Add `retries` attribute for packages
+
 ## 0.4.0 (2017-11-12)
 
 FEATURES:

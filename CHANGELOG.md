@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.5.1 (2018-02-25)
+
+IMPROVEMENTS:
+
+* Pattern match on later versions of Amazon Linux
+
 ## 0.5.0 (2018-01-17)
 
 FEATURES:

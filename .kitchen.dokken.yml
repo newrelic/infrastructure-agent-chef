@@ -1,7 +1,7 @@
 driver:
   name: dokken
   privileged: true # because Docker and SystemD/Upstart
-  chef_version: <%= ENV['CHEF_VERSION'] || 12 %>
+  chef_version: <%= ENV['CHEF_VERSION'] || 13 %>
 
 transport:
   name: dokken
@@ -37,3 +37,9 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
       - RUN /usr/bin/apt-get update
+- name: opensuse-leap
+  driver:
+    image: dokken/opensuse-leap
+    pid_one_command: /bin/systemd
+    intermediate_instructions:
+      - RUN /usr/bin/zypper ref

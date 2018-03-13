@@ -51,6 +51,18 @@ when 'rhel', 'amazon'
       yum_resource.send(property, value)
     end
   end
+when 'suse', 'sles'
+  zypper_repository cookbook_name do |zypper_resource|
+    node['newrelic_infra']['zypper'].each do |property, value|
+      unless zypper_resource.class.properties.include?(property.to_sym) && !value.nil? || property == 'action'
+        Chef::Log.warn("[#{cookbook_name}::#{recipe_name}] #{property} with #{value}" \
+                       'is not valid for the Chef resource `zypper_repository`!')
+        next
+      end
+
+      zypper_resource.send(property, value)
+    end
+  end
 end
 
 # Install the newrelic-infra agent
@@ -81,8 +93,9 @@ file node['newrelic_infra']['agent']['flags']['config'] do
   notifies :restart, 'poise_service[newrelic-infra]'
 end
 
-include_recipe 'newrelic-infra::host_integrations'
-
+if node['platform_family'] != 'suse'
+  include_recipe 'newrelic-infra::host_integrations'
+end
 # Enable and start the agent as a service on the node with any available
 # CLI options
 poise_service 'newrelic-infra' do

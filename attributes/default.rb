@@ -92,3 +92,17 @@ default['newrelic_infra']['yum'].tap do |conf|
   conf['repo_gpgcheck'] = true
   conf['action'] = %i(add makecache)
 end
+
+# Zypp repository configuration for SLES based hosts
+# See https://docs.chef.io/resource_zypper_repository.html for more information
+default['newrelic_infra']['zypper'].tap do |conf|
+  conf['description'] = 'New Relic Infrastructure'
+  # TODO: Create a dokken image for SLES 12.4
+  conf['baseurl'] = 'https://download.newrelic.com/infrastructure_agent/beta/linux/zypp/sles/12.4/x86_64'
+  # conf['baseurl'] = "https://download.newrelic.com/infrastructure_agent/beta/linux/zypp/sles/#{node['platform_version'].to_i}/x86_64"
+  conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
+  conf['gpgcheck'] = true
+  conf['repo_gpgcheck'] = true
+  conf['action'] = %i(add)
+  conf['newrelic_infra']['features']['host_integrations'] = false
+end

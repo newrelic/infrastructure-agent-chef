@@ -167,6 +167,7 @@ To create a release:
 * Mark Whelan (mbwhelan@gmail.com)
 * [Trevor Wood][1] ([trevor.g.wood@gmail.com][2])
 * Codarren Velvindron (codarren@hackers.mu)
+* Ruben Hervas (@xino12)
 
 Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 

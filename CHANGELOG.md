@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.6.0 (2018-03-13)
+
+FEATURES:
+
+* SLES support
+
 ## 0.5.1 (2018-02-25)
 
 IMPROVEMENTS:

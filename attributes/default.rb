@@ -90,7 +90,7 @@ default['newrelic_infra']['yum'].tap do |conf|
   conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
   conf['gpgcheck'] = true
   conf['repo_gpgcheck'] = true
-  conf['action'] = %i(add makecache)
+  conf['action'] = %i(create)
 end
 
 # Zypp repository configuration for SLES based hosts

@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.7.0 (2018-05-21)
+
+IMPROVEMENTS:
+
+* Make Yum repositories default to `:create` action instead of `[:add, :makecache]`
+
 ## 0.6.0 (2018-03-13)
 
 FEATURES:

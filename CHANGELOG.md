@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## Master (unreleased)
+
+IMPROVEMENTS:
+
+* Update Fauxhai OS versions for tests
+
 ## 0.7.0 (2018-05-21)
 
 IMPROVEMENTS:

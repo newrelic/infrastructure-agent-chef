@@ -39,19 +39,13 @@ describe 'newrelic-infra::agent_linux' do
     end
 
     it 'should create add the package repo' do
-      resource_type =
-        case chef_cached.node['platform_family']
-        when 'debian'
-          :apt_repository
-        when 'rhel', 'amazon'
-          :yum_repository
-        end
-      expect(chef_cached).to ChefSpec::Matchers::ResourceMatcher.new(resource_type, :add, 'newrelic-infra')
+      next unless chef_cached.node['platform_family'] == 'debian'
+      expect(chef_cached).to ChefSpec::Matchers::ResourceMatcher.new(:apt_repository, :add, 'newrelic-infra')
     end
 
     it 'should create the repo cache for YUM repos' do
       next unless %w(rhel amazon).include? chef_cached.node['platform_family']
-      expect(chef_cached).to makecache_yum_repository('newrelic-infra')
+      expect(chef_cached).to create_yum_repository('newrelic-infra')
     end
 
     it 'should install the agent package' do

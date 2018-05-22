@@ -12,7 +12,7 @@ module NewRelicInfraCookbook
     default_action :create
 
     # Required properties
-    property :instance, String, name_property: true, required: true, desired_state: false
+    property :instance, String, name_property: true, desired_state: false
     property :integration_name, String, required: true
     property :remote_url, String, required: true
     property :instances, Array, required: true

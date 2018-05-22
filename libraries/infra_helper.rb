@@ -62,4 +62,3 @@ class Hash
     end
   end
 end
-# rubocop:enable Metrics/MethodLength

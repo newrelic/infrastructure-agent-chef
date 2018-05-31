@@ -2,7 +2,11 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
-## Master (unreleased)
+## 0.7.1 (2019-05-31)
+
+BUG FIXES:
+
+* Remove duplicate constant warning
 
 IMPROVEMENTS:
 

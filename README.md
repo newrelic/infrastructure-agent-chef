@@ -103,6 +103,7 @@ See [attributes/defaults.rb][3] for more details and default values.
 | `default['newrelic_infra']['config']['verbose']` | `nil` | When set to 1, enables verbose logging for the agent |
 | `default['newrelic_infra']['config']['debug']` | `nil` | Enable Golang debugging |
 | `default['newrelic_infra']['config']['log_file']` | `nil` | To log to another location; when not set, the agent logs to the system log files |
+| `default['newrelic_infra']['config']['strip_command_line']` | `true` | Strip out command line parameters when displaying/querying |
 | `default['newrelic_infra']['config']['custom_attributes']` | `{}` | A hash of custom attributes to annotate the data from this agent instance |
 | `default['newrelic_infra']['agent']['config']['file']` | `agent.yaml` | File name for the agent configuration |
 | `default['newrelic_infra']['agent']['config']['mode']` | `0640` | File permissions for the agent configuration |

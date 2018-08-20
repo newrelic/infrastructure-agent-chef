@@ -46,6 +46,7 @@ describe file('/etc/newrelic-infra/agent.yaml') do
   its('mode') { should cmp '0640' }
   its('content') { should match(/license_key: abcd/) }
   its('content') { should match(/verbose: 0/) }
+  its('content') { should match(/strip_command_line: true/) }
 end
 
 # `poise_service` uses upstart for RHEL systems less than 7;

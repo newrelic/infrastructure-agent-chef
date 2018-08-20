@@ -30,6 +30,8 @@ default['newrelic_infra']['config'].tap do |conf|
   conf['debug'] = nil
   # To log to another location; when not set, the agent logs to the system log files
   conf['log_file'] = nil
+  # strip the process arguments reported
+  conf['strip_command_line'] = true
   # A hash of custom attributes to annotate the data from this agent instance
   conf['custom_attributes'] = {}
 end

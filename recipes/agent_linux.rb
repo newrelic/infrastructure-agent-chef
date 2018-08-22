@@ -93,9 +93,8 @@ file node['newrelic_infra']['agent']['flags']['config'] do
   notifies :restart, 'poise_service[newrelic-infra]'
 end
 
-if node['platform_family'] != 'suse'
-  include_recipe 'newrelic-infra::host_integrations'
-end
+include_recipe 'newrelic-infra::host_integrations'
+
 # Enable and start the agent as a service on the node with any available
 # CLI options
 poise_service 'newrelic-infra' do

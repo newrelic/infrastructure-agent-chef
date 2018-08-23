@@ -94,7 +94,6 @@ file node['newrelic_infra']['agent']['flags']['config'] do
 end
 
 include_recipe 'newrelic-infra::host_integrations'
-
 # Enable and start the agent as a service on the node with any available
 # CLI options
 poise_service 'newrelic-infra' do

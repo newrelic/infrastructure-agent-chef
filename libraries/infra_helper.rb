@@ -58,7 +58,7 @@ class Hash
 
   def delete_blank
     delete_if do |_, value|
-      (value.respond_to?(:empty?) ? value.empty? : !value) || value.instance_of?(Hash) && value.delete_blank.empty?
+      (value.respond_to?(:empty?) ? value.empty? : (!value if value != false)) || value.instance_of?(Hash) && value.delete_blank.empty?
     end
   end
 end

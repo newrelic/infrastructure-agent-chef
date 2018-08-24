@@ -2,7 +2,14 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
-## 0.7.1 (2019-05-31)
+## 0.7.2 (2018-08-24)
+
+BUG FIXES:
+
+* Fix case where `false` values were not added to configuration
+* Change `require_chef_omnibus` to `product_version` in Test Kitchen config to avoid deprecation message
+
+## 0.7.1 (2018-05-31)
 
 BUG FIXES:
 

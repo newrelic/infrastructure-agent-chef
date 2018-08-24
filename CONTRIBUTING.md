@@ -161,15 +161,16 @@ To create a release:
 * David Lanner (@dlanner)
 * Don O'Neill <don.oneill @ apexlearning.com>
 * Robert Hak <robert.hak @ iacapps.com>
+* Ruben Hervas (@xino12)
 * Jordan Faust (jfaust47@gmail.com)
+* Chris Minton (@chrisminton)
 * Brandon Sharitt (brandon@sharitt.com)
 * Nathan Smith (nsmith@newrelic.com)
+* Codarren Velvindron (codarren@hackers.mu)
 * Mark Whelan (mbwhelan@gmail.com)
 * [Trevor Wood][1] ([trevor.g.wood@gmail.com][2])
-* Codarren Velvindron (codarren@hackers.mu)
-* Ruben Hervas (@xino12)
 
-Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
+Copyright (c) 2016-2018 New Relic, Inc. All rights reserved.
 
 [1]:  https://github.com/taharah
 [2]:  mailto:trevor.g.wood@gmail.com

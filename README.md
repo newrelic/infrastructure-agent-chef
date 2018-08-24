@@ -15,6 +15,7 @@ See the [CHANGELOG][11] for information on the latest changes.
 * Red Hat Enterprise Linux (RHEL) version 6 or higher
 * Ubuntu versions 12.04.*, 14.04.*, and 16.04.* (LTS versions)
 * Windows Server 2008, 2012, and 2016 and their service packs.
+* SUSE Linux Enterprise 11, 12
 
 ### Chef
 

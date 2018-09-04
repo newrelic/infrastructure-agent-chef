@@ -169,6 +169,7 @@ To create a release:
 * Codarren Velvindron (codarren@hackers.mu)
 * Mark Whelan (mbwhelan@gmail.com)
 * [Trevor Wood][1] ([trevor.g.wood@gmail.com][2])
+* Alejandro Do Nascimento (@alejandrodnm)
 
 Copyright (c) 2016-2018 New Relic, Inc. All rights reserved.
 

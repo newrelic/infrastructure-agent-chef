@@ -105,8 +105,7 @@ default['newrelic_infra']['zypper'].tap do |conf|
 
   conf['description'] = 'New Relic Infrastructure'
   # TODO: Create a dokken image for SLES 12.4
-  conf['baseurl'] = "https://download.newrelic.com/infrastructure_agent/beta/linux/zypp/sles/#{platform_version}/x86_64"
-  # conf['baseurl'] = "https://download.newrelic.com/infrastructure_agent/beta/linux/zypp/sles/#{node['platform_version'].to_i}/x86_64"
+  conf['baseurl'] = "https://download.newrelic.com/infrastructure_agent/linux/zypp/sles/#{platform_version}/x86_64"
   conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
   conf['gpgcheck'] = true
   conf['repo_gpgcheck'] = true

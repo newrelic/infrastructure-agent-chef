@@ -12,7 +12,7 @@ def supported_platforms
     centos: %w(7.4.1708 6.9),
     amazon: %w(2018.03 2015.09),
     debian: %w(9.4 8.10 7.11),
-    ubuntu: %w(16.04 14.04),
+    ubuntu: %w(18.04, 16.04 14.04),
     suse:   %w(11.4 12.2),
   }
 end

@@ -13,7 +13,7 @@ See the [CHANGELOG][11] for information on the latest changes.
 * CentOS version 6 or higher
 * Debian version 7 ("Wheezy") or higher
 * Red Hat Enterprise Linux (RHEL) version 6 or higher
-* Ubuntu versions 12.04.*, 14.04.*, and 16.04.* (LTS versions)
+* Ubuntu versions 12.04.*, 14.04.*, and 16.04.*, 18.04.* (LTS versions)
 * Windows Server 2008, 2012, and 2016 and their service packs.
 * SUSE Linux Enterprise 11, 12
 
@@ -25,7 +25,6 @@ See the [CHANGELOG][11] for information on the latest changes.
 
 - [poise-service][1]
 - [poise-archive][2]
-
 ## Recipes
 
 ### `newrelic-infra::default`

@@ -97,6 +97,7 @@ Platforms tested:
 * debian-9.1
 * debian-8.9
 * debian-7.11
+* ubuntu-18.04
 * ubuntu-16.04
 * ubuntu-14.04
 
@@ -189,6 +190,7 @@ Copyright (c) 2016-2018 New Relic, Inc. All rights reserved.
 [14]:  https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
 [15]:  https://app.vagrantup.com/bento/boxes/ubuntu-12.04
 [16]:  https://app.vagrantup.com/bento/boxes/ubuntu-14.04
+[16]:  https://app.vagrantup.com/bento/boxes/ubuntu-18.04
 [17]:  https://app.vagrantup.com/bento/boxes/centos-6.8
 [18]:  https://app.vagrantup.com/bento/boxes/centos-7.2
 [19]:  https://downloads.chef.io/chef-dk/

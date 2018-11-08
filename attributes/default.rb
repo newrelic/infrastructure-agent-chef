@@ -89,7 +89,7 @@ default['newrelic_infra']['yum'].tap do |conf|
   )
   conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
   conf['gpgcheck'] = true
-  conf['repo_gpgcheck'] = true
+  conf['repo_gpgcheck'] = node['platform_version'].to_i != 5
   conf['action'] = %i(create)
 end
 

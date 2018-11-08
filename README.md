@@ -10,9 +10,9 @@ See the [CHANGELOG][11] for information on the latest changes.
 ### Platforms
 
 * Amazon Linux all versions
-* CentOS version 6 or higher
+* CentOS version 5 or higher
 * Debian version 7 ("Wheezy") or higher
-* Red Hat Enterprise Linux (RHEL) version 6 or higher
+* Red Hat Enterprise Linux (RHEL) version 5 or higher
 * Ubuntu versions 12.04.*, 14.04.*, and 16.04.*, 18.04.* (LTS versions)
 * Windows Server 2008, 2012, and 2016 and their service packs.
 * SUSE Linux Enterprise 11, 12

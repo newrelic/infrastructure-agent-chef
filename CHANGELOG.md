@@ -2,10 +2,17 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.8.0 (2018-11-16)
+
+IMPROVEMENTS:
+
+* Add support for Centos/RHEL 5
+
 ## 0.7.2 (2018-08-24)
 
 BUG FIXES:
 
+* Add support for Ubuntu 18.04 (bionic)
 * Fix case where `false` values were not added to configuration
 * Change `require_chef_omnibus` to `product_version` in Test Kitchen config to avoid deprecation message
 

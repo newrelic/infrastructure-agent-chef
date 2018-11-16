@@ -5,13 +5,13 @@ addons:
       - chefdk
     sources:
       - chef-current-trusty
-before_install: 
+before_install:
   if [[ -n "$encrypted_e7ed02806170_key" ]]; then
-    openssl aes-256-cbc 
+    openssl aes-256-cbc
       -K "$encrypted_e7ed02806170_key"
       -iv "$encrypted_e7ed02806170_iv"
-      -in newrelic.pem.enc 
-      -out newrelic.pem 
+      -in newrelic.pem.enc
+      -out newrelic.pem
       -d;
   fi
 before_script:
@@ -36,17 +36,17 @@ env:
   - INSTANCE=verify
 install: skip # Don't `bundle install` which takes about 1.5 mins
 jobs:
-  include: 
+  include:
     - stage: deploy
       if: tag =~ ^\d+\.\d+\.\d+$
       deploy:
         on:
           tags: true
         provider: script
-        # We can't use --cookbook-path until https://github.com/chef/chef/issues/6379 
+        # We can't use --cookbook-path until https://github.com/chef/chef/issues/6379
         # is fixed. chefignore wouldn't be honored. Symlink into cookbooks and upload that copy.
         script: rm -rf cookbooks/* && berks vendor cookbooks && knife supermarket share newrelic-infra
-        skip_cleanup: true # The cleanup step will remove the newrelic.pem file written out in the before_install step 
+        skip_cleanup: true # The cleanup step will remove the newrelic.pem file written out in the before_install step
       script: skip
       services: []
       sudo: false

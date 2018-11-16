@@ -11,6 +11,10 @@ provisioner:
   deprecations_as_errors: true
 
 platforms:
+- name: centos-5
+  driver:
+    image: dokken/centos-5
+    pid_one_command: /sbin/init
 - name: centos-6
   driver:
     image: dokken/centos-6

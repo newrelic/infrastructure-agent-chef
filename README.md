@@ -230,6 +230,16 @@ Supported properties:
 
 See [CONTRIBUTING.md][10] for details on how to test and contribute to this cookbook.
 
+## Releasing new versions
+
+For releasing a new version to the [Chef Supermarket][12] follow this steps:
+
+- Update the version number in [metadata.rb][13].
+- Create the github release for the new version. This will trigger a 
+  [TravisCI][14] job that will deploy the new version.
+- Check that the job finish successfuly and that the new version is in the
+	supermarket, the cookbook badge should update with the new version number.
+
 Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 
 [1]:  https://github.com/poise/poise-service
@@ -241,5 +251,8 @@ Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 [7]:  https://docs.newrelic.com/docs/infrastructure/integrations/mysql-integration-new-relic-infrastructure
 [8]:  https://docs.newrelic.com/docs/infrastructure/integrations/nginx-integration-new-relic-infrastructure
 [9]:  #custom-resources
-[10]:  CONTRIBUTING.md
-[11]:  CHANGELOG.md
+[10]: CONTRIBUTING.md
+[11]: CHANGELOG.md
+[12]: https://supermarket.chef.io/cookbooks/newrelic-infra
+[13]: metadata.rb#L10
+[14]: https://travis-ci.org/newrelic/infrastructure-agent-chef

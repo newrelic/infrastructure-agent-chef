@@ -72,6 +72,13 @@ package 'newrelic-infra' do
   version node['newrelic_infra']['packages']['agent']['version'].to_s
 end
 
+# Fix for docker centos6 run
+execute 'reload_initctl_conf' do
+  command 'initctl reload-configuration'
+  only_if { node['platform_version'] =~ /^6/ }
+  only_if { ::File.exist?('/.dockerenv') }
+end
+
 # Create and manage the agent directory
 directory node['newrelic_infra']['agent']['directory']['path'] do
   owner node['newrelic_infra']['user']['name']

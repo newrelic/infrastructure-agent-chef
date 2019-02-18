@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.8.1 (2018-11-16)
+
+IMPROVEMENTS:
+
+* Fix upstart config reload when running inside a Centos6 docker container
+
 ## 0.8.0 (2018-11-16)
 
 IMPROVEMENTS:

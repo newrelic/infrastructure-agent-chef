@@ -7,11 +7,15 @@
 #
 # Installs New Relic provided and custom on-host integrations
 #
-if node['newrelic_infra']['features']['host_integrations']
-  package 'newrelic-infra-integrations' do
-    action node['newrelic_infra']['packages']['host_integrations']['action']
-    retries node['newrelic_infra']['packages']['host_integrations']['retries']
-    version node['newrelic_infra']['packages']['host_integrations']['version'].to_s
+
+# Install host integrations defined with attributes
+if node['newrelic_infra']['features']['host_integrations'].any?
+  node['newrelic_infra']['features']['host_integrations'].each do |integration_name|
+    package integration_name do
+      action node['newrelic_infra']['packages'][integration_name]['action']
+      retries node['newrelic_infra']['packages'][integration_name]['retries']
+      version node['newrelic_infra']['packages'][integration_name]['version'].to_s
+    end
   end
 
   directory node['newrelic_infra']['host_integrations']['config_dir'] do

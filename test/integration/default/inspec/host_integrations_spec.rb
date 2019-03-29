@@ -4,7 +4,23 @@
 # All rights reserved.
 #
 
-describe package('newrelic-infra-integrations') do
+describe package('nri-cassandra') do
+  it { should be_installed }
+end
+
+describe package('nri-mysql') do
+  it { should be_installed }
+end
+
+describe package('nri-redis') do
+  it { should be_installed }
+end
+
+describe package('nri-nginx') do
+  it { should be_installed }
+end
+
+describe package('nri-apache') do
   it { should be_installed }
 end
 

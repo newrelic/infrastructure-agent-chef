@@ -171,8 +171,9 @@ To create a release:
 * Mark Whelan (mbwhelan@gmail.com)
 * [Trevor Wood][1] ([trevor.g.wood@gmail.com][2])
 * Alejandro Do Nascimento (@alejandrodnm)
+* David Brota (@davidbrota)
 
-Copyright (c) 2016-2018 New Relic, Inc. All rights reserved.
+Copyright (c) 2016-2019 New Relic, Inc. All rights reserved.
 
 [1]:  https://github.com/taharah
 [2]:  mailto:trevor.g.wood@gmail.com

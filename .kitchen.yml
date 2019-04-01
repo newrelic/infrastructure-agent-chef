@@ -42,7 +42,7 @@ suites:
   attributes:
     newrelic_infra:
       features:
-        host_integrations: true
+        host_integrations: ['nri-cassandra', 'nri-mysql', 'nri-redis', 'nri-nginx', 'nri-apache']
       config:
         license_key: abcd
       host_integrations:

@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.9.0 (2019-03-29)
+
+IMPROVEMENTS:
+
+* Remove deprecated `newrelic-infra-integrations` package. To install an on-host integration you need to add it to the `host_integrations` list.
+
 ## 0.8.1 (2018-11-16)
 
 IMPROVEMENTS:

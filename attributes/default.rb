@@ -8,7 +8,7 @@
 # Whether or not to create a local service account for running the agent
 default['newrelic_infra']['features']['manage_service_account'] = true
 # Whether or not to install the New Relic on-host integrations
-default['newrelic_infra']['features']['host_integrations'] = false
+default['newrelic_infra']['features']['host_integrations'] = []
 
 # Service account attributes
 # Name of the service account user
@@ -48,10 +48,23 @@ default['newrelic_infra']['packages']['agent']['retries'] = 0
 default['newrelic_infra']['packages']['agent']['version'] = nil
 
 # New Relic Infrastructure on-host integration package configuration
-# NOTE: The package actions only be performed if the associated feature flag is enabled.
-default['newrelic_infra']['packages']['host_integrations']['action'] = %i(install)
-default['newrelic_infra']['packages']['host_integrations']['retries'] = 0
-default['newrelic_infra']['packages']['host_integrations']['version'] = nil
+# NOTE: The package actions will only be performed if the integration has been
+# added to the host_integrations features list
+default['newrelic_infra']['packages']['nri-cassandra']['action'] = %i(install)
+default['newrelic_infra']['packages']['nri-cassandra']['retries'] = 0
+default['newrelic_infra']['packages']['nri-cassandra']['version'] = nil
+default['newrelic_infra']['packages']['nri-mysql']['action'] = %i(install)
+default['newrelic_infra']['packages']['nri-mysql']['retries'] = 0
+default['newrelic_infra']['packages']['nri-mysql']['version'] = nil
+default['newrelic_infra']['packages']['nri-redis']['action'] = %i(install)
+default['newrelic_infra']['packages']['nri-redis']['retries'] = 0
+default['newrelic_infra']['packages']['nri-redis']['version'] = nil
+default['newrelic_infra']['packages']['nri-nginx']['action'] = %i(install)
+default['newrelic_infra']['packages']['nri-nginx']['retries'] = 0
+default['newrelic_infra']['packages']['nri-nginx']['version'] = nil
+default['newrelic_infra']['packages']['nri-apache']['action'] = %i(install)
+default['newrelic_infra']['packages']['nri-apache']['retries'] = 0
+default['newrelic_infra']['packages']['nri-apache']['version'] = nil
 
 # New Relic Infrastructure on-host integration configuration
 default['newrelic_infra']['host_integrations']['config_dir'] = '/etc/newrelic-infra/integrations.d'

@@ -52,7 +52,7 @@ The default recipe will automatically determine which platform specific recipe t
 
 ### `newrelic-infra::host_integrations`
 
-Installs New Relic provided and custom on-host integrations if the associated feature flag is enabled (i.e., `default['newrelic_infra']['features]['host_integrations']`).
+Installs New Relic provided and custom on-host integrations if the integration has been addded to the list of `host_integrations` (i.e., `default['newrelic_infra']['features]['host_integrations'] = []`).
 Generates configuration for any of the available on-host integrations from New Relic.
 Installs any custom integrations defined with attributes.
 For more infromation on the available custom resource for installing and configuring custom on-host integrations see the [Custom resources][9] documentation.
@@ -81,11 +81,7 @@ default['newrelic_infra']['custom_integrations']['test_integration'] = {
 }
 ```
 
-For more information on the available New Relic on-host integrations and configuration see:
-
-1. [Cassandra][6]
-2. [MySQL][7]
-3. [Nginx][8]
+For more information on the available New Relic on-host integrations and configuration you can check the [official documentation.][6]
 
 ## Attributes
 
@@ -94,7 +90,7 @@ See [attributes/defaults.rb][3] for more details and default values.
 | Name | Default value | Description |
 |:-----|:--------------|:------------|
 | `default['newrelic_infra']['features']['manage_service_account']` | `true` | Manage a local service account for running the agent |
-| `default['newrelic_infra']['features']['host_integrations']` | `false` | Install New Relic on-host integrations |
+| `default['newrelic_infra']['features']['host_integrations']` | `[]` | List of New Relic on-host integrations |
 | `default['newrelic_infra']['user']['name']` | `newrelic_infra` | Service account user name |
 | `default['newrelic_infra']['group']['name']` | `newrelic_infra` | Service account group name |
 | `default['newrelic_infra']['config']['license_key']` | `nil` | Account license key to send metrics to |
@@ -111,9 +107,9 @@ See [attributes/defaults.rb][3] for more details and default values.
 | `default['newrelic_infra']['packages']['agent']['action']` | `[:install]` | Action(s) to perform on the agent package |
 | `default['newrelic_infra']['packages']['agent']['retries']` | `0` | The number of times to catch exceptions and retry the resource |
 | `default['newrelic_infra']['packages']['agent']['version']` | `nil` | Version of the agent package to install |
-| `default['newrelic_infra']['packages']['host_integrations']['action']` | `[:install]` | Action(s) to perform on the agent on-host integrations package |
-| `default['newrelic_infra']['packages']['host_integrations']['retries']` | `0` | The number of times to catch exceptions and retry the resource |
-| `default['newrelic_infra']['packages']['host_integrations']['version']` | `nil` | Version of the on-host integrations package to install |
+| `default['newrelic_infra']['packages'][integration_package_name]['action']` | `[:install]` | Action(s) to perform on the agent on-host integration package |
+| `default['newrelic_infra']['packages'][integration_package_name]['retries']` | `0` | The number of times to catch exceptions and retry the resource |
+| `default['newrelic_infra']['packages'][integration_package_name]['version']` | `nil` | Version of the on-host integration package to install |
 | `default['newrelic_infra']['host_integrations']['config_dir']` | `/etc/newrelic-infra/integrations.d` | Directory for the New Relic provided on-host integration configurations |
 | `default['newrelic_infra']['host_integrations']['config']` | `{}` | New Relic provided on-host integration configuration |
 | `default['newrelic_infra']['custom_integrations']` | `{}` | New Relic Infrastructure on-host custom integration configuration |
@@ -247,12 +243,11 @@ Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 [3]:  attributes/default.rb
 [4]:  https://docs.chef.io/resource_apt_repository.html
 [5]:  https://docs.chef.io/resource_yum_repository.html
-[6]:  https://docs.newrelic.com/docs/infrastructure/integrations/cassandra-integration-new-relic-infrastructure
-[7]:  https://docs.newrelic.com/docs/infrastructure/integrations/mysql-integration-new-relic-infrastructure
-[8]:  https://docs.newrelic.com/docs/infrastructure/integrations/nginx-integration-new-relic-infrastructure
+[6]:  https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
 [9]:  #custom-resources
 [10]: CONTRIBUTING.md
 [11]: CHANGELOG.md
 [12]: https://supermarket.chef.io/cookbooks/newrelic-infra
 [13]: metadata.rb#L10
 [14]: https://travis-ci.org/newrelic/infrastructure-agent-chef
+

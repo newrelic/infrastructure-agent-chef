@@ -1,7 +1,7 @@
 module NewRelicInfraCookbook
   # Chef custom resource to install the New Relic infrastructure agent on a node.
   class Integration < ::Chef::Resource
-    BASENAME_IGNORE = /(\.(t?(ar|gz|bz2?|xz)|zip))+$/ unless defined? BASENAME_IGNORE
+    BASENAME_IGNORE = /(\.(t?(ar|gz|bz2?|xz)|zip))+$/.freeze unless defined? BASENAME_IGNORE
 
     resource_name :newrelic_infra_integration
 

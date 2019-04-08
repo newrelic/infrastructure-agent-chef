@@ -6,7 +6,12 @@ This file is used to list changes made in each version of the `newrelic-infra` c
 
 IMPROVEMENTS:
 
-* Remove deprecated `newrelic-infra-integrations` package. To install an on-host integration you need to add it to the `host_integrations` list.
+* Add support for installing individual integrations. The role
+  switches from the deprecated `newrelic-infra-integrations` package (which
+  only included 5 integrations), to the `nri-*` individual integration
+  packages. The `host_integrations` changes from a bool to a list specifying
+  the names of `nri-*` integration packages to install.
+
 
 ## 0.8.1 (2018-11-16)
 

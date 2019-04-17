@@ -9,7 +9,7 @@
 #
 
 # Install host integrations defined with attributes
-if node['newrelic_infra']['features']['host_integrations'].any?
+if node['newrelic_infra']['features']['host_integrations'].length > 0
   node['newrelic_infra']['features']['host_integrations'].each do |integration_name|
     package integration_name do
       action node['newrelic_infra']['packages'][integration_name]['action']

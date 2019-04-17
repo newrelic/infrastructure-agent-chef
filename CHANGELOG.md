@@ -6,7 +6,7 @@ This file is used to list changes made in each version of the `newrelic-infra` c
 
 IMPROVEMENTS:
 
-* Add support for installing individual integrations. The role
+* *Breaking change*: Add support for installing individual integrations. The role
   switches from the deprecated `newrelic-infra-integrations` package (which
   only included 5 integrations), to the `nri-*` individual integration
   packages. The `host_integrations` changes from a bool to a list specifying

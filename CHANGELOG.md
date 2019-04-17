@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.9.1 (2019-04-17)
+
+BUG FIXES:
+
+* Replaces `any?` with `length` to avoid breaking changes with `ruby < 2.5`.
+
 ## 0.9.0 (2019-03-29)
 
 IMPROVEMENTS:

@@ -113,6 +113,8 @@ See [attributes/defaults.rb][3] for more details and default values.
 | `default['newrelic_infra']['host_integrations']['config_dir']` | `/etc/newrelic-infra/integrations.d` | Directory for the New Relic provided on-host integration configurations |
 | `default['newrelic_infra']['host_integrations']['config']` | `{}` | New Relic provided on-host integration configuration |
 | `default['newrelic_infra']['custom_integrations']` | `{}` | New Relic Infrastructure on-host custom integration configuration |
+| `default['newrelic_infra']['provider']` | `package_manager` | When `package_manager` installs the packages from yum/apt/zypp, if `tarball` installs the agent from a tarball |
+| `default['newrelic_infra']['tarball']['version']` | `nil` | the version number of the tarball to install |
 
 ### APT repository attributes
 
@@ -250,4 +252,3 @@ Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
 [12]: https://supermarket.chef.io/cookbooks/newrelic-infra
 [13]: metadata.rb#L10
 [14]: https://travis-ci.org/newrelic/infrastructure-agent-chef
-

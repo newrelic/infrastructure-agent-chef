@@ -4,6 +4,15 @@
 # All rights reserved.
 #
 
+default['newrelic_infra']['provider'] = 'package_manager'
+default['newrelic_infra']['tarball']['version'] = nil
+
+case node['kernel']['machine']
+when 'x86_64'
+  default['newrelic_infra']['tarball']['architecture'] = 'amd64'
+when 'i386'
+  default['newrelic_infra']['tarball']['architecture'] = '386'
+end
 # Feature flags
 # Whether or not to create a local service account for running the agent
 default['newrelic_infra']['features']['manage_service_account'] = true

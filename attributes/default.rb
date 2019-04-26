@@ -12,6 +12,8 @@ when 'x86_64'
   default['newrelic_infra']['tarball']['architecture'] = 'amd64'
 when 'i386'
   default['newrelic_infra']['tarball']['architecture'] = '386'
+else
+  default['newrelic_infra']['tarball']['architecture'] = node['kernel']['machine']
 end
 # Feature flags
 # Whether or not to create a local service account for running the agent

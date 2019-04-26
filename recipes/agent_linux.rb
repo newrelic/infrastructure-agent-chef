@@ -92,7 +92,8 @@ when 'package_manager'
 
   # Build the New Relic infrastructure agent configuration
   file node['newrelic_infra']['agent']['flags']['config'] do
-    content(lazy do YAML.dump(
+    content(lazy do
+      YAML.dump(
         node['newrelic_infra']['config'].to_h.deep_stringify.delete_blank
       )
     end)
@@ -129,7 +130,7 @@ when 'tarball'
 
     execute 'extract_newrelic_infra_tarball' do
       command "tar -xzf /opt/linux_#{conf['version']}_#{conf['architecture']}.tar.gz -C /opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/"
-      not_if { File.exists?("/opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/newrelic-infra") }
+      not_if { File.exist?("/opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/newrelic-infra") }
       notifies :run, 'execute[run_installation_script]', :immediately
     end
 
@@ -143,7 +144,8 @@ when 'tarball'
 
   # Build the New Relic infrastructure agent configuration
   file '/etc/newrelic-infra.yml' do
-    content(lazy do YAML.dump(
+    content(lazy do
+      YAML.dump(
         node['newrelic_infra']['config'].to_h.deep_stringify.delete_blank
       )
     end)

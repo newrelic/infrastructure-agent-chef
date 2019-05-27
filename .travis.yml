@@ -4,7 +4,7 @@ addons:
     packages:
       - chefdk
     sources:
-      - chef-current-trusty
+      - chef-stable-trusty
 before_install:
   if [[ -n "$encrypted_e7ed02806170_key" ]]; then
     openssl aes-256-cbc

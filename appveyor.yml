@@ -15,7 +15,7 @@ install:
   - ps: net user /add $env:machine_user $env:machine_pass
   - ps: net localgroup administrators $env:machine_user /add
   - ps: $env:PATH="C:\opscode\chefdk\bin;$env:PATH"
-  - ps: . { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project chefdk -version 3.9
+  - ps: . { iwr -useb https://omnitruck.chef.io/install.ps1 } | iex; install -project chefdk -version 3.8.19
 
 os: Windows Server 2012 R2
 platform:

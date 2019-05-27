@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.10.0 (2019-05-27)
+
+FEATURES:
+
+* Add support for installing the agent in different linux architecture from the
+  tarballs. 
+
 ## 0.9.0 (2019-03-29)
 
 IMPROVEMENTS:

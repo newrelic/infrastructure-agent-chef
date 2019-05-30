@@ -9,6 +9,7 @@ driver:
 provisioner:
   name: chef_zero
   product_version: <%= ENV['CHEF_VERSION'] || 12 %>
+  chef_license: accept
 
 platforms:
   - name: windows-2012r2

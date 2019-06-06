@@ -14,7 +14,7 @@ See the [CHANGELOG][11] for information on the latest changes.
 * Debian version 7 ("Wheezy") or higher
 * Red Hat Enterprise Linux (RHEL) version 5 or higher
 * Ubuntu versions 12.04.*, 14.04.*, and 16.04.*, 18.04.* (LTS versions)
-* Windows Server 2008, 2012, and 2016 and their service packs.
+* Windows Server 2008, 2012, 2016, and 2019, and their service packs.
 * SUSE Linux Enterprise 11, 12
 
 ### Chef
@@ -238,7 +238,7 @@ For releasing a new version to the [Chef Supermarket][12] follow this steps:
 - Check that the job finish successfuly and that the new version is in the
 	supermarket, the cookbook badge should update with the new version number.
 
-Copyright (c) 2016-2017 New Relic, Inc. All rights reserved.
+Copyright (c) 2016-2019 New Relic, Inc. All rights reserved.
 
 [1]:  https://github.com/poise/poise-service
 [2]:  https://github.com/poise/poise-archive

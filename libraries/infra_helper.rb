@@ -25,10 +25,12 @@ class Chef
         # @author Trevor G. Wood
         # @param current_contents [String] generated YAML file string
         # @return [String] YAML file with nested lists modifed
-        def yaml_file_workaround(current_contents)
+        def yaml_file_workaround(current_contents, delete_quotes)
           nested_map = current_contents[/^\-\s\w+:/] ? true : false
           regex = nested_map ? /^(\-?\s+)/ : /^(\s+\-\s)/
-          current_contents.delete!('"')
+          if delete_quotes
+            current_contents.delete!('"')
+          end
           current_contents.gsub!(regex, '  \\1')
           current_contents
         end

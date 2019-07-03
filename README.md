@@ -115,6 +115,7 @@ See [attributes/defaults.rb][3] for more details and default values.
 | `default['newrelic_infra']['custom_integrations']` | `{}` | New Relic Infrastructure on-host custom integration configuration |
 | `default['newrelic_infra']['provider']` | `package_manager` | When `package_manager` installs the packages from yum/apt/zypp, if `tarball` installs the agent from a tarball |
 | `default['newrelic_infra']['tarball']['version']` | `nil` | the version number of the tarball to install |
+| `default['newrelic_infra']['delete_yaml_quotes']` | `true` | if true it deletes the quotes (`"`) from the generated integration configs and definitions files |
 
 ### APT repository attributes
 

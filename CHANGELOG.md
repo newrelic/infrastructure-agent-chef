@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.11.0 (2019-07-04)
+
+IMPROVEMENTS:
+
+* Add support for disabling the removal of quotes in the generated 
+  integration definition and config files.
+
 ## 0.10.0 (2019-05-27)
 
 FEATURES:

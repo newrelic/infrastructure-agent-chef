@@ -2,13 +2,11 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
-## 0.12.0 (2019-07-04)
+## 0.11.0 (2019-07-04)
 
 FEATURES:
 
 * Add support for Amazon Linux 2. 
-
-## 0.11.0 (2019-07-04)
 
 IMPROVEMENTS:
 

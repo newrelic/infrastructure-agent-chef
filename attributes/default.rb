@@ -108,6 +108,7 @@ default['newrelic_infra']['yum'].tap do |conf|
     amazon: {
       '= 2013' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/6/x86_64',
       '> 2013.0' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/6/x86_64',
+      '= 2' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/$basearch',
     },
     %w(redhat oracle centos) => {
       default: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{node['platform_version'].to_i}/x86_64",

@@ -34,7 +34,8 @@ if node['newrelic_infra']['features']['host_integrations'].any?
     file file_path do
       content(lazy do
         NewRelicInfra.yaml_file_workaround(
-          config.to_h.delete_blank.deep_stringify.to_yaml
+          config.to_h.delete_blank.deep_stringify.to_yaml,
+          node['newrelic_infra']['delete_yaml_quotes']
         )
       end)
       owner node['newrelic_infra']['user']['name']

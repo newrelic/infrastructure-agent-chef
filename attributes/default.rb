@@ -6,6 +6,7 @@
 
 default['newrelic_infra']['provider'] = 'package_manager'
 default['newrelic_infra']['tarball']['version'] = nil
+default['newrelic_infra']['delete_yaml_quotes'] = true
 
 default['newrelic_infra']['tarball']['architecture'] = case node['kernel']['machine']
                                                        when 'x86_64'

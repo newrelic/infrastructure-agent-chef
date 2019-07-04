@@ -41,6 +41,7 @@ suites:
   - recipe[newrelic-infra::default]
   attributes:
     newrelic_infra:
+      delete_yaml_quotes: false
       features:
         host_integrations: ['nri-cassandra', 'nri-mysql', 'nri-redis', 'nri-nginx', 'nri-apache']
       config:
@@ -50,3 +51,4 @@ suites:
           cassandra:
             username: test
             password: kitchen
+            hosts: '["/"]'

@@ -116,7 +116,8 @@ module NewRelicInfraCookbook
           path file_path
           content(lazy do
             ::Chef::Recipe::NewRelicInfra.yaml_file_workaround(
-              new_resource.send(:"#{file_to_create}_content").delete_blank.deep_stringify.to_yaml
+              new_resource.send(:"#{file_to_create}_content").delete_blank.deep_stringify.to_yaml,
+              node['newrelic_infra']['delete_yaml_quotes']
             )
           end)
           sensitive true

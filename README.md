@@ -1,6 +1,6 @@
 [![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
-# New Relic infrastructure agent Chef cookbook ![Travis CI Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/newrelic/infrastructure-agent-chef?svg=true)](https://ci.appveyor.com/project/smith37586/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
+# New Relic infrastructure agent Chef cookbook [![Travis CI Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/newrelic/infrastructure-agent-chef?svg=true)](https://ci.appveyor.com/project/smith37586/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
 
 This cookbook installs and configures the New Relic infrastructure agent as well New Relic and custom on-host integrations.
 
@@ -13,7 +13,7 @@ This cookbook installs and configures the New Relic infrastructure agent as well
 
 New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
 
-[https://discuss.newrelic.com/c/support-products-agents/new-relic-infrastructure]
+https://discuss.newrelic.com/c/support-products-agents/new-relic-infrastructure
 
 
 ## Contributing

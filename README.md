@@ -1,13 +1,14 @@
-# newrelic-infra Cookbook
+[![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
-[![Travis CI Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/newrelic/infrastructure-agent-chef?svg=true)](https://ci.appveyor.com/project/smith37586/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
+# New Relic infrastructure agent Chef cookbook [![Travis CI Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/newrelic/infrastructure-agent-chef?svg=true)](https://ci.appveyor.com/project/smith37586/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
 
-This cookbook installs and configures the New Relic Infrastructure agent as well as new Relic provided and custom on-host integrations for the Infrastructure agent can be installed.
-See the [CHANGELOG][11] for information on the latest changes.
+This cookbook installs and configures the New Relic infrastructure agent as well New Relic and custom on-host integrations.
 
-## Requirements
+## Installing and using New Relic infrastructure agent Chef cookbook
 
-### Platforms
+### Requirements
+
+#### Platforms
 
 * Amazon Linux all versions
 * CentOS version 5 or higher
@@ -17,22 +18,22 @@ See the [CHANGELOG][11] for information on the latest changes.
 * Windows Server 2008, 2012, 2016, and 2019, and their service packs.
 * SUSE Linux Enterprise 11, 12
 
-### Chef
+#### Chef
 
 - Chef 12.15+
 
-### Cookbooks
+#### Cookbooks
 
 - [poise-service][1]
 - [poise-archive][2]
-## Recipes
+### Recipes
 
-### `newrelic-infra::default`
+#### `newrelic-infra::default`
 
 Determines the platform and includes the appropriate platform specific recipe.
 This is the only recipe that should be included in a node's run list.
 
-### `newrelic-infra::agent_linux`
+#### `newrelic-infra::agent_linux`
 
 Installs and configures the Infrastructure agent on a Linux host.
 This recipe should _NOT_ be directly included in a node's run list.
@@ -44,13 +45,13 @@ The default recipe will automatically determine which platform specific recipe t
 4. Generates the agent configuration file
 5. Includes the `newrelic-infra::host_integrations` recipe to install and configure any on-host integrations
 
-### `newrelic-infra::agent_windows`
+#### `newrelic-infra::agent_windows`
 
 Installs and configures the Infrastructure agent on a Windows host.
 This recipe should _NOT_ be directly included in a node's run list.
 The default recipe will automatically determine which platform specific recipe to apply.
 
-### `newrelic-infra::host_integrations`
+#### `newrelic-infra::host_integrations`
 
 Installs New Relic provided and custom on-host integrations if the integration has been addded to the list of `host_integrations` (i.e., `default['newrelic_infra']['features]['host_integrations'] = []`).
 Generates configuration for any of the available on-host integrations from New Relic.
@@ -83,7 +84,7 @@ default['newrelic_infra']['custom_integrations']['test_integration'] = {
 
 For more information on the available New Relic on-host integrations and configuration you can check the [official documentation.][6]
 
-## Attributes
+### Attributes
 
 See [attributes/defaults.rb][3] for more details and default values.
 
@@ -117,7 +118,7 @@ See [attributes/defaults.rb][3] for more details and default values.
 | `default['newrelic_infra']['tarball']['version']` | `nil` | the version number of the tarball to install |
 | `default['newrelic_infra']['delete_yaml_quotes']` | `true` | if true it deletes the quotes (`"`) from the generated integration configs and definitions files |
 
-### APT repository attributes
+#### APT repository attributes
 
 The `apt_repository` Chef resource is built using metaprogramming, so that the configuration can be extended via attributes.
 Any property available to the resource can be passed in via attributes.
@@ -133,7 +134,7 @@ For more information, refer to the Chef documentation on the [apt_repository][4]
 | `default['newrelic_infra']['apt']['arch']` | `'amd64'` | Package architecture to install |
 | `default['newrelic_infra']['apt']['action']` | `[:add]` | `apt_repository` resource actions to perform |
 
-### Windows attributes
+#### Windows attributes
 
 When using Windows, you can set a source URL and checksum for the agent download.
 
@@ -142,7 +143,7 @@ When using Windows, you can set a source URL and checksum for the agent download
 | `default['newrelic-infra']['windows_source']` | `https://download.newrelic.com/infrastructure_agent/windows/newrelic-infra.msi` | Remote URL for Infrastructure agent windows download |
 | `default['newrelic-infra']['windows_checksum']` | `nil` | SHA-256 Checksum for source file |
 
-### Yum repository attributes
+#### Yum repository attributes
 
 The `yum_repository` Chef resource is built using metaprogramming, so that the configuration can be extended via attributes.
 Any property available to the resource can be passed in via attributes.
@@ -158,9 +159,9 @@ For more information, refer to the Chef documentation on the [yum_repository][5]
 | `default['newrelic_infra']['yum']['repo_gpgcheck']` | `true` | Perform a GPG check on the package repository |
 | `default['newrelic_infra']['yum']['action']` | `[:add, :makecache]` | `yum_repository` resource actions to perform |
 
-## Custom Resources
+### Custom Resources
 
-### `newrelic_infra_integration`
+#### `newrelic_infra_integration`
 
 Installs and configures a custom New Relic Infrastructure on-host integration.
 
@@ -212,34 +213,50 @@ Supported properties:
 | `config_dir` | `false` | String | '/etc/newrelic-infra/integrations.d/' |
 | `config_file` | `false` | String | `#{config_dir}/#{resource_name).yaml` |
 
-## Usage
+### Usage
 
-### Cookbook usage
+#### Cookbook usage
 
 - Set any attributes necessary for your desired configuration
 - Add the `newrelic-infra::default` recipe your run list
 - For wrapper cookbooks, add the `newrelic-infra` cookbook as a dependency to your `metadata.rb` or `Berksfile`, then include `newrelic-infra::default` recipe.
 
-### Custom resource usage
+#### Custom resource usage
 
 - Add the `newrelic-infra` cookbook as a dependency to your `metadata.rb` or `Berksfile`
 - Configure the custom resource(s) using the supported properties
 
-## Testing
+### Testing
 
 See [CONTRIBUTING.md][10] for details on how to test and contribute to this cookbook.
 
-## Releasing new versions
+### Releasing new versions
 
 For releasing a new version to the [Chef Supermarket][12] follow this steps:
 
 - Update the version number in [metadata.rb][13].
 - Create the github release for the new version. This will trigger a 
   [TravisCI][14] job that will deploy the new version.
-- Check that the job finish successfuly and that the new version is in the
-	supermarket, the cookbook badge should update with the new version number.
+- Watch the build with the version number in Travis: 
+  https://travis-ci.org/newrelic/infrastructure-agent-chef/builds
+- If that passes, the new version should be on
+  https://supermarket.chef.io/cookbooks/newrelic-infra and available to
+  use everywhere
 
-Copyright (c) 2016-2019 New Relic, Inc. All rights reserved.
+## Support
+
+New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
+
+https://discuss.newrelic.com/c/support-products-agents/new-relic-infrastructure
+
+
+## Contributing
+
+We encourage contributions to improve New Relic infrastructure agent Chef cookbook! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
+If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company,  please drop us an email at opensource@newrelic.com.
+
+## License
+New Relic infrastructure agent Chef cookbook is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
 [1]:  https://github.com/poise/poise-service
 [2]:  https://github.com/poise/poise-archive

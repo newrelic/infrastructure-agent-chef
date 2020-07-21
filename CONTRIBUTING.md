@@ -1,25 +1,22 @@
 # Contributing
 
-Contributions are more than welcome.
-Bug reports with specific reproduction steps are great.
-If you have a code contribution you'd like to make, open a pull request with suggested code.
+Contributions are always welcome. Before contributing please read the
+[code of conduct](./CODE_OF_CONDUCT.md) and [search the issue tracker](../../issues); your issue may have already been discussed or fixed in `main`. To contribute,
+[fork](https://help.github.com/articles/fork-a-repo/) this repository, commit your changes, and [send a Pull Request](https://help.github.com/articles/using-pull-requests/).
 
-Note that PR's and issues are reviewed every ~2 weeks.
-If your PR or issue is critical in nature, please reflect that in the description so that it receives faster attention.
+Note that our [code of conduct](./CODE_OF_CONDUCT.md) applies to all platforms and venues related to this project; please follow it in all your interactions with the project and its participants.
 
-Parts of this documentation have been adopted from the [Chef community cookbook documentation][8].
+## Feature Requests
 
-## Pull requests
+Feature requests should be submitted in the [Issue tracker](../../issues), with a description of the expected behavior & use case, where they’ll remain closed until sufficient interest, [e.g. :+1: reactions](https://help.github.com/articles/about-discussions-in-issues-and-pull-requests/), has been [shown by the community](../../issues?q=label%3A%22votes+needed%22+sort%3Areactions-%2B1-desc).
+Before submitting an Issue, please search for similar ones in the
+[closed issues](../../issues?q=is%3Aissue+is%3Aclosed+label%3Aenhancement).
 
-* Clearly state their intent in the title
-* Have a description that explains the need for the changes
-* Include tests! (Make sure the recipe works and converges)
-* Don't break the public API
-* Add yourself to the CONTRIBUTING file at the bottom
-* Increment the recipe version info in metadata.rb
-* Test some more!
+## Pull Requests
 
-By contributing to this project you agree that you are granting New Relic a non-exclusive, non-revokable, no-cost license to use the code, algorithms, patents, and ideas in that code in our products if we so choose. You also agree the code is provided as-is and you provide no warranties as to its fitness or correctness for any purpose.
+1. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+2. Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
+3. You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
 ## Testing
 
@@ -142,38 +139,16 @@ To test specific instance run:
 chef exec kitchen test INSTANCE_NAME
 ```
 
-## Releasing new versions
+## Contributor License Agreement
 
-Tags in GitHub will create a new release on Supermarket automatically via Travis CI.
+Keep in mind that when you submit your Pull Request, you'll need to sign the CLA via the click-through using CLA-Assistant. If you'd like to execute our corporate CLA, or if you have any questions, please drop us an email at opensource@newrelic.com.
 
-To create a release:
+For more information about CLAs, please check out Alex Russell’s excellent post,
+[“Why Do I Need to Sign This?”](https://infrequently.org/2008/06/why-do-i-need-to-sign-this/).
 
-* Have current master have an updated changelog and a version in metadata.rb
-  newer than the latest version at https://supermarket.chef.io/cookbooks/newrelic-infra
-* Tag a new version: `git tag -a X.Y.Z -m "$CHANGELOG_ENTRY_FOR_NEW_VERSION" && git push --tags`
-* Watch the build with the version number in Travis: 
-  https://travis-ci.org/newrelic/infrastructure-agent-chef/builds
-* If that passes, the new version should be on
-  https://supermarket.chef.io/cookbooks/newrelic-infra and available to
-  use everywhere
+## Slack
 
-## Contributors
-
-* David Lanner (@dlanner)
-* Don O'Neill <don.oneill @ apexlearning.com>
-* Robert Hak <robert.hak @ iacapps.com>
-* Ruben Hervas (@xino12)
-* Jordan Faust (jfaust47@gmail.com)
-* Chris Minton (@chrisminton)
-* Brandon Sharitt (brandon@sharitt.com)
-* Nathan Smith (nsmith@newrelic.com)
-* Codarren Velvindron (codarren@hackers.mu)
-* Mark Whelan (mbwhelan@gmail.com)
-* [Trevor Wood][1] ([trevor.g.wood@gmail.com][2])
-* Alejandro Do Nascimento (@alejandrodnm)
-* David Brota (@davidbrota)
-
-Copyright (c) 2016-2019 New Relic, Inc. All rights reserved.
+We host a public Slack with a dedicated channel for contributors and maintainers of open source projects hosted by New Relic.  If you are contributing to this project, you're welcome to request access to the #oss-contributors channel in the newrelicusers.slack.com workspace.  To request access, see https://newrelicusers-signup.herokuapp.com/.
 
 [1]:  https://github.com/taharah
 [2]:  mailto:trevor.g.wood@gmail.com

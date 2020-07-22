@@ -1,10 +1,10 @@
 [![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
-# New Relic infrastructure agent Chef cookbook [![Travis CI Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/newrelic/infrastructure-agent-chef?svg=true)](https://ci.appveyor.com/project/smith37586/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
+# Chef cookbook for the New Relic infrastructure agent [![Travis CI Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/newrelic/infrastructure-agent-chef?svg=true)](https://ci.appveyor.com/project/smith37586/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
 
-This cookbook installs and configures the New Relic infrastructure agent as well New Relic and custom on-host integrations.
+This cookbook installs and configures the New Relic infrastructure agent, as well New Relic and and [on-host integrations](https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list/).
 
-## Installing and using New Relic infrastructure agent Chef cookbook
+## Install and use the Chef cookbook
 
 ### Requirements
 
@@ -26,36 +26,33 @@ This cookbook installs and configures the New Relic infrastructure agent as well
 
 - [poise-service][1]
 - [poise-archive][2]
+
 ### Recipes
 
 #### `newrelic-infra::default`
 
-Determines the platform and includes the appropriate platform specific recipe.
-This is the only recipe that should be included in a node's run list.
+Determines the platform and includes the appropriate platform specific recipe. This is the only recipe that should be included in a node's run list.
 
 #### `newrelic-infra::agent_linux`
 
-Installs and configures the Infrastructure agent on a Linux host.
-This recipe should _NOT_ be directly included in a node's run list.
-The default recipe will automatically determine which platform specific recipe to apply.
+Installs and configures the Infrastructure agent on a Linux host. This recipe should _NOT_ be directly included in a node's run list. The default recipe will automatically determine which platform specific recipe to apply.
 
-1. Adds the `newrelic-infra` package repository source
+Here are the steps that the recipe performs:
+
+1. Adds the `newrelic-infra` package repository source.
 2. Can install, upgrade, or remove the `newrelic-infra` package. By default, the package is only installed.
-3. Enables and starts the `newrelic_infra` agent service
-4. Generates the agent configuration file
-5. Includes the `newrelic-infra::host_integrations` recipe to install and configure any on-host integrations
+3. Enables and starts the `newrelic_infra` agent service.
+4. Generates the agent configuration file.
+5. Includes the `newrelic-infra::host_integrations` recipe to install and configure any on-host integrations.
 
 #### `newrelic-infra::agent_windows`
 
-Installs and configures the Infrastructure agent on a Windows host.
-This recipe should _NOT_ be directly included in a node's run list.
-The default recipe will automatically determine which platform specific recipe to apply.
+Installs and configures the Infrastructure agent on a Windows host. This recipe should _NOT_ be directly included in a node's run list. The default recipe will automatically determine which platform specific recipe to apply.
 
 #### `newrelic-infra::host_integrations`
 
-Installs New Relic provided and custom on-host integrations if the integration has been addded to the list of `host_integrations` (i.e., `default['newrelic_infra']['features]['host_integrations'] = []`).
-Generates configuration for any of the available on-host integrations from New Relic.
-Installs any custom integrations defined with attributes.
+Installs New Relic provided and on-host integrations if the integration has been addded to the list of `host_integrations` (for example, `default['newrelic_infra']['features]['host_integrations'] = []`). It also generates configuration for any of the available on-host integrations from New Relic, and installs any custom integrations defined with attributes.
+
 For more infromation on the available custom resource for installing and configuring custom on-host integrations see the [Custom resources][9] documentation.
 
 Example configuration for a custom on-host integration installed and configured via attributes:
@@ -82,7 +79,7 @@ default['newrelic_infra']['custom_integrations']['test_integration'] = {
 }
 ```
 
-For more information on the available New Relic on-host integrations and configuration you can check the [official documentation.][6]
+For more information on the available New Relic on-host integrations and configuration you can check the [official documentation][6].
 
 ### Attributes
 
@@ -120,8 +117,8 @@ See [attributes/defaults.rb][3] for more details and default values.
 
 #### APT repository attributes
 
-The `apt_repository` Chef resource is built using metaprogramming, so that the configuration can be extended via attributes.
-Any property available to the resource can be passed in via attributes.
+The `apt_repository` Chef resource is built using metaprogramming, so that the configuration can be extended via attributes. Any property available to the resource can be passed in via attributes.
+
 Attributes that cannot be passed to the resource are logged out as warnings in order to prevent potential failes from typos, older Chef versions, etc.
 For more information, refer to the Chef documentation on the [apt_repository][4] resource.
 
@@ -145,8 +142,8 @@ When using Windows, you can set a source URL and checksum for the agent download
 
 #### Yum repository attributes
 
-The `yum_repository` Chef resource is built using metaprogramming, so that the configuration can be extended via attributes.
-Any property available to the resource can be passed in via attributes.
+The `yum_repository` Chef resource is built using metaprogramming, so that the configuration can be extended via attributes. Any property available to the resource can be passed in via attributes.
+
 Attributes that cannot be passed to the resource are logged out as warnings in order to prevent potential failes from typos, older Chef versions, etc.
 For more information, refer to the Chef documentation on the [yum_repository][5] resource.
 

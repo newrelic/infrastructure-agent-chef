@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016-2017 New Relic, Inc.
+# Copyright:: (C) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #
@@ -28,4 +28,4 @@ RSpec.configure do |config|
   end
 end
 
-at_exit { ChefSpec::Coverage.report! }
+

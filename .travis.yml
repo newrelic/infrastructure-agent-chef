@@ -19,7 +19,6 @@ before_script:
   - eval "$(chef shell-init bash)"
   - chef --version
   - cookstyle --version
-  - foodcritic --version
 branches:
   only:
     - master
@@ -31,6 +30,7 @@ env:
   matrix:
   - INSTANCE=default-centos-6
   - INSTANCE=default-centos-7
+  - INSTANCE=default-centos-8
   - INSTANCE=default-ubuntu-1404
   - INSTANCE=default-ubuntu-1604
   - INSTANCE=default-ubuntu-1804
@@ -52,6 +52,6 @@ jobs:
       script: skip
       services: []
       sudo: false
-script: if [[ "$INSTANCE" == verify ]]; then chef exec delivery local all; else KITCHEN_LOCAL_YAML=.kitchen.dokken.yml kitchen verify ${INSTANCE}; fi
+script: if [[ "$INSTANCE" == verify ]]; then chef exec delivery local all; else KITCHEN_LOCAL_YAML=kitchen.dokken.yml kitchen verify ${INSTANCE}; fi
 services: docker
 sudo: required

@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016-2017 New Relic, Inc.
+# Copyright:: (C) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #
@@ -58,7 +58,7 @@ describe 'newrelic-infra::host_integrations' do
       context "On #{platform}: #{version} with host integrations enabled" do
         let(:solo) do
           ChefSpec::SoloRunner.new(platform: platform.to_s, version: version) do |node|
-            node.normal['newrelic_infra']['features']['host_integrations'] = ['nri-cassandra', 'nri-mysql', 'nri-redis', 'nri-nginx', 'nri-apache']
+            node.normal['newrelic_infra']['features']['host_integrations'] = %w(nri-cassandra nri-mysql nri-redis nri-nginx nri-apache)
             node.normal['newrelic_infra']['host_integrations']['config']['cassandra']['username'] = 'chef'
             node.normal['newrelic_infra']['host_integrations']['config']['cassandra']['password'] = 'spec'
             node.normal['newrelic_infra']['packages']['nri-cassandra']['retries'] = 3

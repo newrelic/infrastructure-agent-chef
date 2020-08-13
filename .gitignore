@@ -17,6 +17,8 @@ vendor/*
 .kitchen/
 .kitchen.local.yml
 
+.chef/chef_guid
+
 **/stderr.txt
 **/stdout.txt
 

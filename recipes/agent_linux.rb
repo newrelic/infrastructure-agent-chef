@@ -1,11 +1,11 @@
 #
-# Copyright (c) 2016-2017 New Relic, Inc.
+# Copyright:: (c) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #
 
 #
-# Recipe to install and configure the New Relic Infrastructure agent on Linux
+# Recipe:: to install and configure the New Relic Infrastructure agent on Linux
 # TODO: Convert to custom resource
 #
 node.default['newrelic_infra']['agent']['flags']['config'] = ::File.join(
@@ -53,7 +53,7 @@ when 'package_manager'
         yum_resource.send(property, value)
       end
     end
-  when 'suse', 'sles'
+  when 'suse'
     zypper_repository cookbook_name do |zypper_resource|
       node['newrelic_infra']['zypper'].each do |property, value|
         unless zypper_resource.class.properties.include?(property.to_sym) && !value.nil? || property == 'action'
@@ -71,7 +71,7 @@ when 'package_manager'
   package 'newrelic-infra' do
     action node['newrelic_infra']['packages']['agent']['action']
     retries node['newrelic_infra']['packages']['agent']['retries']
-    version node['newrelic_infra']['packages']['agent']['version'].to_s
+    version node['newrelic_infra']['packages']['agent']['version']
   end
 
   include_recipe 'newrelic-infra::host_integrations'
@@ -130,7 +130,7 @@ when 'tarball'
 
     execute 'extract_newrelic_infra_tarball' do
       command "tar -xzf /opt/linux_#{conf['version']}_#{conf['architecture']}.tar.gz -C /opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/"
-      not_if { File.exist?("/opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/newrelic-infra") }
+      not_if { ::File.exist?("/opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/newrelic-infra") }
       notifies :run, 'execute[run_installation_script]', :immediately
     end
 

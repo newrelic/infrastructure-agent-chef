@@ -11,26 +11,13 @@ verifier:
 
 platforms:
 - name: centos-5
-  driver:
-    box: bento/centos-5
 - name: centos-6
-  driver:
-    box: bento/centos-6
 - name: centos-7
-  driver:
-    box: bento/centos-7
+- name: centos-8
 - name: ubuntu-12.04
-  driver:
-    box: bento/ubuntu-12.04
 - name: ubuntu-14.04
-  driver:
-    box: bento/ubuntu-14.04
 - name: ubuntu-16.04
-  driver:
-    box: bento/ubuntu-16.04
 - name: ubuntu-18.04
-  driver:
-    box: bento/ubuntu-18.04
 - name: windows-2012r2
   driver:
     box: mwrock/Windows2012R2

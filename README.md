@@ -25,7 +25,6 @@ This cookbook installs and configures the New Relic infrastructure agent, as wel
 #### Cookbooks
 
 - [poise-service][1]
-- [poise-archive][2]
 
 ### Recipes
 
@@ -256,7 +255,6 @@ If you have any questions, or to execute our corporate CLA, required if your con
 New Relic infrastructure agent Chef cookbook is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
 [1]:  https://github.com/poise/poise-service
-[2]:  https://github.com/poise/poise-archive
 [3]:  attributes/default.rb
 [4]:  https://docs.chef.io/resource_apt_repository.html
 [5]:  https://docs.chef.io/resource_yum_repository.html

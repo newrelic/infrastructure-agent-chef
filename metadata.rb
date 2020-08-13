@@ -1,14 +1,13 @@
 name              'newrelic-infra'
 maintainer        'New Relic, Inc'
-maintainer_email  ''
+maintainer_email  'opensource@newrelic.com'
 license           'All rights reserved'
 description       'Installs/Configures the New Relic Infrastructure agent ' \
                   'and on-host integrations'
-long_description  IO.read(File.join(__dir__, 'README.md'))
 source_url        'https://github.com/newrelic/infrastructure-agent-chef'
 issues_url        'https://github.com/newrelic/infrastructure-agent-chef/issues'
-version           '0.11.0'
-chef_version      '>= 12.15'
+version           '0.12.0'
+chef_version      '>= 15.0'
 
 # Platform support
 supports 'amazon', '>= 2013.0'
@@ -22,4 +21,3 @@ supports 'windows'
 
 # Cookbook dependencies
 depends 'poise-service', '~> 1.5'
-depends 'poise-archive', '~> 1.5'

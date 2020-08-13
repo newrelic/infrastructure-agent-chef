@@ -1,7 +1,7 @@
 driver:
   name: dokken
   privileged: true # because Docker and SystemD/Upstart
-  chef_version: <%= ENV['CHEF_VERSION'] || 13 %>
+  chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
 
 transport:
   name: dokken
@@ -23,6 +23,10 @@ platforms:
 - name: centos-7
   driver:
     image: dokken/centos-7
+    pid_one_command: /usr/lib/systemd/systemd
+- name: centos-8
+  driver:
+    image: dokken/centos-8
     pid_one_command: /usr/lib/systemd/systemd
 - name: ubuntu-12.04
   driver:

@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2016-2017 New Relic, Inc.
+# Copyright:: (c) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #
@@ -36,7 +36,7 @@ describe 'newrelic-infra::host_integrations' do
     end
 
     it 'unpacks the remote tarball' do
-      expect(chef_cached).to unpack_poise_archive('https://url-to-a-tarball-for-install.com/test.tar.gz').with(
+      expect(chef_cached).to unpack_archive_file('https://url-to-a-tarball-for-install.com/test.tar.gz').with(
         destination: '/opt/newrelic-infra/test_integration',
         keep_existing: true
       )

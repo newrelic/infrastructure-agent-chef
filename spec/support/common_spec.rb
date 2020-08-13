@@ -7,13 +7,13 @@
 # Pulled from https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
 def supported_platforms
   {
-    redhat: %w(7.5 6.9),
-    oracle: %w(7.4 6.9),
-    centos: %w(7.4.1708 6.9),
-    amazon: %w(2018.03 2015.09),
-    debian: %w(9.4 8.10 7.11),
-    ubuntu: %w(18.04 16.04 14.04),
-    suse: %w(11.4 12.2),
+    redhat: %w(8 7.7 7.6 6.10),
+    oracle: %w(7.6 7.5 6.10 6.9),
+    centos: %w(8 7.7.1908 7.6.1810 6.10 6.9),
+    amazon: %w(2 2018.03 2017.09 2017.03 2016.09 2016.03),
+    debian: %w(10 9.11 9.9 9.8 8.11 8.10 8.9),
+    ubuntu: %w(20.04 18.04 16.04),
+    suse: %w(15 12.5 12.4),
   }
 end
 

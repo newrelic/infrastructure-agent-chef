@@ -11,6 +11,8 @@ default['newrelic_infra']['delete_yaml_quotes'] = true
 default['newrelic_infra']['tarball']['architecture'] = case node['kernel']['machine']
                                                        when 'x86_64'
                                                          'amd64'
+                                                       when 'aarch64'
+                                                         'arm64'
                                                        when 'i386'
                                                          '386'
                                                        else

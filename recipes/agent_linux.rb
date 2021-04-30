@@ -137,7 +137,7 @@ when 'tarball'
     execute 'run_installation_script' do
       command "/opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/newrelic-infra/installer.sh"
       cwd "/opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/newrelic-infra/"
-      environment 'NRIA_LICENSE' => node['newrelic_infra']['config']['license_key']
+      environment 'NRIA_LICENSE_KEY' => node['newrelic_infra']['config']['license_key']
       action :nothing
     end
   end

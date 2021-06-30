@@ -71,7 +71,7 @@ when 'package_manager'
   package 'newrelic-infra' do
     action node['newrelic_infra']['packages']['agent']['action']
     retries node['newrelic_infra']['packages']['agent']['retries']
-    version node['newrelic_infra']['packages']['agent']['version'].to_s
+    version node['newrelic_infra']['packages']['agent']['version']
   end
 
   include_recipe 'newrelic-infra::host_integrations'

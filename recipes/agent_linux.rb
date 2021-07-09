@@ -87,7 +87,7 @@ when 'package_manager'
   directory node['newrelic_infra']['agent']['directory']['path'] do
     owner node['newrelic_infra']['user']['name']
     group node['newrelic_infra']['group']['name']
-    mode node['newrelic_infra']['agent']['directory']['mode']
+    mode  node['newrelic_infra']['agent']['directory']['mode']
   end
 
   # Build the New Relic infrastructure agent configuration
@@ -99,7 +99,7 @@ when 'package_manager'
     end)
     owner node['newrelic_infra']['user']['name']
     group node['newrelic_infra']['group']['name']
-    mode  '0640'
+    mode  node['newrelic_infra']['agent']['config']['mode']
     sensitive true
     notifies :restart, 'poise_service[newrelic-infra]'
   end
@@ -151,7 +151,7 @@ when 'tarball'
     end)
     owner node['newrelic_infra']['user']['name']
     group node['newrelic_infra']['group']['name']
-    mode  '0640'
+    mode  node['newrelic_infra']['agent']['config']['mode']
     sensitive true
     notifies :restart, 'service[newrelic-infra]'
   end

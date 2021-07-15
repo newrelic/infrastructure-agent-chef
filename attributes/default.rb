@@ -49,10 +49,9 @@ end
 
 # New Relic infrastructure agent configuration file and directory properties
 default['newrelic_infra']['agent'].tap do |conf|
-  conf['config']['file'] = 'agent.yaml'
+  conf['config']['file'] = 'newrelic-infra.yml'
   conf['config']['mode'] = '0640'
-  conf['directory']['path'] = '/etc/newrelic-infra'
-  conf['directory']['mode'] = '0750'
+  conf['directory']['path'] = '/etc/'
 end
 
 # New Relic Infrastructure agent package configuration
@@ -108,7 +107,7 @@ default['newrelic_infra']['yum'].tap do |conf|
     amazon: {
       '= 2013' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/6/x86_64',
       '> 2013.0' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/6/x86_64',
-      '= 2' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/$basearch',
+      '= 2' => 'https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/x86_64',
     },
     %w(redhat oracle centos) => {
       default: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{node['platform_version'].to_i}/x86_64",

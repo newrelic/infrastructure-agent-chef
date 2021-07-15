@@ -21,5 +21,4 @@ supports 'suse'
 supports 'windows'
 
 # Cookbook dependencies
-depends 'poise-service', '~> 1.5'
 depends 'poise-archive', '~> 1.5'

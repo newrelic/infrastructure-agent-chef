@@ -13,10 +13,13 @@ node.default['newrelic_infra']['agent']['flags']['config'] = ::File.join(
   node['newrelic_infra']['agent']['config']['file']
 )
 
+group node['newrelic_infra']['group']['name'] do
+  group_name node['newrelic_infra']['group']['name']
+end
+
 # Setup a service account
-poise_service_user node['newrelic_infra']['user']['name'] do
-  group node['newrelic_infra']['group']['name']
-  only_if { node['newrelic_infra']['features']['manage_service_account'] }
+user node['newrelic_infra']['user']['name'] do
+  gid node['newrelic_infra']['group']['name']
 end
 
 # Based on the Ohai attribute `platform_family` either an APT or YUM repository
@@ -101,19 +104,19 @@ when 'package_manager'
     group node['newrelic_infra']['group']['name']
     mode  node['newrelic_infra']['agent']['config']['mode']
     sensitive true
-    notifies :restart, 'poise_service[newrelic-infra]'
+    notifies :restart, 'service[newrelic-infra]'
   end
 
   # Enable and start the agent as a service on the node with any available
   # CLI options
-  poise_service 'newrelic-infra' do
+  service 'newrelic-infra' do
     # TODO: Figure out how to run as a service account.
     # user node['newrelic_infra']['user']['name']
-    command '/usr/bin/newrelic-infra ' <<
+    start_command '/usr/bin/newrelic-infra ' <<
             NewRelicInfra.generate_flags(node['newrelic_infra']['agent']['flags'])
-    options(:systemd,
+    options [:systemd,
             template: 'newrelic-infra:default/systemd.service.erb',
-            after: %w(syslog.target network.target))
+            after: %w(syslog.target network.target)]
   end
 when 'tarball'
   node['newrelic_infra']['tarball'].tap do |conf|

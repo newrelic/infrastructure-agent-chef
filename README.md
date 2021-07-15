@@ -24,7 +24,6 @@ This cookbook installs and configures the New Relic infrastructure agent, as wel
 
 #### Cookbooks
 
-- [poise-service][1]
 - [poise-archive][2]
 
 ### Recipes

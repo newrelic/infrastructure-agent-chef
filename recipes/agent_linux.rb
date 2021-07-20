@@ -112,8 +112,7 @@ when 'package_manager'
   service 'newrelic-infra' do
     # TODO: Figure out how to run as a service account.
     # user node['newrelic_infra']['user']['name']
-    start_command '/usr/bin/newrelic-infra ' <<
-            NewRelicInfra.generate_flags(node['newrelic_infra']['agent']['flags'])
+    start_command '/usr/bin/newrelic-infra'
     options [:systemd,
             template: 'newrelic-infra:default/systemd.service.erb',
             after: %w(syslog.target network.target)]

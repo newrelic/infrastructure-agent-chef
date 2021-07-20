@@ -90,7 +90,7 @@ module NewRelicInfraCookbook
       end
 
       # Fetch the remote executable tarball if the install method is set to `tarball`
-      poise_archive new_resource.remote_url do
+      archive_file new_resource.remote_url do
         destination ::File.join(new_resource.bin_dir, new_resource.name)
         keep_existing true
         only_if { new_resource.install_method == 'tarball' }

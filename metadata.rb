@@ -19,6 +19,3 @@ supports 'oracle', '>= 6.0'
 supports 'centos', '>= 5.0'
 supports 'suse'
 supports 'windows'
-
-# Cookbook dependencies
-depends 'poise-archive', '~> 1.5'

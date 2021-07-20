@@ -22,10 +22,6 @@ This cookbook installs and configures the New Relic infrastructure agent, as wel
 
 - Chef 12.15+
 
-#### Cookbooks
-
-- [poise-archive][2]
-
 ### Recipes
 
 #### `newrelic-infra::default`
@@ -284,15 +280,13 @@ To all contributors, we thank you!  Without your contribution, this project woul
 
 infrastructure-agent-chef is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
-[1]:  https://github.com/poise/poise-service
-[2]:  https://github.com/poise/poise-archive
-[3]:  attributes/default.rb
-[4]:  https://docs.chef.io/resource_apt_repository.html
-[5]:  https://docs.chef.io/resource_yum_repository.html
-[6]:  https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
-[9]:  #custom-resources
-[10]: CONTRIBUTING.md
-[11]: CHANGELOG.md
-[12]: https://supermarket.chef.io/cookbooks/newrelic-infra
-[13]: metadata.rb#L10
-[14]: https://travis-ci.org/newrelic/infrastructure-agent-chef
+[1]:  attributes/default.rb
+[2]:  https://docs.chef.io/resource_apt_repository.html
+[3]:  https://docs.chef.io/resource_yum_repository.html
+[4]:  https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
+[5]:  #custom-resources
+[6]: CONTRIBUTING.md
+[7]: CHANGELOG.md
+[8]: https://supermarket.chef.io/cookbooks/newrelic-infra
+[9]: metadata.rb#L10
+[10]: https://travis-ci.org/newrelic/infrastructure-agent-chef

@@ -20,6 +20,7 @@ end
 # Setup a service account
 user node['newrelic_infra']['user']['name'] do
   gid node['newrelic_infra']['group']['name']
+  shell '/bin/false'
 end
 
 # Based on the Ohai attribute `platform_family` either an APT or YUM repository
@@ -33,40 +34,31 @@ when 'package_manager'
   case node['platform_family']
   when 'debian'
     # Create APT repo file
-    apt_repository cookbook_name do |apt_resource|
-      node['newrelic_infra']['apt'].each do |property, value|
-        unless apt_resource.class.properties.include?(property.to_sym) && !value.nil? || property == 'action'
-          Chef::Log.warn("[#{cookbook_name}::#{recipe_name}] #{property} with #{value}" \
-                         'is not valid for the Chef resource `apt_repository`!')
-          next
-        end
-
-        apt_resource.send(property, value)
-      end
+    apt_repository cookbook_name do
+      arch node['newrelic_infra']['apt']['arch']
+      uri  node['newrelic_infra']['apt']['uri']
+      key  node['newrelic_infra']['apt']['key']
+      distribution node['newrelic_infra']['apt']['distribution']
+      components node['newrelic_infra']['apt']['components']
+      action node['newrelic_infra']['apt']['action']
     end
   when 'rhel', 'amazon'
-    yum_repository cookbook_name do |yum_resource|
-      node['newrelic_infra']['yum'].each do |property, value|
-        unless yum_resource.class.properties.include?(property.to_sym) && !value.nil? || property == 'action'
-          Chef::Log.warn("[#{cookbook_name}::#{recipe_name}] #{property} with #{value}" \
-                         'is not valid for the Chef resource `yum_repository`!')
-          next
-        end
-
-        yum_resource.send(property, value)
-      end
+    yum_repository cookbook_name do
+      description node['newrelic_infra']['yum']['description']
+      baseurl node['newrelic_infra']['yum']['baseurl']
+      gpgkey node['newrelic_infra']['yum']['gpgkey']
+      gpgcheck node['newrelic_infra']['yum']['gpgcheck']
+      repo_gpgcheck node['newrelic_infra']['yum']['repo_gpgcheck']
+      action node['newrelic_infra']['yum']['action']
     end
   when 'suse', 'sles'
-    zypper_repository cookbook_name do |zypper_resource|
-      node['newrelic_infra']['zypper'].each do |property, value|
-        unless zypper_resource.class.properties.include?(property.to_sym) && !value.nil? || property == 'action'
-          Chef::Log.warn("[#{cookbook_name}::#{recipe_name}] #{property} with #{value}" \
-                         'is not valid for the Chef resource `zypper_repository`!')
-          next
-        end
-
-        zypper_resource.send(property, value)
-      end
+    zypper_repository cookbook_name do
+      description node['newrelic_infra']['zypper']['description']
+      baseurl node['newrelic_infra']['zypper']['baseurl']
+      gpgkey node['newrelic_infra']['zypper']['gpgkey']
+      gpgcheck node['newrelic_infra']['zypper']['gpgcheck']
+      repo_gpgcheck node['newrelic_infra']['zypper']['repo_gpgcheck']
+      action node['newrelic_infra']['zypper']['action']
     end
   end
 

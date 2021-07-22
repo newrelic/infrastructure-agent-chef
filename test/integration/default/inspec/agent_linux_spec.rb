@@ -34,12 +34,12 @@ end
 
 describe file('/etc/newrelic-infra') do
   it { should be_directory }
-  it { should be_owned_by 'newrelic_infra' }
-  it { should be_grouped_into 'newrelic_infra' }
-  its('mode') { should cmp '0750' }
+  it { should be_owned_by 'root' }
+  it { should be_grouped_into 'root' }
+  its('mode') { should cmp '0755' }
 end
 
-describe file('/etc/newrelic-infra/agent.yaml') do
+describe file('/etc/newrelic-infra.yml') do
   it { should be_file }
   it { should be_owned_by 'newrelic_infra' }
   it { should be_grouped_into 'newrelic_infra' }

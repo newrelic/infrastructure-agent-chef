@@ -14,13 +14,13 @@ This cookbook installs and configures the New Relic infrastructure agent, as wel
 * CentOS version 5 or higher
 * Debian version 7 ("Wheezy") or higher
 * Red Hat Enterprise Linux (RHEL) version 5 or higher
-* Ubuntu versions 12.04.*, 14.04.*, and 16.04.*, 18.04.* (LTS versions)
+* Ubuntu versions 16.04.*, 18.04.*, 20.04* (LTS versions)
 * Windows Server 2008, 2012, 2016, and 2019, and their service packs.
 * SUSE Linux Enterprise 11, 12
 
 #### Chef
 
-- Chef 12.15+
+- Chef 15+
 
 ### Recipes
 
@@ -82,7 +82,6 @@ See [attributes/defaults.rb][3] for more details and default values.
 
 | Name | Default value | Description |
 |:-----|:--------------|:------------|
-| `default['newrelic_infra']['features']['manage_service_account']` | `true` | Manage a local service account for running the agent |
 | `default['newrelic_infra']['features']['host_integrations']` | `[]` | List of New Relic on-host integrations |
 | `default['newrelic_infra']['user']['name']` | `newrelic_infra` | Service account user name |
 | `default['newrelic_infra']['group']['name']` | `newrelic_infra` | Service account group name |

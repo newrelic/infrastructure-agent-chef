@@ -8,7 +8,7 @@ driver:
 
 provisioner:
   name: chef_zero
-  product_version: <%= ENV['CHEF_VERSION'] || 12 %>
+  product_version: <%= ENV['CHEF_VERSION'] || 15 %>
   chef_license: accept
 
 platforms:

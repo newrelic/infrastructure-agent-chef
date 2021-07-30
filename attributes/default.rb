@@ -18,8 +18,6 @@ default['newrelic_infra']['tarball']['architecture'] = case node['kernel']['mach
                                                        end
 
 # Feature flags
-# Whether or not to create a local service account for running the agent
-default['newrelic_infra']['features']['manage_service_account'] = true
 # Whether or not to install the New Relic on-host integrations
 default['newrelic_infra']['features']['host_integrations'] = []
 
@@ -49,10 +47,9 @@ end
 
 # New Relic infrastructure agent configuration file and directory properties
 default['newrelic_infra']['agent'].tap do |conf|
-  conf['config']['file'] = 'agent.yaml'
+  conf['config']['file'] = 'newrelic-infra.yml'
   conf['config']['mode'] = '0640'
-  conf['directory']['path'] = '/etc/newrelic-infra'
-  conf['directory']['mode'] = '0750'
+  conf['directory']['path'] = '/etc/'
 end
 
 # New Relic Infrastructure agent package configuration

@@ -14,18 +14,13 @@ This cookbook installs and configures the New Relic infrastructure agent, as wel
 * CentOS version 5 or higher
 * Debian version 7 ("Wheezy") or higher
 * Red Hat Enterprise Linux (RHEL) version 5 or higher
-* Ubuntu versions 12.04.*, 14.04.*, and 16.04.*, 18.04.* (LTS versions)
+* Ubuntu versions 16.04.*, 18.04.*, 20.04* (LTS versions)
 * Windows Server 2008, 2012, 2016, and 2019, and their service packs.
 * SUSE Linux Enterprise 11, 12
 
 #### Chef
 
-- Chef 12.15+
-
-#### Cookbooks
-
-- [poise-service][1]
-- [poise-archive][2]
+- Chef 15+
 
 ### Recipes
 
@@ -87,7 +82,6 @@ See [attributes/defaults.rb][3] for more details and default values.
 
 | Name | Default value | Description |
 |:-----|:--------------|:------------|
-| `default['newrelic_infra']['features']['manage_service_account']` | `true` | Manage a local service account for running the agent |
 | `default['newrelic_infra']['features']['host_integrations']` | `[]` | List of New Relic on-host integrations |
 | `default['newrelic_infra']['user']['name']` | `newrelic_infra` | Service account user name |
 | `default['newrelic_infra']['group']['name']` | `newrelic_infra` | Service account group name |
@@ -285,15 +279,13 @@ To all contributors, we thank you!  Without your contribution, this project woul
 
 infrastructure-agent-chef is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
-[1]:  https://github.com/poise/poise-service
-[2]:  https://github.com/poise/poise-archive
-[3]:  attributes/default.rb
-[4]:  https://docs.chef.io/resource_apt_repository.html
-[5]:  https://docs.chef.io/resource_yum_repository.html
-[6]:  https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
-[9]:  #custom-resources
-[10]: CONTRIBUTING.md
-[11]: CHANGELOG.md
-[12]: https://supermarket.chef.io/cookbooks/newrelic-infra
-[13]: metadata.rb#L10
-[14]: https://travis-ci.org/newrelic/infrastructure-agent-chef
+[1]:  attributes/default.rb
+[2]:  https://docs.chef.io/resource_apt_repository.html
+[3]:  https://docs.chef.io/resource_yum_repository.html
+[4]:  https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list
+[5]:  #custom-resources
+[6]: CONTRIBUTING.md
+[7]: CHANGELOG.md
+[8]: https://supermarket.chef.io/cookbooks/newrelic-infra
+[9]: metadata.rb#L10
+[10]: https://travis-ci.org/newrelic/infrastructure-agent-chef

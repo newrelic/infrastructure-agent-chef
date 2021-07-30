@@ -14,7 +14,7 @@ if node['newrelic_infra']['features']['host_integrations'].any?
     package integration_name do
       action node['newrelic_infra']['packages'][integration_name]['action']
       retries node['newrelic_infra']['packages'][integration_name]['retries']
-      version node['newrelic_infra']['packages'][integration_name]['version'].to_s
+      version node['newrelic_infra']['packages'][integration_name]['version']
     end
   end
 
@@ -42,7 +42,7 @@ if node['newrelic_infra']['features']['host_integrations'].any?
       group node['newrelic_infra']['group']['name']
       mode '0640'
       sensitive true
-      notifies :restart, 'poise_service[newrelic-infra]'
+      notifies :restart, 'service[newrelic-infra]'
     end
   end
 end

@@ -18,8 +18,6 @@ default['newrelic_infra']['tarball']['architecture'] = case node['kernel']['mach
                                                        end
 
 # Feature flags
-# Whether or not to create a local service account for running the agent
-default['newrelic_infra']['features']['manage_service_account'] = true
 # Whether or not to install the New Relic on-host integrations
 default['newrelic_infra']['features']['host_integrations'] = []
 

@@ -9,6 +9,7 @@ BREAKING CHANGES:
 * The minimum supported Chef version is now 15+ instead of 12.5+.
 * Removed `poise_service` and `poise_archive` dependencies, `agent_linux.rb` rewritten to use Chef resources instead.
 * Change of creation of config file and it's location - removed `agent.yaml` and changed it to `newrelic.yml` in `/etc`.
+  
 ## 0.11.0 (2019-07-04)
 
 FEATURES:

@@ -19,4 +19,4 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
     - name: run tests
-      uses: kitchen test      
+      run: kitchen test      

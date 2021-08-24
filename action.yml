@@ -10,5 +10,5 @@ runs:
   steps:
     - run: ${{ github.action_path }}/install.sh ${{ inputs.version }}
       shell: bash
-    - run: kitchen test
+    - run: export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml && kitchen test
       shell: bash

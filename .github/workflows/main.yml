@@ -5,8 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Chef workstation installation
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v2
-      - id: foo
-        uses: newrelic/infrastructure-agent-chef@github-actions
+      - name: Run action
+      - uses: newrelic/infrastructure-agent-chef@github-actions
         with:
           version: "21.2.278"

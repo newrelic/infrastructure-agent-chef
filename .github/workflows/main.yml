@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Chef workstation installation
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Install Chef Workstation
-        uses: newrelic/infrastructure-agent-chef/.github/actions/install@github-actions
+        uses: newrelic/infrastructure-agent-chef/.github/actions/action.yml
         with:
           version: "21.2.278"

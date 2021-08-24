@@ -12,7 +12,3 @@ runs:
       id: install
       run: ${{ github.action_path }}/install.sh ${{ inputs.version }}
       shell: bash
-    - name: Run tests
-      id: tests
-      run: export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml && kitchen test
-      shell: bash

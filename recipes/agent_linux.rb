@@ -57,7 +57,6 @@ when 'package_manager'
       baseurl node['newrelic_infra']['zypper']['baseurl']
       gpgkey node['newrelic_infra']['zypper']['gpgkey']
       gpgcheck node['newrelic_infra']['zypper']['gpgcheck']
-      repo_gpgcheck node['newrelic_infra']['zypper']['repo_gpgcheck']
       action node['newrelic_infra']['zypper']['action']
     end
   end

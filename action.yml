@@ -8,7 +8,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/install.sh ${{ inputs.version }}
+    - name: Install Chef Workstation
+      run: ${{ github.action_path }}/install.sh ${{ inputs.version }}
       shell: bash
-    - run: export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml && kitchen test
+    - name: Run tests
+      run: export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml && kitchen test
       shell: bash

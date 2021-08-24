@@ -20,10 +20,6 @@ platforms:
   driver:
     image: dokken/centos-8
     pid_one_command: /sbin/init
-- name: debian-9
-  driver:
-    image: dokken/debian-9
-    pid_one_command: /usr/sbin/service
 - name: ubuntu-16.04
   driver:
     image: dokken/ubuntu-16.04

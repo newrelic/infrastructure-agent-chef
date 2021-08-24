@@ -7,5 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: newrelic/infrastructure-agent-chef@github-actions
+        id: install
         with:
           version: "21.2.278"
+      - uses: newrelic/infrastructure-agent-chef@github-actions
+        id: tests

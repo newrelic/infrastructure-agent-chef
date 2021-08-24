@@ -1,0 +1,9 @@
+name: 'Run tests'
+description: 'Run kitchen dokken with tests'
+runs:
+  using: "composite"
+  steps:
+    - name: Run tests
+      id: tests
+      run: export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml && kitchen test
+      shell: bash

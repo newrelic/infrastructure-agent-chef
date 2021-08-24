@@ -10,5 +10,3 @@ jobs:
         id: install
         with:
           version: "21.2.278"
-      - uses: newrelic/infrastructure-agent-chef@github-actions
-        id: tests

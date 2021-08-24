@@ -4,7 +4,7 @@ name: Chef workflow
 jobs:
   install_chef_workstation:
     runs-on: ubuntu-latest
-    name: Chef Workstation installation
+    name: Install chef and run tests
     steps:
       - uses: actions/checkout@v2
       - name: Install Chef Workstation

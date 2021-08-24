@@ -7,6 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install Chef Workstation
-        uses: ./.github/actions/install.yml
+        uses: ./.github/actions/install@github-actions
         with:
           version: "21.2.278"

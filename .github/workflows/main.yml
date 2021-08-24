@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Chef workstation installation
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Install Chef Workstation
         uses: ./.github/actions/install.yml
         with:

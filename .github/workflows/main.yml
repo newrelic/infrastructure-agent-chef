@@ -6,7 +6,7 @@ jobs:
     name: Chef workstation installation
     steps:
       - uses: actions/checkout@v2
-      - uses: newrelic/infrastructure-agent-chef@github-actions
-        id: install
+      - name: Install Chef Workstation
+        uses: newrelic/infrastructure-agent-chef/.github/actions/install.yml
         with:
           version: "21.2.278"

@@ -1,5 +1,5 @@
-name: 'Install chef'
-description: 'Install chef workstation'
+name: 'Install Chef Workstation'
+description: 'Install Chef Workstation'
 inputs:
   version:
     description: 'chef version'

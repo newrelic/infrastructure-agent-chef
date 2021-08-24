@@ -1,12 +1,19 @@
 on: [push]
 
 jobs:
-  install_chef_job:
+  install_chef_workstation:
     runs-on: ubuntu-latest
-    name: Chef workstation installation
+    name: Chef Workstation installation
     steps:
       - uses: actions/checkout@v2
       - name: Install Chef Workstation
-        uses: newrelic/infrastructure-agent-chef/.github/actions@github-actions
+        uses: newrelic/infrastructure-agent-chef/.github/actions/installation@github-actions
         with:
           version: "21.2.278"
+  run_tests:
+    runs-on: ubuntu-latest
+    name: Run tests
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Chef Workstation
+        uses: newrelic/infrastructure-agent-chef/.github/actions/tests@github-actions

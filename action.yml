@@ -10,3 +10,5 @@ runs:
   steps:
     - run: ${{ github.action_path }}/install.sh ${{ inputs.version }}
       shell: bash
+    - run: kitchen test
+      shell: bash

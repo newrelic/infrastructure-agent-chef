@@ -1,0 +1,12 @@
+name: 'Install chef'
+description: 'Install chef workstation'
+inputs:
+  version:
+    description: 'chef version'
+    required: false
+    default: '21.7.524'
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/install.sh ${{ inputs.version }}
+      shell: bash

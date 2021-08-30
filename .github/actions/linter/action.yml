@@ -1,0 +1,9 @@
+name: 'Run tests'
+description: 'Run kitchen dokken with tests'
+runs:
+  using: "composite"
+  steps:
+    - name: Run linter
+      id: linter
+      run: cookstyle .
+      shell: bash   

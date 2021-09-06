@@ -1,10 +1,9 @@
 name              'newrelic-infra'
 maintainer        'New Relic, Inc'
-maintainer_email  ''
+maintainer_email  'caos-dev@newrelic.com'
 license           'All rights reserved'
 description       'Installs/Configures the New Relic Infrastructure agent ' \
                   'and on-host integrations'
-long_description  IO.read(File.join(__dir__, 'README.md'))
 source_url        'https://github.com/newrelic/infrastructure-agent-chef'
 issues_url        'https://github.com/newrelic/infrastructure-agent-chef/issues'
 version           '0.11.0'

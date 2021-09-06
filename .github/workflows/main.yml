@@ -12,4 +12,6 @@ jobs:
       - name: Run linter
         uses: newrelic/infrastructure-agent-chef/.github/actions/linter@github-actions          
       - name: Run tests
-        uses: newrelic/infrastructure-agent-chef/.github/actions/tests@github-actions      
+        uses: newrelic/infrastructure-agent-chef/.github/actions/tests@github-actions
+      - name: Release
+        uses: newrelic/infrastructure-agent-chef/.github/actions/release@github-actions        

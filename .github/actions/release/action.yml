@@ -5,7 +5,9 @@ runs:
   steps: 
     - name: Create Chef .pem file
       id: pem
-      run: echo ${{ secrets.PEM_BASE64 }} | base64 --decode > newrelic.pem
+      env:
+        PEM: ${{ secrets.PEM_BASE64 }}
+      run: echo $PEM | base64 --decode > newrelic.pem
       shell: bash  
     - name: Release
       id: release

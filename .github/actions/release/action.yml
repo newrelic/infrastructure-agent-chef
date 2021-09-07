@@ -4,10 +4,10 @@ runs:
   using: "composite"
   steps: 
     - name: Create Chef .pem file
-      id: pem
-      env:
-        PEM: ${{ secrets.PEM_BASE64 }}
-      run: echo $PEM | base64 --decode > newrelic.pem
+      with:
+        pem_file: ${{ secrets.PEM_BASE64}}
+      run: echo test
+      # run: echo ${{ secrets.PEM_BASE64 }} | base64 --decode > newrelic.pem
       shell: bash  
     - name: Release
       id: release

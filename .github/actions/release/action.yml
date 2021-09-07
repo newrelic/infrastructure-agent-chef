@@ -10,7 +10,7 @@ runs:
     - name: Create pem file
       id: pem
       # run: echo "${{ inputs.chef_pem_file }}" | base64 --decode > newrelic.pem
-      run: echo "${{ inputs.chef_pem_file }}" > newrelic.enc.pem && openssl base64 -d -in newrelic.enc.pem -out newrelic.pem && cat newrelic.pem
+      run: echo "${{ inputs.chef_pem_file }}" > newrelic.pem
       shell: bash
     - name: Release
       id: release

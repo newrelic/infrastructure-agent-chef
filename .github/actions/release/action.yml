@@ -1,13 +1,15 @@
 name: 'Release chef'
 description: 'Release cookbook'
+inputs:
+  chef_pem_file:
+    description: file used for deployment of chef cookbook
+    required: true
 runs:
   using: "composite"
-  steps: 
-    - name: Create Chef .pem file
-      with:
-        pem_file: ${{ secrets.PEM_BASE64}}
-      run: echo test
-      # run: echo ${{ secrets.PEM_BASE64 }} | base64 --decode > newrelic.pem
+  steps:
+    - name: Create pem file
+      id: pem
+      run: echo ${{ inputs.chef_pem_file }} | base64 --decode > newrelic.pem
       shell: bash  
     - name: Release
       id: release

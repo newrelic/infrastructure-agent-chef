@@ -14,4 +14,6 @@ jobs:
       - name: Run tests
         uses: newrelic/infrastructure-agent-chef/.github/actions/tests@github-actions
       - name: Release
-        uses: newrelic/infrastructure-agent-chef/.github/actions/release@github-actions        
+        uses: newrelic/infrastructure-agent-chef/.github/actions/release@github-actions       
+        with:
+          chef_pem_file: ${{ secrets.PEM_BASE64 }}         

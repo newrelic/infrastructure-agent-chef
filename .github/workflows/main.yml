@@ -1,4 +1,6 @@
-on: [push]
+on:
+  release:
+    type: [published]
 name: Chef workflow
 
 jobs:

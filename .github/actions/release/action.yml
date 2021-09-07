@@ -9,9 +9,7 @@ runs:
   steps:
     - name: Create pem file
       id: pem
-      run: |
-        apt-get install coreutils -y
-        echo ${{ inputs.chef_pem_file }} | base64 --decode > newrelic.pem
+      run: echo ${{ inputs.chef_pem_file }} | base64 --decode > newrelic.pem
       shell: bash  
     - name: Release
       id: release

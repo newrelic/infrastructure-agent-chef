@@ -1,11 +1,11 @@
 #
-# Copyright (C) 2016-2017 New Relic, Inc.
+# Copyright:: (C) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #
 
 #
-# Recipe to install and configure the New Relic Infrastructure agent on Windows
+# Recipe:: to install and configure the New Relic Infrastructure agent on Windows
 #
 # Chef uses sha256 checksums, to generate this, I downloaded the file
 # and on OS X did 'shasum -a 256 newrelic-infra.msi' YMMV on other

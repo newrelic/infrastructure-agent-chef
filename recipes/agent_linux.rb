@@ -1,11 +1,11 @@
 #
-# Copyright (c) 2016-2017 New Relic, Inc.
+# Copyright:: (c) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #
 
 #
-# Recipe to install and configure the New Relic Infrastructure agent on Linux
+# Recipe:: to install and configure the New Relic Infrastructure agent on Linux
 # TODO: Convert to custom resource
 #
 node.default['newrelic_infra']['agent']['flags']['config'] = ::File.join(
@@ -51,7 +51,7 @@ when 'package_manager'
       repo_gpgcheck node['newrelic_infra']['yum']['repo_gpgcheck']
       action node['newrelic_infra']['yum']['action']
     end
-  when 'suse', 'sles'
+  when 'suse'
     zypper_repository cookbook_name do
       description node['newrelic_infra']['zypper']['description']
       baseurl node['newrelic_infra']['zypper']['baseurl']
@@ -124,7 +124,7 @@ when 'tarball'
 
     execute 'extract_newrelic_infra_tarball' do
       command "tar -xzf /opt/linux_#{conf['version']}_#{conf['architecture']}.tar.gz -C /opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/"
-      not_if { File.exist?("/opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/newrelic-infra") }
+      not_if { ::File.exist?("/opt/newrelic_infra/linux_#{conf['version']}_#{conf['architecture']}/newrelic-infra") }
       notifies :run, 'execute[run_installation_script]', :immediately
     end
 

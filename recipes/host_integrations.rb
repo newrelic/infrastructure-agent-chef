@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2016-2017 New Relic, Inc.
+# Copyright:: (c) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #
@@ -34,7 +34,7 @@ if node['newrelic_infra']['features']['host_integrations'].any?
     file file_path do
       content(lazy do
         NewRelicInfra.yaml_file_workaround(
-          config.to_h.delete_blank.deep_stringify.to_yaml,
+          YAML.dump(config.to_h.delete_blank.deep_stringify),
           node['newrelic_infra']['delete_yaml_quotes']
         )
       end)

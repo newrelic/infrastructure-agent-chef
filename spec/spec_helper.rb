@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016-2017 New Relic, Inc.
+# Copyright:: (C) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #
@@ -27,5 +27,3 @@ RSpec.configure do |config|
     $stdout = original_stdout
   end
 end
-
-at_exit { ChefSpec::Coverage.report! }

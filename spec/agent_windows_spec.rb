@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2016-2017 New Relic, Inc.
+# Copyright:: (c) 2016-2017 New Relic, Inc.
 #
 # All rights reserved.
 #

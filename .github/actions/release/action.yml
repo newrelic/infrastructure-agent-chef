@@ -3,6 +3,10 @@ description: 'Release cookbook'
 runs:
   using: "composite"
   steps: 
+    - name: Create Chef .pem file
+      id: pem
+      run: echo ${{ secrets.PEM_BASE64 }} | base64 --decode > newrelic.pem
+      shell: bash  
     - name: Release
       id: release
       run: rm -rf cookbooks/* && berks vendor cookbooks && knife supermarket share newrelic-infra

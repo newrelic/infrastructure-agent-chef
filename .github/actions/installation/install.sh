@@ -1,6 +1,6 @@
 VERSION=${1:-21.7.524}
 
-echo QWxhZGRpbjpvcGVuIHNlc2FtZQ== | base64 --decode
+
 sudo apt-get install update -y
 sudo apt-get install git -y
 sudo apt-get install gpg -y

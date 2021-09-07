@@ -10,7 +10,7 @@ runs:
     - name: Create pem file
       id: pem
       run: echo ${{ inputs.chef_pem_file }} | base64 --decode > newrelic.pem
-      shell: bash  
+      shell: bash
     - name: Release
       id: release
       run: rm -rf cookbooks/* && berks vendor cookbooks && knife supermarket share newrelic-infra

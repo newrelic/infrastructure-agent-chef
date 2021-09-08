@@ -1,6 +1,6 @@
-on:
-  release:
-    types: [published]
+on: [push]
+  # release:
+  #   types: [published]
 name: Release workflow
 
 jobs:

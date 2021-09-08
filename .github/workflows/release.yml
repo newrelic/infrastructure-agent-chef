@@ -10,11 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Chef Workstation
-        uses: newrelic/infrastructure-agent-chef/.github/actions/installation@github-actions
+        uses: newrelic/infrastructure-agent-chef/.github/actions/installation@master
       - name: Run linter
-        uses: newrelic/infrastructure-agent-chef/.github/actions/linter@github-actions          
+        uses: newrelic/infrastructure-agent-chef/.github/actions/linter@master
       - name: Run tests
-        uses: newrelic/infrastructure-agent-chef/.github/actions/tests@github-actions
+        uses: newrelic/infrastructure-agent-chef/.github/actions/tests@master
 
   release_chef:
     runs-on: ubuntu-latest
@@ -22,6 +22,6 @@ jobs:
     needs: pre_release
     steps:
       - name: Release
-        uses: newrelic/infrastructure-agent-chef/.github/actions/release@github-actions       
+        uses: newrelic/infrastructure-agent-chef/.github/actions/release@master
         with:
           chef_pem_file: ${{ secrets.PEM_BASE64 }}

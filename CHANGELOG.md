@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.12.1 (2021-09-08)
+
+FEATURES:
+
+* The minimum supported Centos version is now 7.0 instead of 5.0.
 ## 0.12.0 (2021-08-02)
 
 BREAKING CHANGES:

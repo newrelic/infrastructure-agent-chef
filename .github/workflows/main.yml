@@ -2,7 +2,7 @@ on:
   pull_request:
     branches:
       - master
-name: Chef workflow
+name: PR workflow
 
 jobs:
   install_chef_workstation:

@@ -1,10 +1,10 @@
 on:
   release:
     types: [published]
-name: Chef workflow
+name: Release workflow
 
 jobs:
-  pre_release:
+  release-chef:
     runs-on: ubuntu-latest
     name: Install chef and run tests
     steps:
@@ -15,13 +15,7 @@ jobs:
         uses: newrelic/infrastructure-agent-chef/.github/actions/linter@master
       - name: Run tests
         uses: newrelic/infrastructure-agent-chef/.github/actions/tests@master
-
-  release_chef:
-    runs-on: ubuntu-latest
-    name: Release package
-    needs: pre_release
-    steps:
       - name: Release
         uses: newrelic/infrastructure-agent-chef/.github/actions/release@master
         with:
-          chef_pem_file: ${{ secrets.PEM_BASE64 }}
+          chef_pem_file: ${{ secrets.PEM_BASE64 }}        

@@ -1,0 +1,17 @@
+name: 'Release chef'
+description: 'Release cookbook'
+inputs:
+  chef_pem_file:
+    description: file used for deployment of chef cookbook
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Create pem file
+      id: pem
+      run: echo "${{ inputs.chef_pem_file }}" > newrelic.enc.pem && openssl base64 -d -in newrelic.enc.pem -out newrelic.pem
+      shell: bash
+    - name: Release
+      id: release
+      run: rm -rf cookbooks/* && berks vendor cookbooks && knife supermarket share newrelic-infra
+      shell: bash

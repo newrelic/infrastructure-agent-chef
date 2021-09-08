@@ -1,7 +1,7 @@
 driver:
   name: dokken
   privileged: true # because Docker and SystemD/Upstart
-  chef_version: <%= ENV['CHEF_VERSION'] || 13 %>
+  chef_version: <%= ENV['CHEF_VERSION'] || 15 %>
 
 transport:
   name: dokken
@@ -12,39 +12,29 @@ provisioner:
   chef_license: accept
 
 platforms:
-- name: centos-5
-  driver:
-    image: dokken/centos-5
-    pid_one_command: /sbin/init
-- name: centos-6
-  driver:
-    image: dokken/centos-6
-    pid_one_command: /sbin/init
 - name: centos-7
   driver:
     image: dokken/centos-7
-    pid_one_command: /usr/lib/systemd/systemd
-- name: ubuntu-12.04
-  driver:
-    image: dokken/ubuntu-12.04
     pid_one_command: /sbin/init
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
-- name: ubuntu-14.04
+- name: centos-8
   driver:
-    image: dokken/ubuntu-14.04
+    image: dokken/centos-8
     pid_one_command: /sbin/init
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
 - name: ubuntu-16.04
   driver:
     image: dokken/ubuntu-16.04
-    pid_one_command: /bin/systemd
+    pid_one_command: /sbin/init
     intermediate_instructions:
       - RUN /usr/bin/apt-get update
 - name: ubuntu-18.04
   driver:
     image: dokken/ubuntu-18.04
+    pid_one_command: /bin/systemd
+    intermediate_instructions:
+      - RUN /usr/bin/apt-get update
+- name: ubuntu-20.04
+  driver:
+    image: dokken/ubuntu-20.04
     pid_one_command: /bin/systemd
     intermediate_instructions:
       - RUN /usr/bin/apt-get update

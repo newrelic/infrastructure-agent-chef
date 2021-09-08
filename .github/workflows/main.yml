@@ -1,0 +1,18 @@
+on:
+  pull_request:
+    branches:
+      - master
+name: Chef workflow
+
+jobs:
+  install_chef_workstation:
+    runs-on: ubuntu-latest
+    name: Install chef and run tests
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Chef Workstation
+        uses: newrelic/infrastructure-agent-chef/.github/actions/installation@master
+      - name: Run linter
+        uses: newrelic/infrastructure-agent-chef/.github/actions/linter@master
+      - name: Run tests
+        uses: newrelic/infrastructure-agent-chef/.github/actions/tests@master

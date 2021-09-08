@@ -228,9 +228,9 @@ For releasing a new version to the [Chef Supermarket][12] follow this steps:
 
 - Update the version number in [metadata.rb][13].
 - Create the github release for the new version. This will trigger a 
-  [TravisCI][14] job that will deploy the new version.
-- Watch the build with the version number in Travis: 
-  https://travis-ci.org/newrelic/infrastructure-agent-chef/builds
+  GitHub Actions job that will deploy the new version.
+- Watch the build with the version number in Github Actions: 
+  https://github.com/newrelic/infrastructure-agent-chef/actions
 - If that passes, the new version should be on
   https://supermarket.chef.io/cookbooks/newrelic-infra and available to
   use everywhere

@@ -1,11 +1,10 @@
 on:
-  pull_request:
-    branches:
-      - master
+  release:
+    type: [published]
 name: Chef workflow
 
 jobs:
-  install_chef_workstation:
+  pre_release:
     runs-on: ubuntu-latest
     name: Install chef and run tests
     steps:
@@ -16,3 +15,13 @@ jobs:
         uses: newrelic/infrastructure-agent-chef/.github/actions/linter@github-actions          
       - name: Run tests
         uses: newrelic/infrastructure-agent-chef/.github/actions/tests@github-actions
+
+  release_chef:
+    runs-on: ubuntu-latest
+    name: Release package
+    needs: pre_release
+    steps:
+      - name: Release
+        uses: newrelic/infrastructure-agent-chef/.github/actions/release@github-actions       
+        with:
+          chef_pem_file: ${{ secrets.PEM_BASE64 }}

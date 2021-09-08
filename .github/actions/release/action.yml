@@ -13,5 +13,5 @@ runs:
       shell: bash
     - name: Release
       id: release
-      run: rm -rf cookbooks/* && berks vendor cookbooks && knife supermarket share newrelic-infra -VVV
+      run: rm -rf cookbooks/* && berks vendor cookbooks && knife supermarket share newrelic-infra
       shell: bash

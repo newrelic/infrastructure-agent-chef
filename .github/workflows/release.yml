@@ -11,10 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Chef Workstation
         uses: newrelic/infrastructure-agent-chef/.github/actions/installation@master
-      - name: Run linter
-        uses: newrelic/infrastructure-agent-chef/.github/actions/linter@master
-      - name: Run tests
-        uses: newrelic/infrastructure-agent-chef/.github/actions/tests@master
       - name: Release
         uses: newrelic/infrastructure-agent-chef/.github/actions/release@master
         with:

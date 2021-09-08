@@ -4,7 +4,7 @@ on:
 name: Release workflow
 
 jobs:
-  pre-release:
+  pre_release:
     runs-on: ubuntu-latest
     name: Install chef and run tests
     steps:

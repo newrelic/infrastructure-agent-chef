@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.12.2 (2021-10-25)
+
+* Removed keep_existing property from archive_file
+
 ## 0.12.1 (2021-09-08)
 
 FEATURES:

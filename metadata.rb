@@ -6,7 +6,7 @@ description       'Installs/Configures the New Relic Infrastructure agent ' \
                   'and on-host integrations'
 source_url        'https://github.com/newrelic/infrastructure-agent-chef'
 issues_url        'https://github.com/newrelic/infrastructure-agent-chef/issues'
-version           '0.12.1'
+version           '0.12.2'
 chef_version      '>= 15'
 
 # Platform support

@@ -40,7 +40,7 @@ platforms:
       - RUN /usr/bin/apt-get update
 - name: opensuse-leap
   driver:
-    image: dokken/opensuse-leap
-    pid_one_command: /bin/systemd
+    image: dokken/opensuse-leap-15.3
+    pid_one_command: /usr/lib/systemd/systemd
     intermediate_instructions:
       - RUN /usr/bin/zypper ref

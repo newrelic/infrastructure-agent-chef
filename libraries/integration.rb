@@ -69,16 +69,11 @@ module NewRelicInfraCookbook
     # Actions
     action :create do
       # Creates and manages the directory for the custom integration executable
-      %W(
-        #{new_resource.bin_dir}
-        #{::File.join(new_resource.bin_dir, new_resource.name)}
-      ).each do |dir|
-        directory dir do
-          owner new_resource.user
-          group new_resource.group
-          mode '0750'
-          recursive true
-        end
+      directory new_resource.bin_dir do
+        owner new_resource.user
+        group new_resource.group
+        mode '0750'
+        recursive true
       end
 
       # Fetch the remote executable binary if the install method is set to `binary`
@@ -93,14 +88,20 @@ module NewRelicInfraCookbook
       remote_file ::File.basename(new_resource.remote_url) do
         user new_resource.user
         group new_resource.group
-        path ::File.join(new_resource.bin_dir, new_resource.name)
+        path ::File.join(new_resource.bin_dir, ::File.basename(new_resource.remote_url))
         source new_resource.remote_url
         only_if { new_resource.install_method == 'tarball' }
       end
 
       # Unzip tarball if the install method is set to `tarball` (archive_file doesn't support remote source urls)
+      # execute "extract #{::File.basename(new_resource.remote_url)}" do
+
       archive_file ::File.basename(new_resource.remote_url) do
-        destination ::File.join(new_resource.bin_dir, new_resource.name)
+        destination new_resource.bin_dir
+        overwrite :auto
+        owner new_resource.user
+        group new_resource.group
+        path ::File.join(new_resource.bin_dir, ::File.basename(new_resource.remote_url))
         only_if { new_resource.install_method == 'tarball' }
       end
 

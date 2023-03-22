@@ -119,7 +119,7 @@ For more information, refer to the Chef documentation on the [apt_repository][4]
 | Name | Default value | Description |
 |:-----|:--------------|:------------|
 | `default['newrelic_infra']['apt']['uri']` | `https://download.newrelic.com/infrastructure_agent/linux/apt` | Repository base URL |
-| `default['newrelic_infra']['apt']['key']` | `https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg` | Repository GPG key URL |
+| `default['newrelic_infra']['apt']['key']` | `https://download.newrelic.com/infrastructure_agent/keys/newrelic_apt_key_current.gpg` | Repository GPG key URL |
 | `default['newrelic_infra']['apt']['distribution']` | `node['lsb']['codename']` | Distribution code name |
 | `default['newrelic_infra']['apt']['components']` | `['main']` | Repository components |
 | `default['newrelic_infra']['apt']['arch']` | `'amd64'` | Package architecture to install |
@@ -145,7 +145,7 @@ For more information, refer to the Chef documentation on the [yum_repository][5]
 |:-----|:--------------|:------------|
 | `default['newrelic_infra']['yum']['description']` | 'New Relic Infrastructure' | Repository description |
 | `default['newrelic_infra']['yum']['baseurl']` | Default is determined by distribution see [attributes/default.rb][3] for more information. | Repository base URL |
-| `default['newrelic_infra']['yum']['gpgkey']` | `'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'` | Repository GPG key URL |
+| `default['newrelic_infra']['yum']['gpgkey']` | `'https://download.newrelic.com/infrastructure_agent/keys/newrelic_rpm_key_current.gpg'` | Repository GPG key URL |
 | `default['newrelic_infra']['yum']['gpgcheck']` | `true` | Perform a GPG check on installed packages |
 | `default['newrelic_infra']['yum']['repo_gpgcheck']` | `true` | Perform a GPG check on the package repository |
 | `default['newrelic_infra']['yum']['action']` | `[:add, :makecache]` | `yum_repository` resource actions to perform |

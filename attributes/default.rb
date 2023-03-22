@@ -87,7 +87,7 @@ default['newrelic_infra']['custom_integrations'] = {}
 # See https://docs.chef.io/resource_apt_repository.html for more information
 default['newrelic_infra']['apt'].tap do |conf|
   conf['uri'] = 'https://download.newrelic.com/infrastructure_agent/linux/apt'
-  conf['key'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
+  conf['key'] = 'https://download.newrelic.com/infrastructure_agent/keys/newrelic_apt_key_current.gpg'
   conf['distribution'] = (node['lsb'] || {})['codename'] # node['lsb'] is nil on windows, so set a default
   conf['components'] = %w(main)
   conf['arch'] = 'amd64'
@@ -111,7 +111,7 @@ default['newrelic_infra']['yum'].tap do |conf|
       default: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/#{node['platform_version'].to_i}/x86_64",
     }
   )
-  conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
+  conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/keys/newrelic_rpm_key_current.gpg'
   conf['gpgcheck'] = true
   conf['repo_gpgcheck'] = node['platform_version'].to_i != 5
   conf['action'] = %i(create)
@@ -130,7 +130,7 @@ default['newrelic_infra']['zypper'].tap do |conf|
   conf['description'] = 'New Relic Infrastructure'
   # TODO: Create a dokken image for SLES 12.4
   conf['baseurl'] = "https://download.newrelic.com/infrastructure_agent/linux/zypp/sles/#{platform_version}/x86_64"
-  conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg'
+  conf['gpgkey'] = 'https://download.newrelic.com/infrastructure_agent/keys/newrelic_rpm_key_current.gpg'
   conf['gpgcheck'] = true
   conf['repo_gpgcheck'] = true
   conf['action'] = %i(add)

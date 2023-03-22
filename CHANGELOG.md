@@ -2,11 +2,16 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
-## 0.12.2 (2021-10-25)
+## 0.12.4 (2023-03-22)
 
-* Removed keep_existing property from archive_file
-* Uses `remote_file` to download an integration with a remote source URL and maintain a local path with `archive_file` when
-  the installation method is tarball
+* Removed keep_existing property from archive_file (@akashgoel92)
+* Uses `remote_file` to download an integration with a remote source URL and maintain a local path with `archive_file` when the installation method is tarball (@haidangwa)
+
+## 0.12.3 (2022-08-31)
+- Update gpg key path by @rogercoll in #120
+
+## 0.12.2 (2022-01-10)
+- removed chef-workstation_21.7.524-1_amd64.deb file from the root of the cookbook
 
 ## 0.12.1 (2021-09-08)
 

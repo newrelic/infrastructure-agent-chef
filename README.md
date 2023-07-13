@@ -1,7 +1,9 @@
 [![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
-# Chef cookbook for the New Relic infrastructure agent [![Travis CI Build Status](https://travis-ci.org/newrelic/infrastructure-agent-chef.svg?branch=master)](https://travis-ci.org/newrelic/infrastructure-agent-chef) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/newrelic/infrastructure-agent-chef?svg=true)](https://ci.appveyor.com/project/smith37586/infrastructure-agent-chef) [![Chef Supermarket Cookbook](https://img.shields.io/cookbook/v/newrelic-infra.svg)](https://supermarket.chef.io/cookbooks/newrelic-infra)
+|:warning:| New Relic offers a new [Chef solution](https://github.com/newrelic/chef-install) that simplifies scaling your New Relic Observability efforts. Please consider using this solution going forward. |
+|---------------|:------------------------|
 
+# Chef cookbook for the New Relic infrastructure agent 
 This cookbook installs and configures the New Relic infrastructure agent, as well New Relic and and [on-host integrations](https://docs.newrelic.com/docs/integrations/host-integrations/host-integrations-list/).
 
 ## Install and use the Chef cookbook
@@ -288,4 +290,3 @@ infrastructure-agent-chef is licensed under the [Apache 2.0](http://apache.org/l
 [7]: CHANGELOG.md
 [8]: https://supermarket.chef.io/cookbooks/newrelic-infra
 [9]: metadata.rb#L10
-[10]: https://travis-ci.org/newrelic/infrastructure-agent-chef

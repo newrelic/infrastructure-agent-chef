@@ -89,10 +89,19 @@ module NewRelicInfraCookbook
         only_if { new_resource.install_method == 'binary' }
       end
 
-      # Fetch the remote executable tarball if the install method is set to `tarball`
-      archive_file new_resource.remote_url do
+      # Fetch the remote tarball if the install method is set to 'tarball'
+      remote_file ::File.basename(new_resource.remote_url) do
+        user new_resource.user
+        group new_resource.group
+        path ::File.join(::Chef::Config['file_cache_path'], ::File.basename(new_resource.remote_url))
+        source new_resource.remote_url
+        only_if { new_resource.install_method == 'tarball' }
+      end
+
+      # Unzip tarball if the install method is set to `tarball` (archive_file doesn't support remote source urls)
+      archive_file ::File.basename(new_resource.remote_url) do
+        path ::File.join(::Chef::Config['file_cache_path'], ::File.basename(new_resource.remote_url))
         destination ::File.join(new_resource.bin_dir, new_resource.name)
-        keep_existing true
         only_if { new_resource.install_method == 'tarball' }
       end
 

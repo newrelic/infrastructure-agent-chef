@@ -2,6 +2,17 @@
 
 This file is used to list changes made in each version of the `newrelic-infra` cookbook.
 
+## 0.12.4 (2023-03-22)
+
+* Removed keep_existing property from archive_file (@akashgoel92)
+* Uses `remote_file` to download an integration with a remote source URL and maintain a local path with `archive_file` when the installation method is tarball (@haidangwa)
+
+## 0.12.3 (2022-08-31)
+- Update gpg key path by @rogercoll in #120
+
+## 0.12.2 (2022-01-10)
+- removed chef-workstation_21.7.524-1_amd64.deb file from the root of the cookbook
+
 ## 0.12.1 (2021-09-08)
 
 FEATURES:
@@ -14,16 +25,16 @@ BREAKING CHANGES:
 * The minimum supported Chef version is now 15+ instead of 12.5+.
 * Removed `poise_service` and `poise_archive` dependencies, `agent_linux.rb` rewritten to use Chef resources instead.
 * Change of creation of config file and it's location - removed `agent.yaml` and changed it to `newrelic.yml` in `/etc`.
-  
+
 ## 0.11.0 (2019-07-04)
 
 FEATURES:
 
-* Add support for Amazon Linux 2. 
+* Add support for Amazon Linux 2.
 
 IMPROVEMENTS:
 
-* Add support for disabling the removal of quotes in the generated 
+* Add support for disabling the removal of quotes in the generated
   integration definition and config files.
 
 ## 0.10.0 (2019-05-27)
@@ -31,7 +42,7 @@ IMPROVEMENTS:
 FEATURES:
 
 * Add support for installing the agent in different linux architecture from the
-  tarballs. 
+  tarballs.
 
 ## 0.9.0 (2019-03-29)
 
